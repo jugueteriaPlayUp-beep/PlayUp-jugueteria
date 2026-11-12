@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayUp Store - ¡Sube la diversión!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+    body { font-family: 'Fredoka', sans-serif; }
+    
+    /* FONDO CELESTE PASTEL DINÁMICO */
+    .bg-celeste-pastel {
+      background: linear-gradient(-45deg, #7dd3fc, #38bdf8, #bae6fd, #e0f2fe, #67e8f9);
+      background-size: 400% 400%;
+      animation: animarCeleste 12s ease infinite;
+    }
+    @keyframes animarCeleste {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* BURBUJAS FLOTANTES DE FONDO */
+    .bubble-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden; z-index: 1;
+    }
+    .bubble {
+      position: absolute; bottom: -120px;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.2) 60%, rgba(255, 255, 255, 0.5));
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.9); opacity: 0; }
+      15% { opacity: 0.75; }
+      50% { transform: translateY(-50vh) scale(1.05); }
+      85% { opacity: 0.75; }
+      100% { transform: translateY(-115vh) scale(1); opacity: 0; }
+    }
+    .bubble:nth-child(1) { left: 5%; width: 45px; height: 45px; animation-duration: 9s; animation-delay: 0s; }
+    .bubble:nth-child(2) { left: 18%; width: 65px; height: 65px; animation-duration: 12s; animation-delay: 2s; }
+    .bubble:nth-child(3) { left: 32%; width: 35px; height: 35px; animation-duration: 8s; animation-delay: 4s; }
+    .bubble:nth-child(4) { left: 48%; width: 80px; height: 80px; animation-duration: 14s; animation-delay: 1s; }
+    .bubble:nth-child(5) { left: 65%; width: 50px; height: 50px; animation-duration: 10s; animation-delay: 3s; }
+    .bubble:nth-child(6) { left: 82%; width: 70px; height: 70px; animation-duration: 13s; animation-delay: 5s; }
+    .bubble:nth-child(7) { left: 92%; width: 40px; height: 40px; animation-duration: 7s; animation-delay: 2s; }
+
+    .bubbly-text {
+      text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 3px 3px 6px rgba(0,0,0,0.25);
+    }
+    .cat-banner-activa {
+      border-color: #facc15 !important;
+      box-shadow: 0 0 25px rgba(250, 204, 21, 0.95) !important;
+      transform: scale(1.02);
+    }
+    @keyframes marquesina {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .anim-marquesina {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquesina 22s linear infinite;
+    }
+    .anim-marquesina:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-celeste-pastel text-gray-900 overflow-x-hidden relative">
+
+  <!-- CINTA DE BENEFICIOS SUPERIOR -->
+  <div class="bg-sky-950 text-sky-100 text-xs sm:text-sm font-bold py-2 overflow-hidden relative z-30 shadow-md">
+    <div class="anim-marquesina flex items-center gap-10">
+      <span>🚀 <strong>¡ENVÍOS INMEDIATOS EN SANTA CRUZ Y A TODA BOLIVIA!</strong> 🚚</span>
+      <span>⭐ Puesto 244, Mercado Nuevo Los Pozos 🧸</span>
+      <span>🎉 <strong>REGÍSTRATE HOY Y OBTÉN ATENCIÓN PRIORITARIA EN WHATSAPP</strong> 💬</span>
+      <span>🧸 Juguetes didácticos, pistas, robots y figuras de acción 🤖</span>
+      <span>💖 ¡Calidad garantizada para consentir a los más peques! ✨</span>
+    </div>
+  </div>
+
+  <!-- Burbujas decorativas -->
+  <div class="bubble-container">
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+    <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+  </div>
+
+  <!-- Portada y Encabezado -->
+  <section class="max-w-7xl mx-auto pt-4 pb-4 px-4 sm:px-6 relative z-10 text-white">
+    <div class="bg-white/35 backdrop-blur-md rounded-[35px] p-5 sm:p-6 border-2 border-white/60 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <!-- LOGO -->
+      <div class="w-full md:w-auto flex justify-center md:justify-start">
+        <div class="w-64 sm:w-72 bg-white/40 p-2.5 rounded-3xl border-2 border-white/80 shadow-[0_0_30px_rgba(255,255,255,0.7)] backdrop-blur-sm">
+          <img
+            id="logoPrincipal"
+            src="https://placehold.co/600x320/0284c7/ffffff?text=PlayUp"
+            alt="PlayUp Logo"
+            class="w-full h-auto object-contain rounded-2xl"
+          />
+        </div>
+      </div>
+
+      <!-- ESLOGAN Y BOTONES -->
+      <div class="w-full md:flex-1 flex flex-col items-center md:items-end text-center md:text-right">
+        <p id="txtEslogan" class="text-3xl sm:text-4xl lg:text-5xl font-black drop-shadow-lg bg-white/55 px-6 py-2 rounded-full inline-block backdrop-blur-md border-4 border-white border-dashed bubbly-text mb-4">
+          <span class="text-blue-600">¡</span><span class="text-sky-500">S</span><span class="text-amber-500">u</span><span class="text-emerald-500">b</span><span class="text-purple-600">e</span>
+          <span class="text-orange-500">l</span><span class="text-pink-500">a</span>
+          <span class="text-cyan-500">d</span><span class="text-blue-600">i</span><span class="text-yellow-500">v</span><span class="text-emerald-500">e</span><span class="text-sky-600">r</span><span class="text-purple-600">s</span><span class="text-pink-500">i</span><span class="text-orange-500">ó</span><span class="text-cyan-500">n</span><span class="text-blue-600">!</span>
+        </p>
+
+        <div class="flex flex-wrap justify-center md:justify-end gap-2.5 w-full">
+          <a id="btnLinkWhatsapp" href="https://wa.me/qr/RQIEHSOPT7CCD1" target="_blank" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2 border-2 border-white">
+            <i class="fab fa-whatsapp text-lg"></i> WhatsApp
+          </a>
+          <a id="btnLinkTiktok" href="https://www.tiktok.com/@playupjuguetera" target="_blank" class="bg-gray-900 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
+            <i class="fab fa-tiktok text-lg"></i> TikTok
+          </a>
+          <a id="btnLinkUbicacion" href="https://goo.gl/maps/z12sFherJAvHtLz49" target="_blank" class="bg-gradient-to-r from-rose-500 to-pink-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-map-marker-alt text-lg"></i> Ubicación
+          </a>
+          <button onclick="abrirModalRegistro()" class="bg-gradient-to-r from-amber-400 to-orange-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-user-edit text-lg text-purple-900"></i> ¡Regístrate Aquí!
+          </button>
+          <button onclick="abrirModalListaRegistrados()" class="bg-gradient-to-r from-sky-600 to-blue-700 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-clipboard-list text-lg text-yellow-300"></i> Ver Registrados 📋
+          </button>
+          <button onclick="loginAdmin()" id="btnAdminLogin" class="bg-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
+            <i class="fas fa-magic"></i> Admin
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL ADMIN -->
+  <section id="adminPanel" class="max-w-7xl mx-auto px-4 pb-4 hidden transition-all duration-300 relative z-20">
+    <div class="bg-white/95 backdrop-blur-lg text-purple-900 rounded-[30px] p-5 shadow-2xl border-4 border-yellow-400 flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <h2 class="text-2xl font-black flex items-center gap-2">
+          <i class="fas fa-crown text-yellow-500"></i> Panel de Administración
+        </h2>
+        <p class="text-xs sm:text-sm font-bold text-purple-700">Control de catálogo, fotos y registros.</p>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        <input type="file" id="inputPortada" class="hidden" accept="image/*" onchange="subirNuevaPortada(event)">
+        <button onclick="document.getElementById('inputPortada').click()" id="btnPortada" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+          <i class="fas fa-image"></i> Cambiar Portada
+        </button>
+        <button onclick="abrirModalFotosCategorias()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+          <i class="fas fa-layer-group"></i> 🖼️ Fotos Categorías
+        </button>
+        <button onclick="abrirModalAdminRegistro()" class="bg-amber-500 hover:bg-amber-600 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
+          <i class="fas fa-cog"></i> ⚙️ Configurar Formulario
+        </button>
+        <button onclick="abrirModalAdmin()" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+          <i class="fas fa-plus-circle"></i> + Añadir Juguete
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CATEGORÍAS -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-2 relative z-10">
+    <div class="text-center mb-4">
+      <h2 class="text-3xl md:text-4xl font-black text-white drop-shadow-md">✨ Explora por Categoría ✨</h2>
+      <p class="text-white/90 text-sm sm:text-base font-bold mt-0.5">Toca un banner para filtrar los juguetes</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+      <!-- Columna Izquierda -->
+      <div class="flex flex-col gap-3">
+        <div onclick="filtrarCategoria('todos')" id="card-cat-todos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1 cat-banner-activa">
+          <img id="img-cat-todos" src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1000&auto=format&fit=crop&q=80" alt="Todos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">✨</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Todos</span>
+                <span class="text-yellow-300 text-xs sm:text-sm font-bold">Ver catálogo completo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick="filtrarCategoria('ninos')" id="card-cat-ninos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <img id="img-cat-ninos" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=1000&auto=format&fit=crop&q=80" alt="Niños" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">🚀</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Niños</span>
+                <span class="text-sky-300 text-xs sm:text-sm font-bold">Autos, robots y acción</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick="filtrarCategoria('ninas')" id="card-cat-ninas" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <img id="img-cat-ninas" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1000&auto=format&fit=crop&q=80" alt="Niñas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-pink-950/85 via-pink-900/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">🦄</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Niñas</span>
+                <span class="text-pink-300 text-xs sm:text-sm font-bold">Muñecas, castillos y magia</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Columna Derecha -->
+      <div class="flex flex-col gap-3">
+        <div onclick="filtrarCategoria('bebes')" id="card-cat-bebes" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <img id="img-cat-bebes" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&auto=format&fit=crop&q=80" alt="Bebés" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-teal-950/85 via-teal-900/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">🍼</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Bebés</span>
+                <span class="text-teal-300 text-xs sm:text-sm font-bold">Sonajeros y ternura</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick="filtrarCategoria('didacticos')" id="card-cat-didacticos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <img id="img-cat-didacticos" src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1000&auto=format&fit=crop&q=80" alt="Didácticos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-amber-950/85 via-amber-900/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">🧩</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Didácticos</span>
+                <span class="text-amber-300 text-xs sm:text-sm font-bold">Madera, ingenio y bloques</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div onclick="filtrarCategoria('peluches')" id="card-cat-peluches" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <img id="img-cat-peluches" src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=1000&auto=format&fit=crop&q=80" alt="Peluches" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-950/85 via-purple-900/40 to-transparent flex items-center px-6">
+            <div class="flex items-center gap-4">
+              <span class="text-4xl">🧸</span>
+              <div>
+                <span class="text-white font-black text-2xl block drop-shadow">Peluches</span>
+                <span class="text-purple-300 text-xs sm:text-sm font-bold">Ositos y felpa suave</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTRO DE PRESUPUESTO -->
+  <section id="seccionFiltroPresupuesto" class="max-w-7xl mx-auto px-4 sm:px-6 py-3 relative z-10">
+    <div class="bg-white/35 backdrop-blur-xl rounded-2xl p-3 border-2 border-white/60 flex flex-wrap justify-center items-center gap-2.5 shadow-md">
+      <span class="text-sky-950 font-black text-sm sm:text-base mr-1 flex items-center gap-1.5">
+        <i class="fas fa-wallet text-amber-500 text-lg"></i> Presupuesto:
+      </span>
+      <button onclick="filtrarPresupuesto('todos')" id="btn-precio-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white">Cualquiera</button>
+      <button onclick="filtrarPresupuesto('rango1')" id="btn-precio-rango1" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 30 a 50</button>
+      <button onclick="filtrarPresupuesto('rango2')" id="btn-precio-rango2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 60 a 100</button>
+      <button onclick="filtrarPresupuesto('rango3')" id="btn-precio-rango3" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 110 a 160</button>
+      <button onclick="filtrarPresupuesto('rango4')" id="btn-precio-rango4" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 170 a más</button>
+    </div>
+  </section>
+
+  <!-- VITRINA DE PRODUCTOS -->
+  <section id="vitrinaJuguetes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-24 relative z-10">
+    <div id="contenedorProductos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+      <!-- Se llena por JavaScript -->
+    </div>
+  </section>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/59163529287" target="_blank" class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-500 to-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition border-2 border-white">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- MODAL REGISTRO DE USUARIO -->
+  <div id="modalRegistro" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-yellow-400 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 sticky top-0 bg-white pb-2 z-10 border-b border-purple-100">
+        <div>
+          <h3 id="txtTituloRegistro" class="text-2xl font-black text-purple-900 flex items-center gap-2">
+            📋 Formulario de Registro de Usuario
+          </h3>
+          <p id="txtSubtituloRegistro" class="text-xs sm:text-sm font-semibold text-gray-600">
+            Ingresa tus datos para registrarte en el sistema de PlayUp.
+          </p>
+        </div>
+        <button type="button" onclick="cerrarModalRegistro()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <form id="formRegistroCliente" onsubmit="enviarRegistroCliente(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">1. Nombre completo *</label>
+          <input type="text" id="regNombre" required placeholder="Tu nombre y apellido" class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">2. Correo electrónico *</label>
+          <input type="email" id="regCorreo" required placeholder="nombre@correo.com" class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">3. Número de teléfono / Celular *</label>
+          <input type="tel" id="regTelefono" required placeholder="Ej: 75565671 o 63529287" class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">4. Dirección (ciudad, zona, calle, número)</label>
+          <input type="text" id="regDireccion" placeholder="Ej: Puesto 244, Mercado Nuevo Los Pozos" class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">5. Ciudad donde vive *</label>
+          <select id="regCiudad" required class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+            <option value="">Selecciona tu ciudad...</option>
+            <option value="Santa Cruz de la Sierra">Santa Cruz de la Sierra</option>
+            <option value="La Paz">La Paz</option>
+            <option value="Cochabamba">Cochabamba</option>
+            <option value="El Alto">El Alto</option>
+            <option value="Sucre">Sucre</option>
+            <option value="Oruro">Oruro</option>
+            <option value="Tarija">Tarija</option>
+            <option value="Potosí">Potosí</option>
+            <option value="Trinidad">Trinidad</option>
+            <option value="Cobija">Cobija</option>
+            <option value="Otra">Otra</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">6. Fecha de nacimiento *</label>
+          <input type="date" id="regFechaNac" required class="w-full bg-sky-50 border-2 border-sky-200 focus:border-sky-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none text-gray-700">
+        </div>
+
+        <div class="bg-sky-50/70 p-3 rounded-2xl border-2 border-sky-200">
+          <label class="block text-sky-950 font-black mb-2 text-xs sm:text-sm">7. ¿Qué tipo de juguetes te interesan? *</label>
+          <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm font-semibold text-gray-700 mb-2">
+            <label class="flex items-center gap-1.5 cursor-pointer bg-white p-2 rounded-lg border border-sky-100">
+              <input type="checkbox" name="interes" value="Juguetes didácticos" class="accent-sky-600 w-4 h-4"> Didácticos
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer bg-white p-2 rounded-lg border border-sky-100">
+              <input type="checkbox" name="interes" value="Muñecas y figuras" class="accent-sky-600 w-4 h-4"> Muñecas
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer bg-white p-2 rounded-lg border border-sky-100">
+              <input type="checkbox" name="interes" value="Autos y vehículos" class="accent-sky-600 w-4 h-4"> Autos
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer bg-white p-2 rounded-lg border border-sky-100">
+              <input type="checkbox" name="interes" value="Peluches" class="accent-sky-600 w-4 h-4"> Peluches
+            </label>
+          </div>
+          <input type="text" id="regEdadPeques" placeholder="Edad del niño o niña (ej: 4 años)" class="w-full bg-white border border-sky-200 rounded-xl px-3 py-1.5 text-xs outline-none">
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-bold mb-1.5 text-xs sm:text-sm">8. ¿Cómo prefieres que te contactemos? *</label>
+          <div class="flex gap-4 text-xs sm:text-sm font-semibold text-gray-700">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="contactoPref" value="WhatsApp" checked class="accent-sky-600"> WhatsApp
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="contactoPref" value="Correo" class="accent-sky-600"> Correo
+            </label>
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="contactoPref" value="Teléfono" class="accent-sky-600"> Teléfono
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">9. Comentario o consulta (opcional)</label>
+          <textarea id="regComentario" rows="2" placeholder="Juguete que buscas..." class="w-full bg-sky-50 border-2 border-sky-200 rounded-xl px-3 py-2 text-xs sm:text-sm outline-none resize-none"></textarea>
+        </div>
+
+        <div class="pt-1">
+          <label class="flex items-start gap-2 cursor-pointer text-xs font-semibold text-gray-700">
+            <input type="checkbox" id="regAcepta" required class="accent-sky-600 w-4 h-4 mt-0.5">
+            <span>Acepto los términos y condiciones y la <a href="javascript:void(0)" onclick="abrirModalPrivacidad()" class="text-sky-700 underline font-bold">política de privacidad</a> *</span>
+          </label>
+        </div>
+
+        <button type="submit" id="btnEnviarRegistro" class="w-full bg-gradient-to-r from-amber-400 to-orange-500 text-purple-950 text-lg font-black py-3 rounded-2xl hover:scale-102 transition shadow-lg mt-2 border-2 border-white">
+          Completar Registro 🚀
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRO CONFIRMADO -->
+  <div id="modalConfirmacionExito" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 max-w-sm w-full border-4 border-emerald-400 shadow-2xl text-center">
+      <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 border-2 border-emerald-300">
+        <span class="text-4xl">🎉</span>
+      </div>
+      <h3 class="text-2xl font-black text-sky-950 mb-1">¡Registro Confirmado!</h3>
+      <p id="txtMensajeExitoNombre" class="text-sky-800 font-bold text-sm mb-3">Tu información se guardó correctamente.</p>
+      <div class="bg-sky-50 p-3 rounded-xl border border-sky-200 text-xs text-left space-y-1 mb-4 text-gray-700">
+        <p>✅ Guardado en la base de datos oficial.</p>
+        <p>💌 Confirmación enviada a tu correo.</p>
+        <p>🚀 Conectando con WhatsApp...</p>
+      </div>
+      <button onclick="redirigirAhoraWhatsApp()" class="w-full py-2.5 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-black text-sm rounded-xl shadow border-2 border-white">
+        <i class="fab fa-whatsapp"></i> Ir a WhatsApp Ahora
+      </button>
+    </div>
+  </div>
+
+  <!-- MODAL: VER REGISTRADOS -->
+  <div id="modalListaRegistrados" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-5 sm:p-6 w-full max-w-2xl shadow-2xl border-4 border-sky-400 flex flex-col max-h-[85vh]">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-sky-100">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-black text-sky-950">📋 Lista Oficial de Registrados</h3>
+          <p class="text-xs text-gray-600">Verifica que tu nombre aparezca anotado en la lista.</p>
+        </div>
+        <button type="button" onclick="cerrarModalListaRegistrados()" class="text-gray-400 hover:text-red-500 text-2xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="overflow-y-auto flex-grow rounded-xl border border-sky-100">
+        <table class="w-full text-left text-xs sm:text-sm text-gray-700">
+          <thead class="bg-sky-500 text-white font-black sticky top-0 text-xs uppercase">
+            <tr>
+              <th class="p-2.5">#</th>
+              <th class="p-2.5">Nombre</th>
+              <th class="p-2.5">Ciudad</th>
+              <th class="p-2.5 text-center">Estado</th>
+              <th id="thAccionAdmin" class="p-2.5 text-center hidden">Admin</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyRegistrados" class="divide-y divide-sky-100 font-semibold bg-white">
+            <!-- Dinámico -->
+          </tbody>
+        </table>
+      </div>
+      <div class="pt-3 flex justify-between items-center text-xs font-bold text-gray-500">
+        <span id="txtTotalRegistrados">Total registrados: 0</span>
+        <button onclick="cerrarModalListaRegistrados()" class="px-4 py-1.5 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-800 font-bold">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRIVACIDAD -->
+  <div id="modalPrivacidad" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[30px] p-6 max-w-md w-full shadow-2xl border-4 border-sky-300">
+      <h3 class="text-xl font-black text-sky-950 mb-2">🛡️ Aviso de Privacidad</h3>
+      <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+        En <strong>PlayUp Store</strong> respetamos y protegemos tus datos personales. La información ingresada (nombre, celular y correo) se utiliza exclusivamente para coordinar entregas, reservas de juguetes y confirmaciones de pedidos. No compartimos tu información con terceros.
+      </p>
+      <button onclick="cerrarModalPrivacidad()" class="w-full py-2 bg-sky-500 hover:bg-sky-600 text-white font-bold rounded-xl text-sm">Entendido</button>
+    </div>
+  </div>
+
+  <!-- MODAL ADMIN: CONFIGURACIÓN FORMULARIO -->
+  <div id="modalAdminRegistro" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[30px] p-6 w-full max-w-md shadow-2xl border-4 border-amber-400">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="text-xl font-black text-purple-900">⚙️ Configurar Formulario</h3>
+        <button onclick="cerrarModalAdminRegistro()" class="text-gray-400 hover:text-red-500 text-2xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <form onsubmit="guardarConfigFormulario(event)" class="space-y-3">
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs">URL Web App Google Apps Script (/exec):</label>
+          <input type="url" id="adminUrlScript" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-amber-50 border-2 border-amber-200 rounded-xl px-3 py-2 text-xs font-semibold outline-none">
+        </div>
+        <button type="submit" class="w-full bg-amber-500 text-purple-950 font-black py-2.5 rounded-xl shadow text-sm">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DETALLE JUGUETE -->
+  <div id="modalVista" onclick="cerrarModalVistaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
+    <div id="modalVistaContent" class="rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative border-4 max-h-[85vh] overflow-y-auto transition-all duration-300">
+      
+      <!-- BOTÓN CERRAR SUPERIOR -->
+      <button type="button" onclick="cerrarModalVista()" class="absolute top-4 right-4 text-gray-600 hover:text-red-600 text-2xl bg-white/90 hover:bg-white rounded-full w-11 h-11 flex items-center justify-center shadow-lg border-2 border-white transition transform hover:scale-110 z-20">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="text-center mb-3 pr-10">
+        <div class="flex items-center justify-center gap-2">
+          <span id="detalleCategoriaBadge" class="px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow"></span>
+          <span id="detalleCodigoBadge" class="px-3 py-1 rounded-full text-xs font-black text-purple-950 bg-yellow-300 border border-yellow-500 shadow"></span>
+        </div>
+        <h3 id="detalleNombre" class="text-2xl sm:text-3xl font-black text-gray-900 mt-2 leading-tight"></h3>
+      </div>
+
+      <div class="h-64 sm:h-72 bg-white/90 rounded-2xl overflow-hidden shadow-inner mb-4 flex items-center justify-center border-2 border-white/80 p-2">
+        <img id="imagenPrincipal" src="" class="w-full h-full object-contain">
+      </div>
+
+      <p id="detalleDescripcion" class="text-gray-800 text-sm sm:text-base text-center mb-5 px-3 leading-relaxed font-semibold bg-white/50 p-3 rounded-2xl border border-white/60"></p>
+
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-3 border-t-2 border-white/80 pt-4">
+        <div id="detallePrecio" class="text-3xl font-black text-pink-600"></div>
+        <div class="flex gap-2 w-full sm:w-auto">
+          <button type="button" onclick="cerrarModalVista()" class="flex-1 sm:flex-initial px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition">
+            Volver
+          </button>
+          <a id="detalleBtnWhatsApp" href="#" target="_blank" class="flex-1 sm:flex-initial bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-6 py-2.5 rounded-2xl text-sm font-bold shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
+            <i class="fab fa-whatsapp text-lg"></i> Pedir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT COMPLETO CON FIREBASE Y CATÁLOGO -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcNULVUiPKmTtWulmqrQjzYEKyaS-s5iY",
+      authDomain: "playup-539e9.firebaseapp.com",
+      projectId: "playup-539e9",
+      storageBucket: "playup-539e9.firebasestorage.app",
+      messagingSenderId: "446767107451",
+      appId: "1:446767107451:web:41d0cbe466f9264d4b01de"
+    };
+
+    let db, auth;
+    try {
+      const app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      db = getFirestore(app);
+    } catch(e) {}
+
+    const MI_TELEFONO_WHATSAPP = "59163529287";
+    let isAdmin = false;
+    let categoriaActual = 'todos';
+    let presupuestoActual = 'todos';
+    let urlWhatsAppPendiente = "";
+    let temporizadorRedir = null;
+
+    let configRegistro = {
+      scriptUrl: ""
+    };
+
+    // 18 Juguetes garantizados de alta calidad
+    const catalogoDefecto = [
+      { id: '1', codigo: 'PLU-001', nombre: 'Auto Deportivo RC Recargable', categoria: 'ninos', precio: '145', descripcion: 'Auto a control remoto de alta velocidad con batería recargable USB y faros LED.', foto: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600&auto=format&fit=crop&q=80' },
+      { id: '2', codigo: 'PLU-002', nombre: 'Set Bloques Castillo Rosa Mágico', categoria: 'ninas', precio: '180', descripcion: 'Hermoso castillo armable con torres de ensueño, carruaje y figuritas de princesas.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
+      { id: '3', codigo: 'PLU-003', nombre: 'Oso Gigante Teddy Ultra Suave', categoria: 'peluches', precio: '130', descripcion: 'Peluche gigante de felpa hipoalergénica con lazo satinado, ultra esponjoso.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
+      { id: '4', codigo: 'PLU-004', nombre: 'Sonajero Sensorial Silicona Libre BPA', categoria: 'bebes', precio: '45', descripcion: 'Fácil agarre para manitas pequeñas con texturas que alivian el brote de dientes.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
+      { id: '5', codigo: 'PLU-005', nombre: 'Torre Didáctica Arcoíris Montessori', categoria: 'didacticos', precio: '75', descripcion: 'Juguete de encaje en madera natural y pinturas no tóxicas para motricidad fina.', foto: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80' },
+      { id: '6', codigo: 'PLU-006', nombre: 'Robot Mecha Articulado con Luces', categoria: 'ninos', precio: '95', descripcion: 'Robot caminante interactivo con sonidos de combate y giro de 360 grados.', foto: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&auto=format&fit=crop&q=80' },
+      { id: '7', codigo: 'PLU-007', nombre: 'Muñeca Princesa Bailarina Brillante', categoria: 'ninas', precio: '120', descripcion: 'Muñeca con vestido tutú de purpurina, tiara luminosa y canciones de cuento.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
+      { id: '8', codigo: 'PLU-008', nombre: 'Gatito de Peluche Cariñoso', categoria: 'peluches', precio: '65', descripcion: 'Peluche de textura aterciopelada y ojos bordados muy seguro para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' },
+      { id: '9', codigo: 'PLU-009', nombre: 'Gimnasio Alfombra Sensorial con Piano', categoria: 'bebes', precio: '190', descripcion: 'Alfombra acolchada con pianito musical para pataditas y colgantes divertidos.', foto: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&auto=format&fit=crop&q=80' },
+      { id: '10', codigo: 'PLU-010', nombre: 'Cubo de Madera 5 en 1 Multiactividad', categoria: 'didacticos', precio: '150', descripcion: 'Laberinto de cuentas, ábaco, reloj y figuras de encaje en madera sólida.', foto: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80' },
+      { id: '11', codigo: 'PLU-011', nombre: 'Pista de Autos Doble Loop Extremo', categoria: 'ninos', precio: '165', descripcion: 'Lanzador rápido con 2 vueltas completas y 2 vehículos de metal incluidos.', foto: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=600&auto=format&fit=crop&q=80' },
+      { id: '12', codigo: 'PLU-012', nombre: 'Set de Té y Pastelería Dulce', categoria: 'ninas', precio: '85', descripcion: 'Juego de té en tonos pastel con tetera, tacitas y pastelitos decorativos.', foto: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80' },
+      { id: '13', codigo: 'PLU-013', nombre: 'Unicornio Arcoíris 40cm', categoria: 'peluches', precio: '90', descripcion: 'Lindo unicornio con cuerno dorado y crin multicolor en felpa premium.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
+      { id: '14', codigo: 'PLU-014', nombre: 'Móvil Musical Giratorio de Cuna', categoria: 'bebes', precio: '175', descripcion: 'Proyector con estrellitas en el techo y melodías suaves para calmar el sueño.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
+      { id: '15', codigo: 'PLU-015', nombre: 'Rompecabezas de Animalitos en Madera', categoria: 'didacticos', precio: '40', descripcion: 'Piezas grandes y seguras para reconocer animales, números y colores.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
+      { id: '16', codigo: 'PLU-016', nombre: 'Dinosaurio T-Rex Sonidos y Movimiento', categoria: 'ninos', precio: '110', descripcion: 'Dinosaurio caminante a batería con rugidos y luces en ojos y fauces.', foto: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80' },
+      { id: '17', codigo: 'PLU-017', nombre: 'Tocador Mágico Infantil con Accesorios', categoria: 'ninas', precio: '210', descripcion: 'Espejo con luces, secadora de juguete y accesorios para jugar a peinarse.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
+      { id: '18', codigo: 'PLU-018', nombre: 'Conejita de Felpa Vestido Bordado', categoria: 'peluches', precio: '55', descripcion: 'Peluche con vestido primaveral de algodón, suave e ideal para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' }
+    ];
+
+    let productos = [...catalogoDefecto];
+    let registradosList = [
+      { id: 'r1', Nombre: 'Mariana Pérez', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Juguetes didácticos' },
+      { id: 'r2', Nombre: 'Carlos Eduardo Arce', Ciudad: 'La Paz', Interes: 'Autos y vehículos' },
+      { id: 'r3', Nombre: 'Valeria Justiniano', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Muñecas y figuras' }
+    ];
+
+    window.renderProductos = function() {
+      const contenedor = document.getElementById('contenedorProductos');
+      if(!contenedor) return;
+      contenedor.innerHTML = '';
+
+      const filtrados = productos.filter(p => {
+        const catOk = categoriaActual === 'todos' || p.categoria === categoriaActual;
+        const pr = parseFloat(p.precio) || 0;
+        let pOk = false;
+        if (presupuestoActual === 'todos') pOk = true;
+        else if (presupuestoActual === 'rango1') pOk = pr >= 30 && pr <= 50;
+        else if (presupuestoActual === 'rango2') pOk = pr >= 60 && pr <= 100;
+        else if (presupuestoActual === 'rango3') pOk = pr >= 110 && pr <= 160;
+        else if (presupuestoActual === 'rango4') pOk = pr >= 170;
+
+        return catOk && pOk;
+      });
+
+      if (filtrados.length === 0) {
+        contenedor.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white/70 rounded-3xl border-2 border-white shadow">
+            <p class="text-2xl font-black text-sky-900">No encontramos juguetes con esos filtros 🙈</p>
+            <p class="text-sm font-bold text-gray-600 mt-1">Prueba seleccionando otra categoría o presupuesto.</p>
+          </div>`;
+        return;
+      }
+
+      filtrados.forEach((p) => {
+        const card = document.createElement('div');
+        card.className = "bg-white/95 rounded-3xl overflow-hidden shadow-lg border-2 border-white flex flex-col hover:-translate-y-1 transition duration-300";
+        
+        const textoWa = `🤖 ¡Hola PlayUp Store! Me encantó este juguete:%0A%0A🎁 Producto: ${p.nombre}%0A🏷️ Código: ${p.codigo}%0A💰 Precio: Bs. ${p.precio}%0A%0A¿Lo tienen disponible para entrega? ✨🛍️`;
+        const linkWa = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${textoWa}`;
+
+        card.innerHTML = `
+          <div class="relative h-56 bg-sky-50 cursor-pointer overflow-hidden p-2" onclick="window.abrirModalVista('${p.codigo}')">
+            <img src="${p.foto}" alt="${p.nombre}" class="w-full h-full object-cover rounded-2xl hover:scale-105 transition duration-300">
+            <span class="absolute top-4 left-4 bg-sky-700 text-white text-xs font-black px-3 py-1 rounded-full uppercase shadow">
+              ${p.categoria}
+            </span>
+            <span class="absolute top-4 right-4 bg-yellow-400 text-purple-950 text-xs font-black px-3 py-1 rounded-full border border-white shadow">
+              Cód: ${p.codigo}
+            </span>
+          </div>
+          <div class="p-5 flex flex-col flex-grow">
+            <h3 class="text-xl font-black text-sky-950 leading-tight cursor-pointer hover:text-pink-600 transition" onclick="window.abrirModalVista('${p.codigo}')">
+              ${p.nombre}
+            </h3>
+            <div class="text-2xl font-black text-pink-600 my-2">Bs. ${p.precio}</div>
+            <p class="text-gray-600 text-xs leading-relaxed line-clamp-2">${p.descripcion}</p>
+            <div class="mt-auto pt-4">
+              <a href="${linkWa}" target="_blank" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow hover:scale-102 transition">
+                <i class="fab fa-whatsapp text-lg"></i> Pedir por WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+        contenedor.appendChild(card);
+      });
+    };
+
+    window.filtrarCategoria = function(cat) {
+      categoriaActual = cat;
+      ['todos', 'ninos', 'ninas', 'bebes', 'didacticos', 'peluches'].forEach(c => {
+        const el = document.getElementById(`card-cat-${c}`);
+        if(el) {
+          if(c === cat) el.classList.add('cat-banner-activa');
+          else el.classList.remove('cat-banner-activa');
+        }
+      });
+      window.renderProductos();
+    };
+
+    window.filtrarPresupuesto = function(r) {
+      presupuestoActual = r;
+      ['todos', 'rango1', 'rango2', 'rango3', 'rango4'].forEach(rg => {
+        const btn = document.getElementById(`btn-precio-${rg}`);
+        if(btn) {
+          if(rg === r) btn.className = "px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white scale-105";
+          else btn.className = "px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white";
+        }
+      });
+      window.renderProductos();
+    };
+
+    // VISOR DE JUGUETE CON FONDO DINÁMICO
+    window.abrirModalVista = function(codigo) {
+      const p = productos.find(x => x.codigo === codigo);
+      if(!p) return;
+      
+      const modalContenedor = document.getElementById('modalVistaContent');
+      const badge = document.getElementById('detalleCategoriaBadge');
+      
+      // Aplicación de paleta dinámica según la categoría del juguete
+      if (p.categoria === 'ninos') {
+        modalContenedor.className = "bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 border-4 border-sky-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-sky-600";
+      } else if (p.categoria === 'ninas') {
+        modalContenedor.className = "bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100 border-4 border-pink-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-pink-500";
+      } else if (p.categoria === 'bebes') {
+        modalContenedor.className = "bg-gradient-to-br from-teal-100 via-emerald-50 to-cyan-100 border-4 border-teal-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-teal-600";
+      } else if (p.categoria === 'didacticos') {
+        modalContenedor.className = "bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 border-4 border-amber-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-amber-600";
+      } else if (p.categoria === 'peluches') {
+        modalContenedor.className = "bg-gradient-to-br from-purple-100 via-violet-50 to-pink-100 border-4 border-purple-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-purple-600";
+      } else {
+        modalContenedor.className = "bg-white border-4 border-sky-300 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
+        badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-sky-700";
+      }
+
+      badge.innerText = p.categoria;
+      document.getElementById('detalleNombre').innerText = p.nombre;
+      document.getElementById('detalleDescripcion').innerText = p.descripcion;
+      document.getElementById('detallePrecio').innerText = `Bs. ${p.precio}`;
+      document.getElementById('detalleCodigoBadge').innerText = `Cód: ${p.codigo}`;
+      document.getElementById('imagenPrincipal').src = p.foto;
+
+      const textoWa = `🤖 ¡Hola PlayUp Store! Me encantó este juguete:%0A%0A🎁 Producto: ${p.nombre}%0A🏷️ Código: ${p.codigo}%0A💰 Precio: Bs. ${p.precio}%0A%0A¿Lo tienen disponible? ✨🛍️`;
+      document.getElementById('detalleBtnWhatsApp').href = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${textoWa}`;
+
+      document.getElementById('modalVista').classList.remove('hidden');
+      document.getElementById('modalVista').classList.add('flex');
+    };
+
+    window.cerrarModalVista = function() {
+      document.getElementById('modalVista').classList.add('hidden');
+      document.getElementById('modalVista').classList.remove('flex');
+    };
+
+    // Cerrar al hacer clic en el fondo exterior oscuro
+    window.cerrarModalVistaExterno = function(e) {
+      if (e.target.id === 'modalVista') {
+        window.cerrarModalVista();
+      }
+    };
+
+    // FORMULARIO Y REGISTROS
+    window.abrirModalRegistro = function() {
+      document.getElementById('modalRegistro').classList.remove('hidden');
+      document.getElementById('modalRegistro').classList.add('flex');
+    };
+
+    window.cerrarModalRegistro = function() {
+      document.getElementById('modalRegistro').classList.add('hidden');
+      document.getElementById('modalRegistro').classList.remove('flex');
+    };
+
+    window.abrirModalPrivacidad = function() {
+      document.getElementById('modalPrivacidad').classList.remove('hidden');
+      document.getElementById('modalPrivacidad').classList.add('flex');
+    };
+
+    window.cerrarModalPrivacidad = function() {
+      document.getElementById('modalPrivacidad').classList.add('hidden');
+      document.getElementById('modalPrivacidad').classList.remove('flex');
+    };
+
+    window.abrirModalListaRegistrados = function() {
+      renderizarTablaRegistrados();
+      document.getElementById('modalListaRegistrados').classList.remove('hidden');
+      document.getElementById('modalListaRegistrados').classList.add('flex');
+    };
+
+    window.cerrarModalListaRegistrados = function() {
+      document.getElementById('modalListaRegistrados').classList.add('hidden');
+      document.getElementById('modalListaRegistrados').classList.remove('flex');
+    };
+
+    function renderizarTablaRegistrados() {
+      const tbody = document.getElementById('tbodyRegistrados');
+      tbody.innerHTML = '';
+      document.getElementById('txtTotalRegistrados').innerText = `Total registrados: ${registradosList.length}`;
+
+      registradosList.forEach((reg, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-sky-50 transition";
+        let btnAdmin = isAdmin ? `<td class="p-2.5 text-center"><button onclick="eliminarRegistro('${reg.id}')" class="text-red-500 font-bold hover:underline">Borrar</button></td>` : '';
+        tr.innerHTML = `
+          <td class="p-2.5 font-bold text-sky-700">${idx + 1}</td>
+          <td class="p-2.5 font-bold text-sky-950">${reg.Nombre}</td>
+          <td class="p-2.5 text-gray-600">${reg.Ciudad}</td>
+          <td class="p-2.5 text-center"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded-full font-bold">✓ Confirmado</span></td>
+          ${btnAdmin}
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.redirigirAhoraWhatsApp = function() {
+      if(temporizadorRedir) clearTimeout(temporizadorRedir);
+      document.getElementById('modalConfirmacionExito').classList.add('hidden');
+      document.getElementById('modalConfirmacionExito').classList.remove('flex');
+      if(urlWhatsAppPendiente) {
+        window.open(urlWhatsAppPendiente, '_blank');
+      }
+    };
+
+    window.enviarRegistroCliente = async function(e) {
+      e.preventDefault();
+      const checks = Array.from(document.querySelectorAll('input[name="interes"]:checked')).map(c => c.value);
+      if(checks.length === 0) return alert("Selecciona al menos un tipo de juguete.");
+
+      const nombre = document.getElementById('regNombre').value.trim();
+      const correo = document.getElementById('regCorreo').value.trim();
+      const telLimpio = document.getElementById('regTelefono').value.replace(/[^\d]/g, '');
+      const ciudad = document.getElementById('regCiudad').value;
+      const interes = checks.join(', ');
+
+      const datos = {
+        Nombre: nombre,
+        Correo: correo,
+        Telefono: "'" + telLimpio,
+        Ciudad: ciudad,
+        Interes: interes
+      };
+
+      if(configRegistro.scriptUrl && configRegistro.scriptUrl.startsWith('http')) {
+        fetch(configRegistro.scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(datos)
+        }).catch(err => console.log(err));
+      }
+
+      registradosList.unshift({
+        id: 'r_' + Date.now(),
+        Nombre: nombre,
+        Ciudad: ciudad,
+        Interes: interes
+      });
+      renderizarTablaRegistrados();
+
+      const mensajeWa = `✨ Hola PlayUp Store 🤖%0A¡Acabo de registrarme en la página! 🚀%0A%0A👤 Nombre: ${nombre}%0A📱 Celular: ${telLimpio}%0A🎁 Interés: ${interes}%0A%0A¡Muchas gracias! 🛍️`;
+      urlWhatsAppPendiente = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeWa}`;
+
+      window.cerrarModalRegistro();
+      document.getElementById('formRegistroCliente').reset();
+
+      document.getElementById('txtMensajeExitoNombre').innerText = `¡${nombre}, tu registro fue confirmado! 🎉`;
+      document.getElementById('modalConfirmacionExito').classList.remove('hidden');
+      document.getElementById('modalConfirmacionExito').classList.add('flex');
+
+      temporizadorRedir = setTimeout(() => {
+        window.redirigirAhoraWhatsApp();
+      }, 3000);
+    };
+
+    // MODO ADMIN
+    window.loginAdmin = function() {
+      const p = prompt("Contraseña de administrador:");
+      if(p === "mariaPlayup") {
+        isAdmin = true;
+        document.getElementById('adminPanel').classList.remove('hidden');
+        document.getElementById('btnAdminLogin').classList.add('hidden');
+        document.getElementById('thAccionAdmin').classList.remove('hidden');
+        renderizarTablaRegistrados();
+        alert("Modo administrador activado.");
+      } else if(p !== null) {
+        alert("Contraseña incorrecta.");
+      }
+    };
+
+    window.abrirModalAdminRegistro = function() {
+      document.getElementById('adminUrlScript').value = configRegistro.scriptUrl;
+      document.getElementById('modalAdminRegistro').classList.remove('hidden');
+      document.getElementById('modalAdminRegistro').classList.add('flex');
+    };
+
+    window.cerrarModalAdminRegistro = function() {
+      document.getElementById('modalAdminRegistro').classList.add('hidden');
+      document.getElementById('modalAdminRegistro').classList.remove('flex');
+    };
+
+    window.guardarConfigFormulario = function(e) {
+      e.preventDefault();
+      configRegistro.scriptUrl = document.getElementById('adminUrlScript').value.trim();
+      localStorage.setItem('playup_script_url', configRegistro.scriptUrl);
+      alert("URL de Google Sheets guardada.");
+      window.cerrarModalAdminRegistro();
+    };
+
+    // Carga inicial inmediata
+    const savedUrl = localStorage.getItem('playup_script_url');
+    if(savedUrl) configRegistro.scriptUrl = savedUrl;
+    window.renderProductos();
+  </script>
+</body>
+</html>
