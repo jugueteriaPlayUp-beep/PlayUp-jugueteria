@@ -80,7 +80,7 @@
     <div class="anim-marquesina flex items-center gap-10">
       <span>🚀 <strong>¡ENVÍOS INMEDIATOS EN SANTA CRUZ Y A TODA BOLIVIA!</strong> 🚚</span>
       <span>⭐ Puesto 244, Mercado Nuevo Los Pozos 🧸</span>
-      <span>🎉 <strong>REGÍSTRATE HOY Y OBTÉN ATENCIÓN PRIORITARIA EN WHATSAPP</strong> 💬</span>
+      <span>🛒 <strong>AGREGA VARIOS JUGUETES A TU CARRITO Y ENVÍA UN SOLO PEDIDO</strong> 💬</span>
       <span>🧸 Juguetes didácticos, pistas, robots y figuras de acción 🤖</span>
       <span>💖 ¡Calidad garantizada para consentir a los más peques! ✨</span>
     </div>
@@ -126,11 +126,18 @@
           <a id="btnLinkUbicacion" href="https://goo.gl/maps/z12sFherJAvHtLz49" target="_blank" class="bg-gradient-to-r from-rose-500 to-pink-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-map-marker-alt text-lg"></i> Ubicación
           </a>
+          <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow hover:scale-105 transition flex items-center gap-2 relative">
+            <i class="fas fa-shopping-cart text-lg text-yellow-300"></i> Mi Carrito
+            <span id="badgeCarritoTop" class="bg-yellow-400 text-purple-950 text-xs font-black px-2 py-0.5 rounded-full ml-1">0</span>
+          </button>
           <button onclick="abrirModalRegistro()" class="bg-gradient-to-r from-amber-400 to-orange-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-user-edit text-lg text-purple-900"></i> ¡Regístrate Aquí!
           </button>
           <button onclick="abrirModalListaRegistrados()" class="bg-gradient-to-r from-sky-600 to-blue-700 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-clipboard-list text-lg text-yellow-300"></i> Ver Registrados 📋
+          </button>
+          <button onclick="abrirModalAyuda()" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-book-reader text-lg text-yellow-300"></i> Ayuda 📘
           </button>
           <button onclick="loginAdmin()" id="btnAdminLogin" class="bg-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-magic"></i> Admin
@@ -270,16 +277,109 @@
   </section>
 
   <!-- VITRINA DE PRODUCTOS -->
-  <section id="vitrinaJuguetes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-24 relative z-10">
+  <section id="vitrinaJuguetes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-28 relative z-10">
     <div id="contenedorProductos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
       <!-- Se llena por JavaScript -->
     </div>
   </section>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a href="https://wa.me/59163529287" target="_blank" class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-500 to-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition border-2 border-white">
-    <i class="fab fa-whatsapp"></i>
-  </a>
+  <!-- BOTONES FLOTANTES INFERIORES: CARRITO Y WHATSAPP -->
+  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-center">
+    <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver mi carrito">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="badgeCarritoFloat" class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-purple-950 text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
+    </button>
+    <a href="https://wa.me/59163529287" target="_blank" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition border-2 border-white" title="WhatsApp Directo">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN CARRITO -->
+  <div id="toastCarrito" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-sky-950 text-white px-5 py-2.5 rounded-full shadow-2xl font-bold text-sm border-2 border-yellow-400 hidden items-center gap-2 transition-all">
+    <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+    <span id="toastTexto">¡Juguete añadido al carrito!</span>
+  </div>
+
+  <!-- MODAL CARRITO DE COMPRAS -->
+  <div id="modalCarrito" onclick="cerrarModalCarritoExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-purple-500 relative max-h-[88vh] flex flex-col">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-purple-100">
+        <div>
+          <h3 class="text-2xl sm:text-3xl font-black text-purple-950 flex items-center gap-2">
+            🛒 Tu Carrito de Juguetes
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600">
+            Revisa tu selección y envía todo junto a nuestro WhatsApp.
+          </p>
+        </div>
+        <button type="button" onclick="cerrarModalCarrito()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <div id="listaItemsCarrito" class="overflow-y-auto flex-grow space-y-3 pr-1">
+        <!-- Se llena dinámicamente -->
+      </div>
+
+      <div class="border-t-2 border-purple-100 pt-4 mt-4 space-y-3">
+        <div class="flex justify-between items-center text-xl sm:text-2xl font-black text-purple-950 bg-purple-50 px-4 py-3 rounded-2xl border border-purple-200">
+          <span>Total estimado:</span>
+          <span id="totalCarritoBs" class="text-pink-600">Bs. 0</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <button type="button" onclick="vaciarCarrito()" class="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition flex items-center justify-center gap-1.5">
+            <i class="fas fa-trash-alt"></i> Vaciar
+          </button>
+          <button type="button" onclick="enviarPedidoCarritoWhatsApp()" id="btnEnviarCarritoWa" class="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-102 text-white py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
+            <i class="fab fa-whatsapp text-2xl"></i> Enviar pedido completo por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: AYUDA / MANUAL DE USO -->
+  <div id="modalAyuda" onclick="cerrarModalAyudaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-teal-400 relative max-h-[88vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4 sticky top-0 bg-white pb-2 z-10 border-b border-teal-100">
+        <div>
+          <h3 class="text-2xl font-black text-teal-950 flex items-center gap-2">
+            📘 Centro de Ayuda y Guía de Uso
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold text-gray-600">
+            PlayUp Store · Proyecto Académico ECO 480 (UAGRM)
+          </p>
+        </div>
+        <button type="button" onclick="cerrarModalAyuda()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-gray-700 text-xs sm:text-sm leading-relaxed">
+        <div class="bg-teal-50 p-3.5 rounded-2xl border border-teal-200">
+          <h4 class="font-black text-teal-950 text-sm sm:text-base mb-1">🛒 ¿Cómo usar el carrito de compras?</h4>
+          <p>1. Pulsa <strong>"+ Agregar 🛒"</strong> en todos los juguetes que desees llevar.<br>
+          2. Haz clic en el ícono del carrito flotante (abajo a la derecha) o en <strong>"Mi Carrito"</strong> arriba.<br>
+          3. Ajusta las cantidades y presiona <strong>"Enviar pedido completo por WhatsApp"</strong> para mandarnos tu lista lista para cotizar y entregar.</p>
+        </div>
+        <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200">
+          <h4 class="font-black text-sky-950 text-sm sm:text-base mb-1">📋 Registro de Usuario y Seguridad</h4>
+          <p>En <strong>"¡Regístrate Aquí!"</strong> puedes registrar tus datos de cliente. Tu información se almacena de forma privada y restringida en Google Sheets exclusivamente para atención de pedidos de PlayUp Store.</p>
+        </div>
+        <div class="bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
+          <h4 class="font-black text-amber-950 text-sm sm:text-base mb-1">📍 Ubicación y Contacto</h4>
+          <p>Estamos ubicados en el Puesto 244, Mercado Nuevo Los Pozos, Santa Cruz de la Sierra. Realizamos envíos locales y nacionales.</p>
+        </div>
+      </div>
+
+      <div class="pt-4 text-center">
+        <button onclick="cerrarModalAyuda()" class="px-8 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-black rounded-2xl shadow border-2 border-white">
+          ¡Entendido!
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL REGISTRO DE USUARIO -->
   <div id="modalRegistro" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
@@ -499,19 +599,22 @@
 
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 border-t-2 border-white/80 pt-4">
         <div id="detallePrecio" class="text-3xl font-black text-pink-600"></div>
-        <div class="flex gap-2 w-full sm:w-auto">
-          <button type="button" onclick="cerrarModalVista()" class="flex-1 sm:flex-initial px-5 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition">
+        <div class="flex flex-wrap gap-2 w-full sm:w-auto justify-end">
+          <button type="button" onclick="cerrarModalVista()" class="px-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-xs sm:text-sm transition">
             Volver
           </button>
-          <a id="detalleBtnWhatsApp" href="#" target="_blank" class="flex-1 sm:flex-initial bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-6 py-2.5 rounded-2xl text-sm font-bold shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
-            <i class="fab fa-whatsapp text-lg"></i> Pedir por WhatsApp
+          <button type="button" id="detalleBtnAgregarCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-105 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 border-2 border-white transition">
+            <i class="fas fa-cart-plus"></i> Agregar al carrito
+          </button>
+          <a id="detalleBtnWhatsApp" href="#" target="_blank" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 border-2 border-white transition">
+            <i class="fab fa-whatsapp text-base"></i> Directo
           </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON FIREBASE Y CATÁLOGO -->
+  <!-- SCRIPT COMPLETO CON CARRITO, FIREBASE Y CATÁLOGO -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -567,12 +670,155 @@
     ];
 
     let productos = [...catalogoDefecto];
+    let carrito = JSON.parse(localStorage.getItem('playup_carrito') || '[]');
     let registradosList = [
       { id: 'r1', Nombre: 'Mariana Pérez', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Juguetes didácticos' },
       { id: 'r2', Nombre: 'Carlos Eduardo Arce', Ciudad: 'La Paz', Interes: 'Autos y vehículos' },
       { id: 'r3', Nombre: 'Valeria Justiniano', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Muñecas y figuras' }
     ];
 
+    /* FUNCIONES DEL CARRITO DE COMPRAS */
+    function actualizarContadorCarrito() {
+      const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+      const bTop = document.getElementById('badgeCarritoTop');
+      const bFloat = document.getElementById('badgeCarritoFloat');
+      if(bTop) bTop.innerText = totalItems;
+      if(bFloat) bFloat.innerText = totalItems;
+      localStorage.setItem('playup_carrito', JSON.stringify(carrito));
+    }
+
+    function mostrarToast(mensaje) {
+      const toast = document.getElementById('toastCarrito');
+      const txt = document.getElementById('toastTexto');
+      if(!toast || !txt) return;
+      txt.innerText = mensaje;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(window.toastTimeout);
+      window.toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 2200);
+    }
+
+    window.agregarAlCarrito = function(codigo) {
+      const prod = productos.find(p => p.codigo === codigo);
+      if(!prod) return;
+      const existente = carrito.find(item => item.codigo === codigo);
+      if(existente) {
+        existente.cantidad += 1;
+      } else {
+        carrito.push({
+          codigo: prod.codigo,
+          nombre: prod.nombre,
+          precio: parseFloat(prod.precio) || 0,
+          foto: prod.foto,
+          cantidad: 1
+        });
+      }
+      actualizarContadorCarrito();
+      mostrarToast(`¡"${prod.nombre}" añadido al carrito! 🛒`);
+    };
+
+    window.cambiarCantidadCarrito = function(codigo, delta) {
+      const idx = carrito.findIndex(item => item.codigo === codigo);
+      if(idx === -1) return;
+      carrito[idx].cantidad += delta;
+      if(carrito[idx].cantidad <= 0) {
+        carrito.splice(idx, 1);
+      }
+      actualizarContadorCarrito();
+      renderizarCarritoModal();
+    };
+
+    window.vaciarCarrito = function() {
+      if(carrito.length === 0) return;
+      carrito = [];
+      actualizarContadorCarrito();
+      renderizarCarritoModal();
+    };
+
+    function renderizarCarritoModal() {
+      const contenedor = document.getElementById('listaItemsCarrito');
+      const totalEl = document.getElementById('totalCarritoBs');
+      if(!contenedor || !totalEl) return;
+
+      if(carrito.length === 0) {
+        contenedor.innerHTML = `
+          <div class="text-center py-10 bg-sky-50/70 rounded-2xl border-2 border-dashed border-sky-200">
+            <p class="text-4xl mb-2">🛒</p>
+            <p class="text-lg font-black text-sky-950">Tu carrito está vacío</p>
+            <p class="text-xs font-semibold text-gray-600 mt-1">Explora el catálogo y pulsa "+ Agregar" en los juguetes que te gusten.</p>
+          </div>`;
+        totalEl.innerText = "Bs. 0";
+        return;
+      }
+
+      contenedor.innerHTML = '';
+      let sumaTotal = 0;
+
+      carrito.forEach(item => {
+        const subtotal = item.precio * item.cantidad;
+        sumaTotal += subtotal;
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between gap-3 bg-sky-50/70 p-3 rounded-2xl border border-sky-200";
+        div.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0">
+            <img src="${item.foto}" alt="${item.nombre}" class="w-14 h-14 rounded-xl object-cover bg-white border border-sky-200 shrink-0">
+            <div class="min-w-0">
+              <span class="text-[10px] font-black text-purple-800 bg-yellow-300 px-2 py-0.5 rounded-md">${item.codigo}</span>
+              <h4 class="text-sm font-black text-sky-950 truncate">${item.nombre}</h4>
+              <p class="text-xs font-bold text-pink-600">Bs. ${item.precio} c/u · Subtotal: Bs. ${subtotal}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button onclick="cambiarCantidadCarrito('${item.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-red-100">-</button>
+            <span class="w-6 text-center font-black text-sm text-sky-950">${item.cantidad}</span>
+            <button onclick="cambiarCantidadCarrito('${item.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      });
+
+      totalEl.innerText = `Bs. ${sumaTotal}`;
+    }
+
+    window.abrirModalCarrito = function() {
+      renderizarCarritoModal();
+      document.getElementById('modalCarrito').classList.remove('hidden');
+      document.getElementById('modalCarrito').classList.add('flex');
+    };
+
+    window.cerrarModalCarrito = function() {
+      document.getElementById('modalCarrito').classList.add('hidden');
+      document.getElementById('modalCarrito').classList.remove('flex');
+    };
+
+    window.cerrarModalCarritoExterno = function(e) {
+      if(e.target.id === 'modalCarrito') {
+        window.cerrarModalCarrito();
+      }
+    };
+
+    window.enviarPedidoCarritoWhatsApp = function() {
+      if(carrito.length === 0) {
+        alert("Agrega al menos un juguete al carrito antes de enviar tu pedido.");
+        return;
+      }
+
+      let lineas = "";
+      let totalGeneral = 0;
+      carrito.forEach((item, index) => {
+        const sub = item.precio * item.cantidad;
+        totalGeneral += sub;
+        lineas += `${index + 1}. *${item.nombre}* (${item.codigo})%0A   Cantidad: ${item.cantidad} x Bs. ${item.precio} = *Bs. ${sub}*%0A`;
+      });
+
+      const mensajeCompleto = `🤖 *¡Hola PlayUp Store!* ✨%0AQuiero hacer el siguiente pedido desde su catálogo web:%0A%0A${lineas}%0A💰 *TOTAL ESTIMADO: Bs. ${totalGeneral}*%0A%0A¿Me confirman disponibilidad para coordinar la entrega? 🚚🛍️`;
+      window.open(`https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeCompleto}`, '_blank');
+    };
+
+    /* RENDERIZADO DE PRODUCTOS */
     window.renderProductos = function() {
       const contenedor = document.getElementById('contenedorProductos');
       if(!contenedor) return;
@@ -623,9 +869,12 @@
             </h3>
             <div class="text-2xl font-black text-pink-600 my-2">Bs. ${p.precio}</div>
             <p class="text-gray-600 text-xs leading-relaxed line-clamp-2">${p.descripcion}</p>
-            <div class="mt-auto pt-4">
-              <a href="${linkWa}" target="_blank" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow hover:scale-102 transition">
-                <i class="fab fa-whatsapp text-lg"></i> Pedir por WhatsApp
+            <div class="mt-auto pt-4 flex gap-2">
+              <button type="button" onclick="window.agregarAlCarrito('${p.codigo}')" class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow hover:scale-102 transition">
+                <i class="fas fa-cart-plus text-base"></i> + Agregar
+              </button>
+              <a href="${linkWa}" target="_blank" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2.5 px-3.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1 shadow hover:scale-102 transition" title="Pedir solo este por WhatsApp">
+                <i class="fab fa-whatsapp text-lg"></i> Directo
               </a>
             </div>
           </div>
@@ -666,7 +915,6 @@
       const modalContenedor = document.getElementById('modalVistaContent');
       const badge = document.getElementById('detalleCategoriaBadge');
       
-      // Aplicación de paleta dinámica según la categoría del juguete
       if (p.categoria === 'ninos') {
         modalContenedor.className = "bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 border-4 border-sky-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
         badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-sky-600";
@@ -694,6 +942,11 @@
       document.getElementById('detalleCodigoBadge').innerText = `Cód: ${p.codigo}`;
       document.getElementById('imagenPrincipal').src = p.foto;
 
+      document.getElementById('detalleBtnAgregarCarrito').onclick = function() {
+        window.agregarAlCarrito(p.codigo);
+        window.cerrarModalVista();
+      };
+
       const textoWa = `🤖 ¡Hola PlayUp Store! Me encantó este juguete:%0A%0A🎁 Producto: ${p.nombre}%0A🏷️ Código: ${p.codigo}%0A💰 Precio: Bs. ${p.precio}%0A%0A¿Lo tienen disponible? ✨🛍️`;
       document.getElementById('detalleBtnWhatsApp').href = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${textoWa}`;
 
@@ -706,10 +959,26 @@
       document.getElementById('modalVista').classList.remove('flex');
     };
 
-    // Cerrar al hacer clic en el fondo exterior oscuro
     window.cerrarModalVistaExterno = function(e) {
       if (e.target.id === 'modalVista') {
         window.cerrarModalVista();
+      }
+    };
+
+    // MODAL AYUDA
+    window.abrirModalAyuda = function() {
+      document.getElementById('modalAyuda').classList.remove('hidden');
+      document.getElementById('modalAyuda').classList.add('flex');
+    };
+
+    window.cerrarModalAyuda = function() {
+      document.getElementById('modalAyuda').classList.add('hidden');
+      document.getElementById('modalAyuda').classList.remove('flex');
+    };
+
+    window.cerrarModalAyudaExterno = function(e) {
+      if (e.target.id === 'modalAyuda') {
+        window.cerrarModalAyuda();
       }
     };
 
@@ -862,6 +1131,7 @@
     // Carga inicial inmediata
     const savedUrl = localStorage.getItem('playup_script_url');
     if(savedUrl) configRegistro.scriptUrl = savedUrl;
+    actualizarContadorCarrito();
     window.renderProductos();
   </script>
 </body>
