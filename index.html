@@ -10,7 +10,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
     body { font-family: 'Fredoka', sans-serif; }
     
-    /* FONDO CELESTE MÁS INTENSO Y VIBRANTE */
+    /* FONDO CELESTE INTENSO Y VIBRANTE */
     .bg-celeste-intenso {
       background: linear-gradient(-45deg, #0284c7, #0ea5e9, #38bdf8, #06b6d4, #7dd3fc);
       background-size: 400% 400%;
@@ -79,8 +79,8 @@
   <div class="bg-sky-950 text-sky-100 text-xs sm:text-sm font-bold py-2 overflow-hidden relative z-30 shadow-md">
     <div class="anim-marquesina flex items-center gap-10">
       <span>🚀 <strong>¡ENVÍOS INMEDIATOS EN SANTA CRUZ Y A TODA BOLIVIA!</strong> 🚚</span>
-      <span>📦 <strong>VENTAS POR MAYOR CON DESCUENTO ESPECIAL:</strong> Mínimo 3 modelos diferentes y 2 unidades por modelo 🧸</span>
-      <span>🛒 <strong>AGREGA VARIOS JUGUETES A TU CARRITO Y ENVÍA UN SOLO PEDIDO</strong> 💬</span>
+      <span>📦 <strong>VENTAS POR MAYOR CON 15% DESCUENTO:</strong> Escoge los modelos que quieras (arriba de 6 juguetes) 🧸</span>
+      <span>🛒 <strong>SUMATORIA AUTOMÁTICA EN VIVO:</strong> Agrega varios juguetes y envía un solo pedido 💬</span>
       <span>⭐ Puesto 244, Mercado Nuevo Los Pozos · Santa Cruz 🤖</span>
       <span>💖 ¡Calidad garantizada para consentir a los más peques! ✨</span>
     </div>
@@ -127,7 +127,7 @@
             <i class="fas fa-map-marker-alt text-lg"></i> Ubicación
           </a>
           
-          <!-- NUEVO BOTÓN: PRECIO POR MAYOR -->
+          <!-- BOTÓN PRECIO POR MAYOR -->
           <button onclick="iniciarFlujoMayorista()" class="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow-lg hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-boxes text-lg text-purple-900"></i> Precio por Mayor 📦
           </button>
@@ -280,14 +280,34 @@
   </section>
 
   <!-- VITRINA DE PRODUCTOS -->
-  <section id="vitrinaJuguetes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-28 relative z-10">
+  <section id="vitrinaJuguetes" class="max-w-7xl mx-auto px-4 sm:px-6 pb-36 relative z-10">
     <div id="contenedorProductos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
       <!-- Se llena por JavaScript -->
     </div>
   </section>
 
+  <!-- BARRA FLOTANTE DE SUMATORIA AUTOMÁTICA EN VIVO (MODO NORMAL) -->
+  <div id="barraSumatoriaNormal" class="fixed bottom-4 left-4 right-24 sm:left-1/2 sm:-translate-x-1/2 sm:right-auto sm:w-full sm:max-w-xl z-40 hidden">
+    <div class="bg-purple-950/95 backdrop-blur-lg text-white px-4 py-3 rounded-3xl shadow-2xl border-2 border-yellow-400 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="bg-yellow-400 text-purple-950 w-10 h-10 rounded-2xl flex items-center justify-center font-black text-base shadow shrink-0">
+          <span id="sumatoriaNormalCant">0</span>
+        </div>
+        <div>
+          <p class="text-[11px] uppercase tracking-wider text-sky-300 font-bold">Sumatoria de tu compra</p>
+          <p class="text-base sm:text-lg font-black text-white leading-tight">
+            Total acumulado: <span id="sumatoriaNormalBs" class="text-yellow-300">Bs. 0</span>
+          </p>
+        </div>
+      </div>
+      <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow border border-white transition shrink-0">
+        Ver Pedido 🛒
+      </button>
+    </div>
+  </div>
+
   <!-- BOTONES FLOTANTES INFERIORES: MAYORISTA, CARRITO Y WHATSAPP -->
-  <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-center">
+  <div class="fixed bottom-6 right-4 sm:right-6 z-40 flex flex-col gap-3 items-center">
     <button onclick="iniciarFlujoMayorista()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Precio por Mayor">
       <i class="fas fa-boxes"></i>
     </button>
@@ -301,7 +321,7 @@
   </div>
 
   <!-- TOAST NOTIFICACIÓN -->
-  <div id="toastCarrito" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-sky-950 text-white px-5 py-2.5 rounded-full shadow-2xl font-bold text-sm border-2 border-yellow-400 hidden items-center gap-2 transition-all">
+  <div id="toastCarrito" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-sky-950 text-white px-5 py-2.5 rounded-full shadow-2xl font-bold text-sm border-2 border-yellow-400 hidden items-center gap-2 transition-all">
     <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
     <span id="toastTexto">¡Juguete añadido!</span>
   </div>
@@ -365,7 +385,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL 2: CATÁLOGO Y PEDIDO POR MAYOR (REGLA: 3 MODELOS DIF. Y 2 C/U)      -->
+  <!-- MODAL 2: CATÁLOGO POR MAYOR (REGLA: ARRIBA DE 6 JUGUETES + SUMATORIA)     -->
   <!-- ========================================================================= -->
   <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') cerrarModalMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
     <div class="bg-white rounded-[35px] p-5 sm:p-7 w-full max-w-4xl shadow-2xl border-4 border-orange-500 relative max-h-[92vh] flex flex-col">
@@ -379,7 +399,7 @@
             <button onclick="cambiarUsuarioMayorista()" class="text-xs text-orange-600 underline font-bold">Cambiar usuario</button>
           </div>
           <h3 class="text-xl sm:text-2xl font-black text-purple-950 mt-1">
-            📦 Selección de Pedido por Mayor
+            📦 Selección Libre por Mayor (Arriba de 6 juguetes)
           </h3>
         </div>
         <button type="button" onclick="cerrarModalMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
@@ -387,15 +407,14 @@
         </button>
       </div>
 
-      <!-- PANEL DE REGLAS OBLIGATORIAS EN TIEMPO REAL -->
-      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3 mb-3 grid sm:grid-cols-2 gap-2 text-xs sm:text-sm font-bold">
-        <div id="reglaModelos" class="flex items-center gap-2 text-red-600">
-          <i class="fas fa-times-circle text-base"></i>
-          <span>Regla 1: Mínimo 3 juguetes diferentes (<b id="contModelosMay">0</b>/3)</span>
+      <!-- INDICADOR EN VIVO DE REGLA MAYORISTA (ARRIBA DE 6 JUGUETES) Y SUMATORIA -->
+      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3 mb-3 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm font-bold">
+        <div id="reglaCantidadTotalMay" class="flex items-center gap-2 text-red-600">
+          <i class="fas fa-times-circle text-lg"></i>
+          <span>Requisito: Escoge <b>arriba de 6 juguetes</b> (mínimo 7 unidades en total). Llevas: <b id="contUnidadesMayBadge" class="text-base">0</b></span>
         </div>
-        <div id="reglaCantidades" class="flex items-center gap-2 text-red-600">
-          <i class="fas fa-times-circle text-base"></i>
-          <span>Regla 2: Mínimo 2 unidades por cada modelo elegido</span>
+        <div class="bg-white px-3 py-1.5 rounded-xl border border-amber-300 text-purple-950 font-black">
+          Sumatoria Mayorista: <span id="sumatoriaTopMay" class="text-pink-600 text-base">Bs. 0</span>
         </div>
       </div>
 
@@ -404,15 +423,18 @@
         <!-- Se llena dinámicamente -->
       </div>
 
-      <!-- Pie del Modal Mayorista con Total y Botón de Envío -->
+      <!-- Pie del Modal Mayorista con Sumatoria Total y Botón de Envío -->
       <div class="border-t-2 border-orange-100 pt-3 mt-3 flex flex-col sm:flex-row justify-between items-center gap-3">
         <div class="text-center sm:text-left">
-          <p class="text-xs font-bold text-gray-500">Total unidades: <span id="totalUnidadesMay" class="text-purple-950 font-black">0</span> u.</p>
-          <p class="text-xl sm:text-2xl font-black text-pink-600">Total Mayorista: <span id="totalPrecioMay">Bs. 0</span></p>
+          <p class="text-xs font-bold text-gray-600">
+            Modelos elegidos: <span id="totalModelosMay" class="text-sky-800 font-black">0</span> · 
+            Total juguetes sumados: <span id="totalUnidadesMay" class="text-purple-950 font-black">0</span> u.
+          </p>
+          <p class="text-xl sm:text-2xl font-black text-pink-600">Total a Pagar: <span id="totalPrecioMay">Bs. 0</span></p>
         </div>
 
         <button type="button" id="btnEnviarPedidoMayorista" onclick="enviarPedidoMayoristaWhatsApp()" disabled class="w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow-lg transition bg-gray-300 text-gray-500 cursor-not-allowed">
-          <i class="fas fa-lock"></i> Completa los requisitos para enviar
+          <i class="fas fa-lock"></i> Faltan juguetes (mín. 7 u.)
         </button>
       </div>
     </div>
@@ -470,7 +492,7 @@
             🛒 Tu Carrito de Juguetes
           </h3>
           <p class="text-xs sm:text-sm font-semibold text-gray-600">
-            Revisa tu selección y envía todo junto a nuestro WhatsApp.
+            Sumatoria automática de tu compra. Envía todo junto a nuestro WhatsApp.
           </p>
         </div>
         <button type="button" onclick="cerrarModalCarrito()" class="text-gray-400 hover:text-red-500 text-3xl">
@@ -483,9 +505,12 @@
       </div>
 
       <div class="border-t-2 border-purple-100 pt-4 mt-4 space-y-3">
-        <div class="flex justify-between items-center text-xl sm:text-2xl font-black text-purple-950 bg-purple-50 px-4 py-3 rounded-2xl border border-purple-200">
-          <span>Total estimado:</span>
-          <span id="totalCarritoBs" class="text-pink-600">Bs. 0</span>
+        <div class="flex justify-between items-center text-lg sm:text-2xl font-black text-purple-950 bg-purple-50 px-4 py-3 rounded-2xl border border-purple-200">
+          <div>
+            <span class="block text-xs font-bold text-gray-500">Cantidad: <b id="totalItemsModalNormal">0</b> juguetes</span>
+            <span>Total Sumado:</span>
+          </div>
+          <span id="totalCarritoBs" class="text-pink-600 text-2xl sm:text-3xl">Bs. 0</span>
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2.5">
@@ -521,12 +546,12 @@
         <div class="bg-orange-50 p-3.5 rounded-2xl border border-orange-200">
           <h4 class="font-black text-orange-950 text-sm sm:text-base mb-1">📦 ¿Cómo comprar a Precio por Mayor?</h4>
           <p>1. Pulsa el botón <strong>"Precio por Mayor 📦"</strong> y completa tu registro obligatorio de cliente mayorista.<br>
-          2. Selecciona <strong>mínimo 3 juguetes diferentes</strong> y al menos <strong>2 unidades de cada modelo</strong>.<br>
+          2. Escoge libremente los juguetes que desees hasta superar los <strong>6 juguetes en total (mínimo 7 unidades)</strong>.<br>
           3. Se aplicará el 15% de descuento mayorista automáticamente y podrás enviarnos tu pedido directo a WhatsApp.</p>
         </div>
         <div class="bg-teal-50 p-3.5 rounded-2xl border border-teal-200">
           <h4 class="font-black text-teal-950 text-sm sm:text-base mb-1">🛒 ¿Cómo usar el carrito normal?</h4>
-          <p>Pulsa <strong>"+ Agregar"</strong> en los juguetes que quieras llevar al detalle, abre <strong>"Mi Carrito"</strong> y envía todos los productos juntos por WhatsApp.</p>
+          <p>Pulsa <strong>"+ Agregar"</strong> en los juguetes que quieras llevar al detalle. Verás la sumatoria automática en vivo en la barra inferior y podrás enviar todos los productos juntos por WhatsApp.</p>
         </div>
         <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200">
           <h4 class="font-black text-sky-950 text-sm sm:text-base mb-1">📋 Registro y Privacidad</h4>
@@ -773,11 +798,11 @@
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON MAYORISTA, RANKING ADMIN, CARRITO Y FIREBASE -->
+  <!-- SCRIPT COMPLETO CON MAYORISTA (>6 JUGUETES), SUMATORIA EN VIVO Y RANKING ADMIN -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAcNULVUiPKmTtWulmqrQjzYEKyaS-s5iY",
@@ -836,7 +861,7 @@
     ];
 
     /* ========================================================================= */
-    /* SISTEMA MAYORISTA: REGISTRO OBLIGATORIO, REGLAS (3 DIF. Y 2 C/U) Y RANKING*/
+    /* SISTEMA MAYORISTA: REGISTRO OBLIGATORIO, REGLA >6 JUGUETES Y SUMATORIA    */
     /* ========================================================================= */
     let usuarioMayoristaActual = JSON.parse(localStorage.getItem('playup_mayorista_actual') || 'null');
     let carritoMayorista = {}; // { codigo: cantidad }
@@ -879,7 +904,6 @@
 
       localStorage.setItem('playup_mayorista_actual', JSON.stringify(usuarioMayoristaActual));
 
-      // Guardar también en la lista general de registrados
       registradosList.unshift({
         id: 'may_' + Date.now(),
         Nombre: `${nombre} (Mayorista - ${negocio})`,
@@ -888,7 +912,6 @@
       });
       renderizarTablaRegistrados();
 
-      // Enviar a Google Sheets si está configurado
       if (configRegistro.scriptUrl && configRegistro.scriptUrl.startsWith('http')) {
         fetch(configRegistro.scriptUrl, {
           method: 'POST',
@@ -929,9 +952,10 @@
         const cant = carritoMayorista[p.codigo] || 0;
         const precioNormal = parseFloat(p.precio) || 0;
         const precioMayor = Math.round(precioNormal * 0.85); // 15% descuento por mayor
+        const subtotalItem = cant * precioMayor;
 
         const card = document.createElement('div');
-        card.className = `flex items-center justify-between gap-3 p-3 rounded-2xl border-2 transition ${cant >= 2 ? 'bg-emerald-50 border-emerald-400' : (cant === 1 ? 'bg-amber-50 border-amber-400' : 'bg-sky-50/60 border-sky-200')}`;
+        card.className = `flex items-center justify-between gap-3 p-3 rounded-2xl border-2 transition ${cant > 0 ? 'bg-emerald-50 border-emerald-400' : 'bg-sky-50/60 border-sky-200'}`;
         
         card.innerHTML = `
           <div class="flex items-center gap-2.5 min-w-0">
@@ -943,8 +967,7 @@
                 <span class="text-[11px] line-through text-gray-400">Bs. ${precioNormal}</span>
                 <span class="text-xs sm:text-sm font-black text-orange-600">Bs. ${precioMayor} c/u</span>
               </div>
-              ${cant === 1 ? '<span class="text-[10px] font-bold text-red-600 block">⚠️ Agrega 1 más (mín. 2)</span>' : ''}
-              ${cant >= 2 ? '<span class="text-[10px] font-bold text-emerald-700 block">✓ Modelo válido</span>' : ''}
+              ${cant > 0 ? `<span class="text-[11px] font-black text-emerald-700 block">Suma: Bs. ${subtotalItem} (${cant} u.)</span>` : ''}
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
@@ -959,11 +982,7 @@
 
     window.cambiarCantidadMayorista = function(codigo, delta) {
       const actual = carritoMayorista[codigo] || 0;
-      let nuevo = actual + delta;
-      // Si estaba en 0 y pulsa +, sugerimos directamente 2 unidades o sumamos 1 a 1
-      if (actual === 0 && delta === 1) {
-        nuevo = 2; // Facilita cumplir la regla de 2 del mismo modelo con un clic
-      }
+      const nuevo = actual + delta;
       if (nuevo <= 0) {
         delete carritoMayorista[codigo];
       } else {
@@ -976,7 +995,6 @@
     function validarReglasMayorista() {
       const codigosElegidos = Object.keys(carritoMayorista);
       const numModelos = codigosElegidos.length;
-      const todosTienenMinimo2 = numModelos > 0 && codigosElegidos.every(cod => carritoMayorista[cod] >= 2);
 
       let totalUnidades = 0;
       let totalBs = 0;
@@ -989,56 +1007,39 @@
         totalBs += cant * precioMayor;
       });
 
-      document.getElementById('contModelosMay').innerText = numModelos;
+      document.getElementById('contUnidadesMayBadge').innerText = totalUnidades;
+      document.getElementById('sumatoriaTopMay').innerText = `Bs. ${totalBs}`;
+      document.getElementById('totalModelosMay').innerText = numModelos;
       document.getElementById('totalUnidadesMay').innerText = totalUnidades;
       document.getElementById('totalPrecioMay').innerText = `Bs. ${totalBs}`;
 
-      const elRegla1 = document.getElementById('reglaModelos');
-      const elRegla2 = document.getElementById('reglaCantidades');
-
-      if (numModelos >= 3) {
-        elRegla1.className = "flex items-center gap-2 text-emerald-700";
-        elRegla1.innerHTML = `<i class="fas fa-check-circle text-base"></i><span>Regla 1: 3 juguetes diferentes cumplida (${numModelos}/3)</span>`;
-      } else {
-        elRegla1.className = "flex items-center gap-2 text-red-600";
-        elRegla1.innerHTML = `<i class="fas fa-times-circle text-base"></i><span>Regla 1: Mínimo 3 juguetes diferentes (<b>${numModelos}</b>/3)</span>`;
-      }
-
-      if (todosTienenMinimo2) {
-        elRegla2.className = "flex items-center gap-2 text-emerald-700";
-        elRegla2.innerHTML = `<i class="fas fa-check-circle text-base"></i><span>Regla 2: Mínimo 2 unidades por modelo cumplida</span>`;
-      } else {
-        elRegla2.className = "flex items-center gap-2 text-red-600";
-        elRegla2.innerHTML = `<i class="fas fa-times-circle text-base"></i><span>Regla 2: Mínimo 2 unidades por cada modelo elegido</span>`;
-      }
-
+      const elRegla = document.getElementById('reglaCantidadTotalMay');
       const btnEnviar = document.getElementById('btnEnviarPedidoMayorista');
-      if (numModelos >= 3 && todosTienenMinimo2) {
+
+      // REGLA OBLIGATORIA: ARRIBA DE 6 JUGUETES (> 6, es decir mínimo 7 juguetes)
+      if (totalUnidades > 6) {
+        elRegla.className = "flex items-center gap-2 text-emerald-700";
+        elRegla.innerHTML = `<i class="fas fa-check-circle text-lg"></i><span>¡Requisito cumplido! Llevas <b>${totalUnidades} juguetes</b> (arriba de 6).</span>`;
+
         btnEnviar.disabled = false;
         btnEnviar.className = "w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow-lg transition bg-gradient-to-r from-emerald-500 to-green-600 text-white hover:scale-105 cursor-pointer";
         btnEnviar.innerHTML = `<i class="fab fa-whatsapp text-xl"></i> Enviar Pedido Mayorista a WhatsApp`;
       } else {
+        const faltan = 7 - totalUnidades;
+        elRegla.className = "flex items-center gap-2 text-red-600";
+        elRegla.innerHTML = `<i class="fas fa-times-circle text-lg"></i><span>Requisito: Escoge <b>arriba de 6 juguetes</b> (te faltan <b>${faltan}</b>). Llevas: <b>${totalUnidades}</b></span>`;
+
         btnEnviar.disabled = true;
         btnEnviar.className = "w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow transition bg-gray-300 text-gray-500 cursor-not-allowed";
-        btnEnviar.innerHTML = `<i class="fas fa-lock"></i> Faltan requisitos (3 modelos y 2 c/u)`;
+        btnEnviar.innerHTML = `<i class="fas fa-lock"></i> Agrega ${faltan} juguete(s) más para habilitar`;
       }
     }
 
     window.enviarPedidoMayoristaWhatsApp = async function() {
       const codigosElegidos = Object.keys(carritoMayorista);
-      if (codigosElegidos.length < 3 || !codigosElegidos.every(c => carritoMayorista[c] >= 2)) {
-        alert("Debes seleccionar al menos 3 juguetes diferentes y 2 unidades de cada uno.");
-        return;
-      }
-
-      const fechaActual = new Date().toLocaleString('es-BO', {
-        day: '2-digit', month: '2-digit', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      });
-
-      let detalleLineas = "";
       let totalUnidades = 0;
       let totalMonto = 0;
+      let detalleLineas = "";
       let resumenProductos = [];
 
       codigosElegidos.forEach((cod, idx) => {
@@ -1053,7 +1054,16 @@
         detalleLineas += `${idx + 1}. *${p.nombre}* (${cod})%0A   Cantidad: *${cant} u.* x Bs. ${precioMayor} = *Bs. ${sub}*%0A`;
       });
 
-      // Guardar registro para el Ranking del Administrador
+      if (totalUnidades <= 6) {
+        alert("Debes escoger arriba de 6 juguetes (mínimo 7 unidades) para acceder al precio por mayor.");
+        return;
+      }
+
+      const fechaActual = new Date().toLocaleString('es-BO', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+
       const nuevoRegistroMayorista = {
         id: 'ped_may_' + Date.now(),
         nombre: usuarioMayoristaActual.nombre,
@@ -1071,15 +1081,13 @@
       historialPedidosMayoristas.push(nuevoRegistroMayorista);
       localStorage.setItem('playup_historial_mayoristas', JSON.stringify(historialPedidosMayoristas));
 
-      // Guardar también en Firebase si está disponible
       if (db) {
         try {
           await addDoc(collection(db, 'pedidos_mayoristas_playup'), nuevoRegistroMayorista);
         } catch (err) {}
       }
 
-      // Mensaje directo a tu WhatsApp con el nombre del usuario registrado y fecha
-      const mensajeWhatsApp = `📦 *NUEVO PEDIDO POR MAYOR - PLAYUP STORE* 🚀%0A%0A👤 *Cliente Registrado:* ${usuarioMayoristaActual.nombre}%0A🏪 *Tienda/Negocio:* ${usuarioMayoristaActual.negocio}%0A📱 *Celular:* ${usuarioMayoristaActual.telefono}%0A📍 *Ciudad:* ${usuarioMayoristaActual.ciudad}%0A📅 *Fecha de Compra:* ${fechaActual}%0A%0A🧸 *Detalle del Pedido (${codigosElegidos.length} modelos / ${totalUnidades} juguetes):*%0A${detalleLineas}%0A💰 *TOTAL POR MAYOR (15% DTO): Bs. ${totalMonto}*%0A%0AQuedo atento para coordinar el pago y envío. ¡Gracias! ✨`;
+      const mensajeWhatsApp = `📦 *NUEVO PEDIDO POR MAYOR - PLAYUP STORE* 🚀%0A%0A👤 *Cliente Registrado:* ${usuarioMayoristaActual.nombre}%0A🏪 *Tienda/Negocio:* ${usuarioMayoristaActual.negocio}%0A📱 *Celular:* ${usuarioMayoristaActual.telefono}%0A📍 *Ciudad:* ${usuarioMayoristaActual.ciudad}%0A📅 *Fecha de Compra:* ${fechaActual}%0A%0A🧸 *Detalle del Pedido (${totalUnidades} juguetes en total):*%0A${detalleLineas}%0A💰 *TOTAL POR MAYOR (15% DTO): Bs. ${totalMonto}*%0A%0AQuedo atento para coordinar el pago y envío. ¡Gracias! ✨`;
 
       carritoMayorista = {};
       cerrarModalMayorista();
@@ -1103,7 +1111,6 @@
       const txtResumen = document.getElementById('txtResumenMayoristas');
       tbody.innerHTML = '';
 
-      // Ordenar de mayor a menor según total de juguetes comprados
       const ordenados = [...historialPedidosMayoristas].sort((a, b) => b.totalUnidades - a.totalUnidades);
       txtResumen.innerText = `Total pedidos mayoristas registrados: ${ordenados.length}`;
 
@@ -1140,14 +1147,32 @@
     }
 
     /* ========================================================================= */
-    /* CARRITO NORMAL DE COMPRAS                                                 */
+    /* CARRITO NORMAL DE COMPRAS Y SUMATORIA AUTOMÁTICA EN VIVO                  */
     /* ========================================================================= */
     function actualizarContadorCarrito() {
       const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+      const totalBs = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+
       const bTop = document.getElementById('badgeCarritoTop');
       const bFloat = document.getElementById('badgeCarritoFloat');
       if(bTop) bTop.innerText = totalItems;
       if(bFloat) bFloat.innerText = totalItems;
+
+      // Actualizar barra flotante de sumatoria automática en el modo normal
+      const barraSumatoria = document.getElementById('barraSumatoriaNormal');
+      const sumCantEl = document.getElementById('sumatoriaNormalCant');
+      const sumBsEl = document.getElementById('sumatoriaNormalBs');
+
+      if (barraSumatoria && sumCantEl && sumBsEl) {
+        if (totalItems > 0) {
+          sumCantEl.innerText = totalItems;
+          sumBsEl.innerText = `Bs. ${totalBs}`;
+          barraSumatoria.classList.remove('hidden');
+        } else {
+          barraSumatoria.classList.add('hidden');
+        }
+      }
+
       localStorage.setItem('playup_carrito', JSON.stringify(carrito));
     }
 
@@ -1181,7 +1206,8 @@
         });
       }
       actualizarContadorCarrito();
-      mostrarToast(`¡"${prod.nombre}" añadido al carrito! 🛒`);
+      const totalActualBs = carrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
+      mostrarToast(`+1 "${prod.nombre}" · Suma actual: Bs. ${totalActualBs} 🛒`);
     };
 
     window.cambiarCantidadCarrito = function(codigo, delta) {
@@ -1205,6 +1231,7 @@
     function renderizarCarritoModal() {
       const contenedor = document.getElementById('listaItemsCarrito');
       const totalEl = document.getElementById('totalCarritoBs');
+      const totalCantEl = document.getElementById('totalItemsModalNormal');
       if(!contenedor || !totalEl) return;
 
       if(carrito.length === 0) {
@@ -1215,15 +1242,18 @@
             <p class="text-xs font-semibold text-gray-600 mt-1">Explora el catálogo y pulsa "+ Agregar" en los juguetes que te gusten.</p>
           </div>`;
         totalEl.innerText = "Bs. 0";
+        if(totalCantEl) totalCantEl.innerText = "0";
         return;
       }
 
       contenedor.innerHTML = '';
       let sumaTotal = 0;
+      let sumaCantidad = 0;
 
       carrito.forEach(item => {
         const subtotal = item.precio * item.cantidad;
         sumaTotal += subtotal;
+        sumaCantidad += item.cantidad;
         const div = document.createElement('div');
         div.className = "flex items-center justify-between gap-3 bg-sky-50/70 p-3 rounded-2xl border border-sky-200";
         div.innerHTML = `
@@ -1245,6 +1275,7 @@
       });
 
       totalEl.innerText = `Bs. ${sumaTotal}`;
+      if(totalCantEl) totalCantEl.innerText = sumaCantidad;
     }
 
     window.abrirModalCarrito = function() {
@@ -1272,13 +1303,15 @@
 
       let lineas = "";
       let totalGeneral = 0;
+      let totalUnidades = 0;
       carrito.forEach((item, index) => {
         const sub = item.precio * item.cantidad;
         totalGeneral += sub;
+        totalUnidades += item.cantidad;
         lineas += `${index + 1}. *${item.nombre}* (${item.codigo})%0A   Cantidad: ${item.cantidad} x Bs. ${item.precio} = *Bs. ${sub}*%0A`;
       });
 
-      const mensajeCompleto = `🤖 *¡Hola PlayUp Store!* ✨%0AQuiero hacer el siguiente pedido desde su catálogo web:%0A%0A${lineas}%0A💰 *TOTAL ESTIMADO: Bs. ${totalGeneral}*%0A%0A¿Me confirman disponibilidad para coordinar la entrega? 🚚🛍️`;
+      const mensajeCompleto = `🤖 *¡Hola PlayUp Store!* ✨%0AQuiero hacer el siguiente pedido desde su catálogo web (${totalUnidades} juguetes):%0A%0A${lineas}%0A💰 *TOTAL SUMADO: Bs. ${totalGeneral}*%0A%0A¿Me confirman disponibilidad para coordinar la entrega? 🚚🛍️`;
       window.open(`https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeCompleto}`, '_blank');
     };
 
