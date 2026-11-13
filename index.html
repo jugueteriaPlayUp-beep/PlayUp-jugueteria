@@ -10,9 +10,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
     body { font-family: 'Fredoka', sans-serif; }
     
-    /* FONDO CELESTE PASTEL DINÁMICO */
-    .bg-celeste-pastel {
-      background: linear-gradient(-45deg, #7dd3fc, #38bdf8, #bae6fd, #e0f2fe, #67e8f9);
+    /* FONDO CELESTE MÁS INTENSO Y VIBRANTE */
+    .bg-celeste-intenso {
+      background: linear-gradient(-45deg, #0284c7, #0ea5e9, #38bdf8, #06b6d4, #7dd3fc);
       background-size: 400% 400%;
       animation: animarCeleste 12s ease infinite;
     }
@@ -73,15 +73,15 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-celeste-pastel text-gray-900 overflow-x-hidden relative">
+<body class="min-h-screen bg-celeste-intenso text-gray-900 overflow-x-hidden relative">
 
   <!-- CINTA DE BENEFICIOS SUPERIOR -->
   <div class="bg-sky-950 text-sky-100 text-xs sm:text-sm font-bold py-2 overflow-hidden relative z-30 shadow-md">
     <div class="anim-marquesina flex items-center gap-10">
       <span>🚀 <strong>¡ENVÍOS INMEDIATOS EN SANTA CRUZ Y A TODA BOLIVIA!</strong> 🚚</span>
-      <span>⭐ Puesto 244, Mercado Nuevo Los Pozos 🧸</span>
+      <span>📦 <strong>VENTAS POR MAYOR CON DESCUENTO ESPECIAL:</strong> Mínimo 3 modelos diferentes y 2 unidades por modelo 🧸</span>
       <span>🛒 <strong>AGREGA VARIOS JUGUETES A TU CARRITO Y ENVÍA UN SOLO PEDIDO</strong> 💬</span>
-      <span>🧸 Juguetes didácticos, pistas, robots y figuras de acción 🤖</span>
+      <span>⭐ Puesto 244, Mercado Nuevo Los Pozos · Santa Cruz 🤖</span>
       <span>💖 ¡Calidad garantizada para consentir a los más peques! ✨</span>
     </div>
   </div>
@@ -94,7 +94,7 @@
 
   <!-- Portada y Encabezado -->
   <section class="max-w-7xl mx-auto pt-4 pb-4 px-4 sm:px-6 relative z-10 text-white">
-    <div class="bg-white/35 backdrop-blur-md rounded-[35px] p-5 sm:p-6 border-2 border-white/60 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="bg-sky-900/25 backdrop-blur-md rounded-[35px] p-5 sm:p-6 border-2 border-white/70 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
       
       <!-- LOGO -->
       <div class="w-full md:w-auto flex justify-center md:justify-start">
@@ -110,7 +110,7 @@
 
       <!-- ESLOGAN Y BOTONES -->
       <div class="w-full md:flex-1 flex flex-col items-center md:items-end text-center md:text-right">
-        <p id="txtEslogan" class="text-3xl sm:text-4xl lg:text-5xl font-black drop-shadow-lg bg-white/55 px-6 py-2 rounded-full inline-block backdrop-blur-md border-4 border-white border-dashed bubbly-text mb-4">
+        <p id="txtEslogan" class="text-3xl sm:text-4xl lg:text-5xl font-black drop-shadow-lg bg-white/70 px-6 py-2 rounded-full inline-block backdrop-blur-md border-4 border-white border-dashed bubbly-text mb-4">
           <span class="text-blue-600">¡</span><span class="text-sky-500">S</span><span class="text-amber-500">u</span><span class="text-emerald-500">b</span><span class="text-purple-600">e</span>
           <span class="text-orange-500">l</span><span class="text-pink-500">a</span>
           <span class="text-cyan-500">d</span><span class="text-blue-600">i</span><span class="text-yellow-500">v</span><span class="text-emerald-500">e</span><span class="text-sky-600">r</span><span class="text-purple-600">s</span><span class="text-pink-500">i</span><span class="text-orange-500">ó</span><span class="text-cyan-500">n</span><span class="text-blue-600">!</span>
@@ -126,6 +126,12 @@
           <a id="btnLinkUbicacion" href="https://goo.gl/maps/z12sFherJAvHtLz49" target="_blank" class="bg-gradient-to-r from-rose-500 to-pink-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-map-marker-alt text-lg"></i> Ubicación
           </a>
+          
+          <!-- NUEVO BOTÓN: PRECIO POR MAYOR -->
+          <button onclick="iniciarFlujoMayorista()" class="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow-lg hover:scale-105 transition flex items-center gap-2">
+            <i class="fas fa-boxes text-lg text-purple-900"></i> Precio por Mayor 📦
+          </button>
+
           <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow hover:scale-105 transition flex items-center gap-2 relative">
             <i class="fas fa-shopping-cart text-lg text-yellow-300"></i> Mi Carrito
             <span id="badgeCarritoTop" class="bg-yellow-400 text-purple-950 text-xs font-black px-2 py-0.5 rounded-full ml-1">0</span>
@@ -133,7 +139,7 @@
           <button onclick="abrirModalRegistro()" class="bg-gradient-to-r from-amber-400 to-orange-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-black shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-user-edit text-lg text-purple-900"></i> ¡Regístrate Aquí!
           </button>
-          <button onclick="abrirModalListaRegistrados()" class="bg-gradient-to-r from-sky-600 to-blue-700 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
+          <button onclick="abrirModalListaRegistrados()" class="bg-gradient-to-r from-sky-700 to-blue-800 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
             <i class="fas fa-clipboard-list text-lg text-yellow-300"></i> Ver Registrados 📋
           </button>
           <button onclick="abrirModalAyuda()" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-sm sm:text-base font-bold shadow hover:scale-105 transition flex items-center gap-2">
@@ -154,21 +160,18 @@
         <h2 class="text-2xl font-black flex items-center gap-2">
           <i class="fas fa-crown text-yellow-500"></i> Panel de Administración
         </h2>
-        <p class="text-xs sm:text-sm font-bold text-purple-700">Control de catálogo, fotos y registros.</p>
+        <p class="text-xs sm:text-sm font-bold text-purple-700">Control de catálogo, registros y ranking de compras por mayor.</p>
       </div>
       <div class="flex gap-2 flex-wrap">
+        <button onclick="abrirModalRankingMayoristas()" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:scale-105 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2 border border-amber-600">
+          <i class="fas fa-trophy text-purple-900"></i> 🏆 Ranking Mayoristas
+        </button>
         <input type="file" id="inputPortada" class="hidden" accept="image/*" onchange="subirNuevaPortada(event)">
         <button onclick="document.getElementById('inputPortada').click()" id="btnPortada" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
           <i class="fas fa-image"></i> Cambiar Portada
         </button>
-        <button onclick="abrirModalFotosCategorias()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
-          <i class="fas fa-layer-group"></i> 🖼️ Fotos Categorías
-        </button>
         <button onclick="abrirModalAdminRegistro()" class="bg-amber-500 hover:bg-amber-600 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
           <i class="fas fa-cog"></i> ⚙️ Configurar Formulario
-        </button>
-        <button onclick="abrirModalAdmin()" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
-          <i class="fas fa-plus-circle"></i> + Añadir Juguete
         </button>
       </div>
     </div>
@@ -178,7 +181,7 @@
   <section class="max-w-7xl mx-auto px-4 sm:px-6 py-2 relative z-10">
     <div class="text-center mb-4">
       <h2 class="text-3xl md:text-4xl font-black text-white drop-shadow-md">✨ Explora por Categoría ✨</h2>
-      <p class="text-white/90 text-sm sm:text-base font-bold mt-0.5">Toca un banner para filtrar los juguetes</p>
+      <p class="text-white text-sm sm:text-base font-bold mt-0.5 drop-shadow">Toca un banner para filtrar los juguetes</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
       <!-- Columna Izquierda -->
@@ -264,15 +267,15 @@
 
   <!-- FILTRO DE PRESUPUESTO -->
   <section id="seccionFiltroPresupuesto" class="max-w-7xl mx-auto px-4 sm:px-6 py-3 relative z-10">
-    <div class="bg-white/35 backdrop-blur-xl rounded-2xl p-3 border-2 border-white/60 flex flex-wrap justify-center items-center gap-2.5 shadow-md">
-      <span class="text-sky-950 font-black text-sm sm:text-base mr-1 flex items-center gap-1.5">
-        <i class="fas fa-wallet text-amber-500 text-lg"></i> Presupuesto:
+    <div class="bg-sky-900/25 backdrop-blur-xl rounded-2xl p-3 border-2 border-white/70 flex flex-wrap justify-center items-center gap-2.5 shadow-md">
+      <span class="text-white font-black text-sm sm:text-base mr-1 flex items-center gap-1.5 drop-shadow">
+        <i class="fas fa-wallet text-yellow-300 text-lg"></i> Presupuesto:
       </span>
       <button onclick="filtrarPresupuesto('todos')" id="btn-precio-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white">Cualquiera</button>
-      <button onclick="filtrarPresupuesto('rango1')" id="btn-precio-rango1" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 30 a 50</button>
-      <button onclick="filtrarPresupuesto('rango2')" id="btn-precio-rango2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 60 a 100</button>
-      <button onclick="filtrarPresupuesto('rango3')" id="btn-precio-rango3" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 110 a 160</button>
-      <button onclick="filtrarPresupuesto('rango4')" id="btn-precio-rango4" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white">Bs. 170 a más</button>
+      <button onclick="filtrarPresupuesto('rango1')" id="btn-precio-rango1" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 30 a 50</button>
+      <button onclick="filtrarPresupuesto('rango2')" id="btn-precio-rango2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 60 a 100</button>
+      <button onclick="filtrarPresupuesto('rango3')" id="btn-precio-rango3" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 110 a 160</button>
+      <button onclick="filtrarPresupuesto('rango4')" id="btn-precio-rango4" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 170 a más</button>
     </div>
   </section>
 
@@ -283,8 +286,11 @@
     </div>
   </section>
 
-  <!-- BOTONES FLOTANTES INFERIORES: CARRITO Y WHATSAPP -->
+  <!-- BOTONES FLOTANTES INFERIORES: MAYORISTA, CARRITO Y WHATSAPP -->
   <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-center">
+    <button onclick="iniciarFlujoMayorista()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Precio por Mayor">
+      <i class="fas fa-boxes"></i>
+    </button>
     <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver mi carrito">
       <i class="fas fa-shopping-cart"></i>
       <span id="badgeCarritoFloat" class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-purple-950 text-xs font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow">0</span>
@@ -294,13 +300,168 @@
     </a>
   </div>
 
-  <!-- TOAST NOTIFICACIÓN CARRITO -->
+  <!-- TOAST NOTIFICACIÓN -->
   <div id="toastCarrito" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 bg-sky-950 text-white px-5 py-2.5 rounded-full shadow-2xl font-bold text-sm border-2 border-yellow-400 hidden items-center gap-2 transition-all">
     <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
-    <span id="toastTexto">¡Juguete añadido al carrito!</span>
+    <span id="toastTexto">¡Juguete añadido!</span>
   </div>
 
-  <!-- MODAL CARRITO DE COMPRAS -->
+  <!-- ========================================================================= -->
+  <!-- MODAL 1: REGISTRO OBLIGATORIO PARA MAYORISTAS                             -->
+  <!-- ========================================================================= -->
+  <div id="modalRegistroMayorista" onclick="if(event.target.id==='modalRegistroMayorista') cerrarModalRegistroMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-4 border-orange-400 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-3 pb-2 border-b border-orange-100">
+        <div>
+          <span class="bg-orange-100 text-orange-800 text-xs font-black px-3 py-1 rounded-full uppercase">Paso 1 de 2 · Exclusivo Mayoristas</span>
+          <h3 class="text-2xl font-black text-purple-950 mt-1 flex items-center gap-2">
+            📦 Registro de Cliente Mayorista
+          </h3>
+          <p class="text-xs text-gray-600 font-semibold">
+            Para acceder a los precios por mayor debes registrarte primero. Así quedará guardado tu historial de compras.
+          </p>
+        </div>
+        <button type="button" onclick="cerrarModalRegistroMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <form onsubmit="completarRegistroMayorista(event)" class="space-y-3.5">
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Nombre completo del comprador *</label>
+          <input type="text" id="mayNombre" required placeholder="Ej: Juan Carlos Pérez" class="w-full bg-orange-50 border-2 border-orange-200 focus:border-orange-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Número de WhatsApp / Celular *</label>
+          <input type="tel" id="mayTelefono" required placeholder="Ej: 75565671" class="w-full bg-orange-50 border-2 border-orange-200 focus:border-orange-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Nombre de su Tienda o Negocio *</label>
+          <input type="text" id="mayNegocio" required placeholder="Ej: Comercial Los Andes / Ventas Online" class="w-full bg-orange-50 border-2 border-orange-200 focus:border-orange-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Ciudad de destino *</label>
+          <select id="mayCiudad" required class="w-full bg-orange-50 border-2 border-orange-200 focus:border-orange-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+            <option value="">Selecciona tu ciudad...</option>
+            <option value="Santa Cruz de la Sierra">Santa Cruz de la Sierra</option>
+            <option value="La Paz">La Paz</option>
+            <option value="Cochabamba">Cochabamba</option>
+            <option value="El Alto">El Alto</option>
+            <option value="Tarija">Tarija</option>
+            <option value="Sucre">Sucre</option>
+            <option value="Oruro">Oruro</option>
+            <option value="Potosí">Potosí</option>
+            <option value="Trinidad">Trinidad</option>
+            <option value="Cobija">Cobija</option>
+            <option value="Otra">Otra</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 text-base sm:text-lg font-black py-3 rounded-2xl hover:scale-102 transition shadow-lg mt-2 border-2 border-white">
+          Continuar al Catálogo por Mayor ➡️
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 2: CATÁLOGO Y PEDIDO POR MAYOR (REGLA: 3 MODELOS DIF. Y 2 C/U)      -->
+  <!-- ========================================================================= -->
+  <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') cerrarModalMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
+    <div class="bg-white rounded-[35px] p-5 sm:p-7 w-full max-w-4xl shadow-2xl border-4 border-orange-500 relative max-h-[92vh] flex flex-col">
+      
+      <!-- Encabezado Mayorista -->
+      <div class="flex justify-between items-start mb-3 pb-2 border-b border-orange-100">
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-orange-500 text-white text-xs font-black px-3 py-0.5 rounded-full">15% DTO. MAYORISTA</span>
+            <span id="badgeUsuarioMayorista" class="bg-sky-100 text-sky-900 text-xs font-bold px-3 py-0.5 rounded-full">👤 Cliente: -</span>
+            <button onclick="cambiarUsuarioMayorista()" class="text-xs text-orange-600 underline font-bold">Cambiar usuario</button>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-purple-950 mt-1">
+            📦 Selección de Pedido por Mayor
+          </h3>
+        </div>
+        <button type="button" onclick="cerrarModalMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <!-- PANEL DE REGLAS OBLIGATORIAS EN TIEMPO REAL -->
+      <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3 mb-3 grid sm:grid-cols-2 gap-2 text-xs sm:text-sm font-bold">
+        <div id="reglaModelos" class="flex items-center gap-2 text-red-600">
+          <i class="fas fa-times-circle text-base"></i>
+          <span>Regla 1: Mínimo 3 juguetes diferentes (<b id="contModelosMay">0</b>/3)</span>
+        </div>
+        <div id="reglaCantidades" class="flex items-center gap-2 text-red-600">
+          <i class="fas fa-times-circle text-base"></i>
+          <span>Regla 2: Mínimo 2 unidades por cada modelo elegido</span>
+        </div>
+      </div>
+
+      <!-- Lista de juguetes para elegir por mayor -->
+      <div id="gridProductosMayorista" class="overflow-y-auto flex-grow grid sm:grid-cols-2 gap-3 pr-1">
+        <!-- Se llena dinámicamente -->
+      </div>
+
+      <!-- Pie del Modal Mayorista con Total y Botón de Envío -->
+      <div class="border-t-2 border-orange-100 pt-3 mt-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div class="text-center sm:text-left">
+          <p class="text-xs font-bold text-gray-500">Total unidades: <span id="totalUnidadesMay" class="text-purple-950 font-black">0</span> u.</p>
+          <p class="text-xl sm:text-2xl font-black text-pink-600">Total Mayorista: <span id="totalPrecioMay">Bs. 0</span></p>
+        </div>
+
+        <button type="button" id="btnEnviarPedidoMayorista" onclick="enviarPedidoMayoristaWhatsApp()" disabled class="w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow-lg transition bg-gray-300 text-gray-500 cursor-not-allowed">
+          <i class="fas fa-lock"></i> Completa los requisitos para enviar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL 3: RANKING DE MAYORISTAS PARA ADMINISTRADOR                         -->
+  <!-- ========================================================================= -->
+  <div id="modalRankingMayoristas" onclick="if(event.target.id==='modalRankingMayoristas') cerrarModalRankingMayoristas()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-3xl shadow-2xl border-4 border-amber-400 flex flex-col max-h-[88vh]">
+      <div class="flex justify-between items-center mb-4 pb-2 border-b border-amber-100">
+        <div>
+          <h3 class="text-2xl font-black text-purple-950 flex items-center gap-2">
+            🏆 Ranking de Compras por Mayor (Admin)
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 font-semibold">
+            Ordenado de mayor a menor cantidad de juguetes comprados, con su fecha exacta.
+          </p>
+        </div>
+        <button type="button" onclick="cerrarModalRankingMayoristas()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto flex-grow rounded-2xl border border-amber-200">
+        <table class="w-full text-left text-xs sm:text-sm text-gray-700">
+          <thead class="bg-amber-500 text-purple-950 font-black sticky top-0 text-xs uppercase">
+            <tr>
+              <th class="p-3">Puesto</th>
+              <th class="p-3">Cliente / Tienda</th>
+              <th class="p-3 text-center">Juguetes Comprados</th>
+              <th class="p-3 text-right">Total Bs.</th>
+              <th class="p-3">Fecha y Hora</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyRankingMayoristas" class="divide-y divide-amber-100 font-semibold bg-white">
+            <!-- Dinámico -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pt-4 flex justify-between items-center text-xs font-bold text-gray-500">
+        <span id="txtResumenMayoristas">Total pedidos mayoristas: 0</span>
+        <button onclick="cerrarModalRankingMayoristas()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-800 font-bold">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CARRITO DE COMPRAS NORMAL -->
   <div id="modalCarrito" onclick="cerrarModalCarritoExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-purple-500 relative max-h-[88vh] flex flex-col">
       <div class="flex justify-between items-center mb-4 pb-2 border-b border-purple-100">
@@ -357,19 +518,19 @@
       </div>
 
       <div class="space-y-3 text-gray-700 text-xs sm:text-sm leading-relaxed">
+        <div class="bg-orange-50 p-3.5 rounded-2xl border border-orange-200">
+          <h4 class="font-black text-orange-950 text-sm sm:text-base mb-1">📦 ¿Cómo comprar a Precio por Mayor?</h4>
+          <p>1. Pulsa el botón <strong>"Precio por Mayor 📦"</strong> y completa tu registro obligatorio de cliente mayorista.<br>
+          2. Selecciona <strong>mínimo 3 juguetes diferentes</strong> y al menos <strong>2 unidades de cada modelo</strong>.<br>
+          3. Se aplicará el 15% de descuento mayorista automáticamente y podrás enviarnos tu pedido directo a WhatsApp.</p>
+        </div>
         <div class="bg-teal-50 p-3.5 rounded-2xl border border-teal-200">
-          <h4 class="font-black text-teal-950 text-sm sm:text-base mb-1">🛒 ¿Cómo usar el carrito de compras?</h4>
-          <p>1. Pulsa <strong>"+ Agregar 🛒"</strong> en todos los juguetes que desees llevar.<br>
-          2. Haz clic en el ícono del carrito flotante (abajo a la derecha) o en <strong>"Mi Carrito"</strong> arriba.<br>
-          3. Ajusta las cantidades y presiona <strong>"Enviar pedido completo por WhatsApp"</strong> para mandarnos tu lista lista para cotizar y entregar.</p>
+          <h4 class="font-black text-teal-950 text-sm sm:text-base mb-1">🛒 ¿Cómo usar el carrito normal?</h4>
+          <p>Pulsa <strong>"+ Agregar"</strong> en los juguetes que quieras llevar al detalle, abre <strong>"Mi Carrito"</strong> y envía todos los productos juntos por WhatsApp.</p>
         </div>
         <div class="bg-sky-50 p-3.5 rounded-2xl border border-sky-200">
-          <h4 class="font-black text-sky-950 text-sm sm:text-base mb-1">📋 Registro de Usuario y Seguridad</h4>
-          <p>En <strong>"¡Regístrate Aquí!"</strong> puedes registrar tus datos de cliente. Tu información se almacena de forma privada y restringida en Google Sheets exclusivamente para atención de pedidos de PlayUp Store.</p>
-        </div>
-        <div class="bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
-          <h4 class="font-black text-amber-950 text-sm sm:text-base mb-1">📍 Ubicación y Contacto</h4>
-          <p>Estamos ubicados en el Puesto 244, Mercado Nuevo Los Pozos, Santa Cruz de la Sierra. Realizamos envíos locales y nacionales.</p>
+          <h4 class="font-black text-sky-950 text-sm sm:text-base mb-1">📋 Registro y Privacidad</h4>
+          <p>Tus datos personales se almacenan de forma privada y restringida en Google Sheets exclusivamente para atención de pedidos de PlayUp Store.</p>
         </div>
       </div>
 
@@ -381,7 +542,7 @@
     </div>
   </div>
 
-  <!-- MODAL REGISTRO DE USUARIO -->
+  <!-- MODAL REGISTRO DE USUARIO GENERAL -->
   <div id="modalRegistro" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-yellow-400 relative max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4 sticky top-0 bg-white pb-2 z-10 border-b border-purple-100">
@@ -577,8 +738,6 @@
   <!-- MODAL DETALLE JUGUETE -->
   <div id="modalVista" onclick="cerrarModalVistaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
     <div id="modalVistaContent" class="rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative border-4 max-h-[85vh] overflow-y-auto transition-all duration-300">
-      
-      <!-- BOTÓN CERRAR SUPERIOR -->
       <button type="button" onclick="cerrarModalVista()" class="absolute top-4 right-4 text-gray-600 hover:text-red-600 text-2xl bg-white/90 hover:bg-white rounded-full w-11 h-11 flex items-center justify-center shadow-lg border-2 border-white transition transform hover:scale-110 z-20">
         <i class="fas fa-times"></i>
       </button>
@@ -614,7 +773,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON CARRITO, FIREBASE Y CATÁLOGO -->
+  <!-- SCRIPT COMPLETO CON MAYORISTA, RANKING ADMIN, CARRITO Y FIREBASE -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -647,7 +806,6 @@
       scriptUrl: ""
     };
 
-    // 18 Juguetes garantizados de alta calidad
     const catalogoDefecto = [
       { id: '1', codigo: 'PLU-001', nombre: 'Auto Deportivo RC Recargable', categoria: 'ninos', precio: '145', descripcion: 'Auto a control remoto de alta velocidad con batería recargable USB y faros LED.', foto: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600&auto=format&fit=crop&q=80' },
       { id: '2', codigo: 'PLU-002', nombre: 'Set Bloques Castillo Rosa Mágico', categoria: 'ninas', precio: '180', descripcion: 'Hermoso castillo armable con torres de ensueño, carruaje y figuritas de princesas.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
@@ -677,7 +835,313 @@
       { id: 'r3', Nombre: 'Valeria Justiniano', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Muñecas y figuras' }
     ];
 
-    /* FUNCIONES DEL CARRITO DE COMPRAS */
+    /* ========================================================================= */
+    /* SISTEMA MAYORISTA: REGISTRO OBLIGATORIO, REGLAS (3 DIF. Y 2 C/U) Y RANKING*/
+    /* ========================================================================= */
+    let usuarioMayoristaActual = JSON.parse(localStorage.getItem('playup_mayorista_actual') || 'null');
+    let carritoMayorista = {}; // { codigo: cantidad }
+    let historialPedidosMayoristas = JSON.parse(localStorage.getItem('playup_historial_mayoristas') || '[]');
+
+    window.iniciarFlujoMayorista = function() {
+      if (!usuarioMayoristaActual) {
+        document.getElementById('modalRegistroMayorista').classList.remove('hidden');
+        document.getElementById('modalRegistroMayorista').classList.add('flex');
+      } else {
+        abrirCatalogoMayorista();
+      }
+    };
+
+    window.cerrarModalRegistroMayorista = function() {
+      document.getElementById('modalRegistroMayorista').classList.add('hidden');
+      document.getElementById('modalRegistroMayorista').classList.remove('flex');
+    };
+
+    window.cambiarUsuarioMayorista = function() {
+      cerrarModalMayorista();
+      document.getElementById('modalRegistroMayorista').classList.remove('hidden');
+      document.getElementById('modalRegistroMayorista').classList.add('flex');
+    };
+
+    window.completarRegistroMayorista = async function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('mayNombre').value.trim();
+      const telefono = document.getElementById('mayTelefono').value.replace(/[^\d]/g, '');
+      const negocio = document.getElementById('mayNegocio').value.trim();
+      const ciudad = document.getElementById('mayCiudad').value;
+
+      usuarioMayoristaActual = {
+        nombre,
+        telefono,
+        negocio,
+        ciudad,
+        fechaRegistro: new Date().toLocaleString('es-BO')
+      };
+
+      localStorage.setItem('playup_mayorista_actual', JSON.stringify(usuarioMayoristaActual));
+
+      // Guardar también en la lista general de registrados
+      registradosList.unshift({
+        id: 'may_' + Date.now(),
+        Nombre: `${nombre} (Mayorista - ${negocio})`,
+        Ciudad: ciudad,
+        Interes: 'Compra por Mayor'
+      });
+      renderizarTablaRegistrados();
+
+      // Enviar a Google Sheets si está configurado
+      if (configRegistro.scriptUrl && configRegistro.scriptUrl.startsWith('http')) {
+        fetch(configRegistro.scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            Nombre: `${nombre} [MAYORISTA: ${negocio}]`,
+            Correo: 'mayorista@playup.bo',
+            Telefono: "'" + telefono,
+            Ciudad: ciudad,
+            Interes: 'Pedido por Mayor'
+          })
+        }).catch(() => {});
+      }
+
+      cerrarModalRegistroMayorista();
+      abrirCatalogoMayorista();
+    };
+
+    function abrirCatalogoMayorista() {
+      document.getElementById('badgeUsuarioMayorista').innerText = `👤 ${usuarioMayoristaActual.nombre} (${usuarioMayoristaActual.negocio})`;
+      renderizarProductosMayorista();
+      validarReglasMayorista();
+      document.getElementById('modalMayorista').classList.remove('hidden');
+      document.getElementById('modalMayorista').classList.add('flex');
+    }
+
+    window.cerrarModalMayorista = function() {
+      document.getElementById('modalMayorista').classList.add('hidden');
+      document.getElementById('modalMayorista').classList.remove('flex');
+    };
+
+    function renderizarProductosMayorista() {
+      const grid = document.getElementById('gridProductosMayorista');
+      grid.innerHTML = '';
+
+      productos.forEach(p => {
+        const cant = carritoMayorista[p.codigo] || 0;
+        const precioNormal = parseFloat(p.precio) || 0;
+        const precioMayor = Math.round(precioNormal * 0.85); // 15% descuento por mayor
+
+        const card = document.createElement('div');
+        card.className = `flex items-center justify-between gap-3 p-3 rounded-2xl border-2 transition ${cant >= 2 ? 'bg-emerald-50 border-emerald-400' : (cant === 1 ? 'bg-amber-50 border-amber-400' : 'bg-sky-50/60 border-sky-200')}`;
+        
+        card.innerHTML = `
+          <div class="flex items-center gap-2.5 min-w-0">
+            <img src="${p.foto}" alt="${p.nombre}" class="w-14 h-14 rounded-xl object-cover bg-white border border-sky-200 shrink-0">
+            <div class="min-w-0">
+              <span class="text-[10px] font-black text-purple-900 bg-yellow-300 px-2 py-0.5 rounded-md">${p.codigo}</span>
+              <h4 class="text-xs sm:text-sm font-black text-sky-950 truncate">${p.nombre}</h4>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[11px] line-through text-gray-400">Bs. ${precioNormal}</span>
+                <span class="text-xs sm:text-sm font-black text-orange-600">Bs. ${precioMayor} c/u</span>
+              </div>
+              ${cant === 1 ? '<span class="text-[10px] font-bold text-red-600 block">⚠️ Agrega 1 más (mín. 2)</span>' : ''}
+              ${cant >= 2 ? '<span class="text-[10px] font-bold text-emerald-700 block">✓ Modelo válido</span>' : ''}
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', -1)" class="w-8 h-8 rounded-xl bg-white border-2 border-sky-300 text-sky-950 font-black hover:bg-red-100">-</button>
+            <span class="w-7 text-center font-black text-base text-purple-950">${cant}</span>
+            <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', 1)" class="w-8 h-8 rounded-xl bg-orange-500 text-white font-black hover:bg-orange-600 shadow">+</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    window.cambiarCantidadMayorista = function(codigo, delta) {
+      const actual = carritoMayorista[codigo] || 0;
+      let nuevo = actual + delta;
+      // Si estaba en 0 y pulsa +, sugerimos directamente 2 unidades o sumamos 1 a 1
+      if (actual === 0 && delta === 1) {
+        nuevo = 2; // Facilita cumplir la regla de 2 del mismo modelo con un clic
+      }
+      if (nuevo <= 0) {
+        delete carritoMayorista[codigo];
+      } else {
+        carritoMayorista[codigo] = nuevo;
+      }
+      renderizarProductosMayorista();
+      validarReglasMayorista();
+    };
+
+    function validarReglasMayorista() {
+      const codigosElegidos = Object.keys(carritoMayorista);
+      const numModelos = codigosElegidos.length;
+      const todosTienenMinimo2 = numModelos > 0 && codigosElegidos.every(cod => carritoMayorista[cod] >= 2);
+
+      let totalUnidades = 0;
+      let totalBs = 0;
+
+      codigosElegidos.forEach(cod => {
+        const p = productos.find(x => x.codigo === cod);
+        const cant = carritoMayorista[cod];
+        const precioMayor = Math.round((parseFloat(p.precio) || 0) * 0.85);
+        totalUnidades += cant;
+        totalBs += cant * precioMayor;
+      });
+
+      document.getElementById('contModelosMay').innerText = numModelos;
+      document.getElementById('totalUnidadesMay').innerText = totalUnidades;
+      document.getElementById('totalPrecioMay').innerText = `Bs. ${totalBs}`;
+
+      const elRegla1 = document.getElementById('reglaModelos');
+      const elRegla2 = document.getElementById('reglaCantidades');
+
+      if (numModelos >= 3) {
+        elRegla1.className = "flex items-center gap-2 text-emerald-700";
+        elRegla1.innerHTML = `<i class="fas fa-check-circle text-base"></i><span>Regla 1: 3 juguetes diferentes cumplida (${numModelos}/3)</span>`;
+      } else {
+        elRegla1.className = "flex items-center gap-2 text-red-600";
+        elRegla1.innerHTML = `<i class="fas fa-times-circle text-base"></i><span>Regla 1: Mínimo 3 juguetes diferentes (<b>${numModelos}</b>/3)</span>`;
+      }
+
+      if (todosTienenMinimo2) {
+        elRegla2.className = "flex items-center gap-2 text-emerald-700";
+        elRegla2.innerHTML = `<i class="fas fa-check-circle text-base"></i><span>Regla 2: Mínimo 2 unidades por modelo cumplida</span>`;
+      } else {
+        elRegla2.className = "flex items-center gap-2 text-red-600";
+        elRegla2.innerHTML = `<i class="fas fa-times-circle text-base"></i><span>Regla 2: Mínimo 2 unidades por cada modelo elegido</span>`;
+      }
+
+      const btnEnviar = document.getElementById('btnEnviarPedidoMayorista');
+      if (numModelos >= 3 && todosTienenMinimo2) {
+        btnEnviar.disabled = false;
+        btnEnviar.className = "w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow-lg transition bg-gradient-to-r from-emerald-500 to-green-600 text-white hover:scale-105 cursor-pointer";
+        btnEnviar.innerHTML = `<i class="fab fa-whatsapp text-xl"></i> Enviar Pedido Mayorista a WhatsApp`;
+      } else {
+        btnEnviar.disabled = true;
+        btnEnviar.className = "w-full sm:w-auto px-6 py-3.5 rounded-2xl font-black text-sm sm:text-base flex items-center justify-center gap-2 border-2 border-white shadow transition bg-gray-300 text-gray-500 cursor-not-allowed";
+        btnEnviar.innerHTML = `<i class="fas fa-lock"></i> Faltan requisitos (3 modelos y 2 c/u)`;
+      }
+    }
+
+    window.enviarPedidoMayoristaWhatsApp = async function() {
+      const codigosElegidos = Object.keys(carritoMayorista);
+      if (codigosElegidos.length < 3 || !codigosElegidos.every(c => carritoMayorista[c] >= 2)) {
+        alert("Debes seleccionar al menos 3 juguetes diferentes y 2 unidades de cada uno.");
+        return;
+      }
+
+      const fechaActual = new Date().toLocaleString('es-BO', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+
+      let detalleLineas = "";
+      let totalUnidades = 0;
+      let totalMonto = 0;
+      let resumenProductos = [];
+
+      codigosElegidos.forEach((cod, idx) => {
+        const p = productos.find(x => x.codigo === cod);
+        const cant = carritoMayorista[cod];
+        const precioMayor = Math.round((parseFloat(p.precio) || 0) * 0.85);
+        const sub = cant * precioMayor;
+
+        totalUnidades += cant;
+        totalMonto += sub;
+        resumenProductos.push(`${cant}x ${p.nombre}`);
+        detalleLineas += `${idx + 1}. *${p.nombre}* (${cod})%0A   Cantidad: *${cant} u.* x Bs. ${precioMayor} = *Bs. ${sub}*%0A`;
+      });
+
+      // Guardar registro para el Ranking del Administrador
+      const nuevoRegistroMayorista = {
+        id: 'ped_may_' + Date.now(),
+        nombre: usuarioMayoristaActual.nombre,
+        telefono: usuarioMayoristaActual.telefono,
+        negocio: usuarioMayoristaActual.negocio,
+        ciudad: usuarioMayoristaActual.ciudad,
+        totalUnidades: totalUnidades,
+        totalMonto: totalMonto,
+        modelosDiferentes: codigosElegidos.length,
+        detalle: resumenProductos.join(', '),
+        fecha: fechaActual,
+        timestamp: Date.now()
+      };
+
+      historialPedidosMayoristas.push(nuevoRegistroMayorista);
+      localStorage.setItem('playup_historial_mayoristas', JSON.stringify(historialPedidosMayoristas));
+
+      // Guardar también en Firebase si está disponible
+      if (db) {
+        try {
+          await addDoc(collection(db, 'pedidos_mayoristas_playup'), nuevoRegistroMayorista);
+        } catch (err) {}
+      }
+
+      // Mensaje directo a tu WhatsApp con el nombre del usuario registrado y fecha
+      const mensajeWhatsApp = `📦 *NUEVO PEDIDO POR MAYOR - PLAYUP STORE* 🚀%0A%0A👤 *Cliente Registrado:* ${usuarioMayoristaActual.nombre}%0A🏪 *Tienda/Negocio:* ${usuarioMayoristaActual.negocio}%0A📱 *Celular:* ${usuarioMayoristaActual.telefono}%0A📍 *Ciudad:* ${usuarioMayoristaActual.ciudad}%0A📅 *Fecha de Compra:* ${fechaActual}%0A%0A🧸 *Detalle del Pedido (${codigosElegidos.length} modelos / ${totalUnidades} juguetes):*%0A${detalleLineas}%0A💰 *TOTAL POR MAYOR (15% DTO): Bs. ${totalMonto}*%0A%0AQuedo atento para coordinar el pago y envío. ¡Gracias! ✨`;
+
+      carritoMayorista = {};
+      cerrarModalMayorista();
+      window.open(`https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeWhatsApp}`, '_blank');
+    };
+
+    /* RANKING MAYORISTAS EN MODO ADMINISTRADOR */
+    window.abrirModalRankingMayoristas = function() {
+      renderizarTablaRankingMayoristas();
+      document.getElementById('modalRankingMayoristas').classList.remove('hidden');
+      document.getElementById('modalRankingMayoristas').classList.add('flex');
+    };
+
+    window.cerrarModalRankingMayoristas = function() {
+      document.getElementById('modalRankingMayoristas').classList.add('hidden');
+      document.getElementById('modalRankingMayoristas').classList.remove('flex');
+    };
+
+    function renderizarTablaRankingMayoristas() {
+      const tbody = document.getElementById('tbodyRankingMayoristas');
+      const txtResumen = document.getElementById('txtResumenMayoristas');
+      tbody.innerHTML = '';
+
+      // Ordenar de mayor a menor según total de juguetes comprados
+      const ordenados = [...historialPedidosMayoristas].sort((a, b) => b.totalUnidades - a.totalUnidades);
+      txtResumen.innerText = `Total pedidos mayoristas registrados: ${ordenados.length}`;
+
+      if (ordenados.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-gray-500 font-bold">Aún no se han registrado compras por mayor.</td></tr>`;
+        return;
+      }
+
+      ordenados.forEach((ped, index) => {
+        let medalla = `<span class="font-black text-gray-600">#${index + 1}</span>`;
+        if (index === 0) medalla = `<span class="text-xl" title="1er Lugar">🥇</span>`;
+        else if (index === 1) medalla = `<span class="text-xl" title="2do Lugar">🥈</span>`;
+        else if (index === 2) medalla = `<span class="text-xl" title="3er Lugar">🥉</span>`;
+
+        const tr = document.createElement('tr');
+        tr.className = index === 0 ? "bg-amber-50/80 hover:bg-amber-100/70" : "hover:bg-sky-50";
+        tr.innerHTML = `
+          <td class="p-3 text-center">${medalla}</td>
+          <td class="p-3">
+            <div class="font-black text-purple-950">${ped.nombre}</div>
+            <div class="text-[11px] text-gray-500">${ped.negocio} · ${ped.ciudad} (Tel: ${ped.telefono})</div>
+            <div class="text-[10px] text-sky-700 mt-0.5">${ped.detalle}</div>
+          </td>
+          <td class="p-3 text-center">
+            <span class="bg-purple-100 text-purple-900 font-black px-3 py-1 rounded-full text-xs border border-purple-300">
+              ${ped.totalUnidades} juguetes
+            </span>
+          </td>
+          <td class="p-3 text-right font-black text-pink-600">Bs. ${ped.totalMonto}</td>
+          <td class="p-3 text-xs text-gray-700 font-bold">${ped.fecha}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    /* ========================================================================= */
+    /* CARRITO NORMAL DE COMPRAS                                                 */
+    /* ========================================================================= */
     function actualizarContadorCarrito() {
       const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
       const bTop = document.getElementById('badgeCarritoTop');
@@ -818,7 +1282,9 @@
       window.open(`https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeCompleto}`, '_blank');
     };
 
-    /* RENDERIZADO DE PRODUCTOS */
+    /* ========================================================================= */
+    /* RENDERIZADO DE PRODUCTOS Y FILTROS                                         */
+    /* ========================================================================= */
     window.renderProductos = function() {
       const contenedor = document.getElementById('contenedorProductos');
       if(!contenedor) return;
@@ -839,7 +1305,7 @@
 
       if (filtrados.length === 0) {
         contenedor.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-white/70 rounded-3xl border-2 border-white shadow">
+          <div class="col-span-full text-center py-12 bg-white/80 rounded-3xl border-2 border-white shadow">
             <p class="text-2xl font-black text-sky-900">No encontramos juguetes con esos filtros 🙈</p>
             <p class="text-sm font-bold text-gray-600 mt-1">Prueba seleccionando otra categoría o presupuesto.</p>
           </div>`;
@@ -848,7 +1314,7 @@
 
       filtrados.forEach((p) => {
         const card = document.createElement('div');
-        card.className = "bg-white/95 rounded-3xl overflow-hidden shadow-lg border-2 border-white flex flex-col hover:-translate-y-1 transition duration-300";
+        card.className = "bg-white/95 rounded-3xl overflow-hidden shadow-xl border-2 border-white flex flex-col hover:-translate-y-1 transition duration-300";
         
         const textoWa = `🤖 ¡Hola PlayUp Store! Me encantó este juguete:%0A%0A🎁 Producto: ${p.nombre}%0A🏷️ Código: ${p.codigo}%0A💰 Precio: Bs. ${p.precio}%0A%0A¿Lo tienen disponible para entrega? ✨🛍️`;
         const linkWa = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${textoWa}`;
@@ -901,7 +1367,7 @@
         const btn = document.getElementById(`btn-precio-${rg}`);
         if(btn) {
           if(rg === r) btn.className = "px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white scale-105";
-          else btn.className = "px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/50 text-sky-950 hover:bg-white/80 border-2 border-white";
+          else btn.className = "px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white";
         }
       });
       window.renderProductos();
@@ -982,7 +1448,7 @@
       }
     };
 
-    // FORMULARIO Y REGISTROS
+    // FORMULARIO Y REGISTROS GENERALES
     window.abrirModalRegistro = function() {
       document.getElementById('modalRegistro').classList.remove('hidden');
       document.getElementById('modalRegistro').classList.add('flex');
@@ -1103,7 +1569,7 @@
         document.getElementById('btnAdminLogin').classList.add('hidden');
         document.getElementById('thAccionAdmin').classList.remove('hidden');
         renderizarTablaRegistrados();
-        alert("Modo administrador activado.");
+        alert("Modo administrador activado. Ya puedes ver el Ranking de Mayoristas.");
       } else if(p !== null) {
         alert("Contraseña incorrecta.");
       }
@@ -1127,6 +1593,22 @@
       alert("URL de Google Sheets guardada.");
       window.cerrarModalAdminRegistro();
     };
+
+    // Sincronizar historial de mayoristas desde Firebase si existe
+    if (db) {
+      try {
+        signInAnonymously(auth).then(() => {
+          onSnapshot(collection(db, 'pedidos_mayoristas_playup'), (snapshot) => {
+            const listaNube = [];
+            snapshot.forEach(d => listaNube.push(d.data()));
+            if (listaNube.length > 0) {
+              historialPedidosMayoristas = listaNube;
+              localStorage.setItem('playup_historial_mayoristas', JSON.stringify(historialPedidosMayoristas));
+            }
+          });
+        }).catch(() => {});
+      } catch (e) {}
+    }
 
     // Carga inicial inmediata
     const savedUrl = localStorage.getItem('playup_script_url');
