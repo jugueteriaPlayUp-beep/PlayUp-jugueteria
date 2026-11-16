@@ -79,7 +79,7 @@
   <div class="bg-sky-950 text-sky-100 text-xs sm:text-sm font-bold py-2 overflow-hidden relative z-30 shadow-md">
     <div class="anim-marquesina flex items-center gap-10">
       <span>🚀 <strong>¡ENVÍOS INMEDIATOS EN SANTA CRUZ Y A TODA BOLIVIA!</strong> 🚚</span>
-      <span>📦 <strong>VENTAS POR MAYOR CON 15% DESCUENTO:</strong> Regístrate o ingresa con tu correo (mínimo 6 juguetes) 🧸</span>
+      <span>📦 <strong>VENTAS POR MAYOR:</strong> Regístrate o ingresa con tu correo (desde 6 juguetes) 🧸</span>
       <span>🛒 <strong>SUMATORIA AUTOMÁTICA EN VIVO:</strong> Agrega varios juguetes y envía un solo pedido 💬</span>
       <span>⭐ Puesto 244, Mercado Nuevo Los Pozos · Santa Cruz 🤖</span>
       <span>💖 ¡Calidad garantizada para consentir a los más peques! ✨</span>
@@ -127,12 +127,12 @@
             <i class="fas fa-map-marker-alt text-base"></i> Ubicación
           </a>
           
-          <!-- BOTÓN 1 MAYORISTA: REGISTRO NUEVO -->
+          <!-- BOTÓN PRECIO POR MAYOR (REGISTRO NUEVO) -->
           <button onclick="abrirModalRegistroMayorista()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-boxes text-base text-purple-900"></i> Precio por Mayor 📦
           </button>
 
-          <!-- BOTÓN 2 MAYORISTA: INGRESAR CON CORREO -->
+          <!-- BOTÓN COMPRADOR MAYORISTA (ACCESO CON CORREO) -->
           <button onclick="abrirModalLoginMayorista()" class="bg-gradient-to-r from-amber-600 to-orange-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-key text-sm text-yellow-300"></i> Comprador Mayorista 🔑
           </button>
@@ -158,22 +158,28 @@
     </div>
   </section>
 
-  <!-- PANEL ADMIN -->
+  <!-- PANEL ADMIN COMPLETO -->
   <section id="adminPanel" class="max-w-7xl mx-auto px-4 pb-4 hidden transition-all duration-300 relative z-20">
     <div class="bg-white/95 backdrop-blur-lg text-purple-900 rounded-[30px] p-5 shadow-2xl border-4 border-yellow-400 flex flex-wrap justify-between items-center gap-3">
       <div>
         <h2 class="text-2xl font-black flex items-center gap-2">
           <i class="fas fa-crown text-yellow-500"></i> Panel de Administración
         </h2>
-        <p class="text-xs sm:text-sm font-bold text-purple-700">Control de catálogo, registros y ranking de compras por mayor.</p>
+        <p class="text-xs sm:text-sm font-bold text-purple-700">Añade juguetes nuevos, fija precios normal y por mayor, y revisa el ranking.</p>
       </div>
       <div class="flex gap-2 flex-wrap">
+        <button onclick="abrirModalAdmin()" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
+          <i class="fas fa-plus-circle"></i> + Añadir Juguete
+        </button>
         <button onclick="abrirModalRankingMayoristas()" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:scale-105 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2 border border-amber-600">
           <i class="fas fa-trophy text-purple-900"></i> 🏆 Ranking Mayoristas
         </button>
         <input type="file" id="inputPortada" class="hidden" accept="image/*" onchange="subirNuevaPortada(event)">
         <button onclick="document.getElementById('inputPortada').click()" id="btnPortada" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
           <i class="fas fa-image"></i> Cambiar Portada
+        </button>
+        <button onclick="abrirModalFotosCategorias()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+          <i class="fas fa-layer-group"></i> 🖼️ Fotos Categorías
         </button>
         <button onclick="abrirModalAdminRegistro()" class="bg-amber-500 hover:bg-amber-600 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
           <i class="fas fa-cog"></i> ⚙️ Configurar Formulario
@@ -294,26 +300,26 @@
   <!-- ========================================================================= -->
   <!-- PÍLDORA COMPACTA MAYORISTA (ESQUINA INFERIOR IZQUIERDA, SOLO SI ESTÁ ACTIVO)-->
   <!-- ========================================================================= -->
-  <div id="pildoraMayoristaCompacta" class="fixed bottom-5 left-4 z-40 hidden max-w-[300px] sm:max-w-xs">
+  <div id="pildoraMayoristaCompacta" class="fixed bottom-5 left-4 z-40 hidden max-w-[310px] sm:max-w-xs">
     <div class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 px-3.5 py-2.5 rounded-2xl shadow-2xl border-2 border-white flex flex-col gap-1.5">
       <div class="flex items-center justify-between gap-2">
         <span class="text-[11px] font-black uppercase bg-white/90 text-orange-700 px-2 py-0.5 rounded-lg truncate">
           📦 <span id="pildoraMayNombre">Mayorista</span>
         </span>
-        <button onclick="salirModoMayorista()" class="text-white/90 hover:text-white text-xs font-black bg-black/25 px-2 py-0.5 rounded-lg" title="Volver a compra normal">
+        <button onclick="salirModoMayorista()" class="text-white/90 hover:text-white text-xs font-black bg-black/25 px-2 py-0.5 rounded-lg" title="Salir del modo mayorista">
           Salir ✕
         </button>
       </div>
       <div class="flex items-center justify-between gap-2 text-white">
         <div class="text-xs font-bold leading-tight">
           <span class="block">Llevas: <b id="pildoraMayCant" class="text-yellow-200">0</b>/6 jug.</span>
-          <span class="text-sm font-black">Total: <b id="pildoraMayTotalBs" class="text-yellow-200">Bs. 0</b></span>
+          <span class="text-sm font-black">Suma: <b id="pildoraMayTotalBs" class="text-yellow-200">Bs. 0</b></span>
         </div>
-        <div class="flex gap-1">
-          <button onclick="abrirCatalogoMayorista()" class="bg-white text-purple-950 px-2.5 py-1.5 rounded-xl text-[11px] font-black shadow hover:scale-105 transition">
-            Elegir
+        <div class="flex gap-1.5">
+          <button onclick="abrirCatalogoMayorista()" class="bg-white text-purple-950 px-3 py-1.5 rounded-xl text-xs font-black shadow hover:scale-105 transition flex items-center gap-1">
+            <i class="fas fa-eye text-orange-600"></i> Ver
           </button>
-          <button id="btnPildoraAceptarMay" onclick="enviarPedidoMayoristaWhatsApp()" disabled class="px-2.5 py-1.5 rounded-xl text-[11px] font-black shadow bg-black/25 text-white/75 cursor-not-allowed">
+          <button id="btnPildoraAceptarMay" onclick="enviarPedidoMayoristaWhatsApp()" disabled class="px-2.5 py-1.5 rounded-xl text-xs font-black shadow bg-black/25 text-white/75 cursor-not-allowed">
             <i class="fas fa-lock"></i> 6+
           </button>
         </div>
@@ -345,7 +351,7 @@
 
   <!-- BOTONES FLOTANTES INFERIORES DERECHA -->
   <div class="fixed bottom-5 right-4 z-40 flex flex-col gap-2.5 items-center">
-    <button onclick="abrirCatalogoMayorista()" id="btnFlotanteMayorista" class="hidden bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Catálogo Mayorista">
+    <button onclick="abrirCatalogoMayorista()" id="btnFlotanteMayorista" class="hidden bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver Pedido Mayorista">
       <i class="fas fa-boxes"></i>
       <span id="badgeMayoristaFloat" class="absolute -top-1.5 -right-1.5 bg-purple-950 text-yellow-300 text-xs font-black w-5 h-5 rounded-full flex items-center justify-center border border-white shadow">0</span>
     </button>
@@ -420,7 +426,7 @@
         </div>
 
         <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 text-base sm:text-lg font-black py-3 rounded-2xl hover:scale-102 transition shadow-lg mt-2 border-2 border-white">
-          Guardar Datos y Abrir Catálogo Mayorista ➡️
+          Guardar Datos y Activar Modo Mayorista ➡️
         </button>
 
         <p class="text-center text-xs text-gray-600 pt-1">
@@ -468,7 +474,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL 2: CATÁLOGO POR MAYOR (REGLA: DESDE 6 JUGUETES + ACEPTAR)           -->
+  <!-- MODAL 2: VER Y GESTIONAR PEDIDO MAYORISTA (CON PRECIOS DE ADMIN)          -->
   <!-- ========================================================================= -->
   <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') cerrarModalMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
     <div class="bg-white rounded-[35px] p-5 sm:p-7 w-full max-w-4xl shadow-2xl border-4 border-orange-500 relative max-h-[92vh] flex flex-col">
@@ -477,17 +483,37 @@
       <div class="flex justify-between items-start mb-3 pb-2 border-b border-orange-100">
         <div>
           <div class="flex flex-wrap items-center gap-2">
-            <span class="bg-orange-500 text-white text-xs font-black px-3 py-0.5 rounded-full">15% DTO. MAYORISTA</span>
+            <span class="bg-orange-500 text-white text-xs font-black px-3 py-0.5 rounded-full">LISTA MAYORISTA</span>
             <span id="badgeUsuarioMayorista" class="bg-sky-100 text-sky-900 text-xs font-bold px-3 py-0.5 rounded-full">👤 Cliente: -</span>
             <button onclick="cerrarModalMayorista(); abrirModalLoginMayorista();" class="text-xs text-orange-600 underline font-bold">Cambiar cuenta</button>
           </div>
           <h3 class="text-xl sm:text-2xl font-black text-purple-950 mt-1">
-            📦 Selección por Mayor (Mínimo 6 juguetes)
+            📦 Tu Selección por Mayor (Mínimo 6 juguetes)
           </h3>
         </div>
         <button type="button" onclick="cerrarModalMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
+      </div>
+
+      <!-- Pestañas y Botón Seleccionar Todo -->
+      <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+        <div class="flex gap-2">
+          <button type="button" id="tabMaySeleccionados" onclick="cambiarVistaMayorista('seleccionados')" class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black bg-orange-500 text-white shadow">
+            🛒 Mis Seleccionados (<span id="countTabSeleccionados">0</span>)
+          </button>
+          <button type="button" id="tabMayTodos" onclick="cambiarVistaMayorista('todos')" class="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-sky-100 text-sky-950 hover:bg-sky-200">
+            🧸 Ver Todos los Juguetes
+          </button>
+        </div>
+        <div class="flex gap-1.5">
+          <button type="button" onclick="seleccionarTodosMayorista()" class="px-3 py-1.5 rounded-xl text-xs font-black bg-emerald-100 text-emerald-800 hover:bg-emerald-200 border border-emerald-300">
+            ✓ Seleccionar Todo
+          </button>
+          <button type="button" onclick="vaciarMayorista()" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-700">
+            Limpiar
+          </button>
+        </div>
       </div>
 
       <!-- INDICADOR EN VIVO DE REGLA MAYORISTA (6 JUGUETES) Y SUMATORIA -->
@@ -501,7 +527,7 @@
         </div>
       </div>
 
-      <!-- Lista de juguetes para elegir por mayor -->
+      <!-- Lista de juguetes -->
       <div id="gridProductosMayorista" class="overflow-y-auto flex-grow grid sm:grid-cols-2 gap-3 pr-1">
         <!-- Se llena dinámicamente -->
       </div>
@@ -562,6 +588,111 @@
       <div class="pt-4 flex justify-between items-center text-xs font-bold text-gray-500">
         <span id="txtResumenMayoristas">Total pedidos mayoristas: 0</span>
         <button onclick="cerrarModalRankingMayoristas()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-800 font-bold">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL ADMIN: AÑADIR / EDITAR JUGUETE (CON PRECIO NORMAL Y PRECIO MAYOR)   -->
+  <!-- ========================================================================= -->
+  <div id="modalAdminForm" onclick="if(event.target.id==='modalAdminForm') cerrarModalAdmin()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-4 border-purple-500 relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="modalAdminTitulo" class="text-2xl sm:text-3xl font-black text-purple-700">✨ Añadir Juguete</h3>
+        <button type="button" onclick="cerrarModalAdmin()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      
+      <form id="formProducto" onsubmit="guardarProducto(event)" class="space-y-3.5">
+        <input type="hidden" id="productoId">
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Código del Juguete:</label>
+            <input type="text" id="productoCodigo" placeholder="Ej: PLU-019" class="w-full bg-yellow-50 border-2 border-yellow-300 rounded-xl px-3.5 py-2 font-bold text-sm outline-none uppercase text-purple-950">
+          </div>
+          <div>
+            <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Categoría:</label>
+            <select id="productoCategoria" required class="w-full bg-purple-50 border-2 border-purple-200 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+              <option value="ninos">🚀 Niños</option>
+              <option value="ninas">🦄 Niñas</option>
+              <option value="bebes">🍼 Bebés</option>
+              <option value="didacticos">🧩 Didácticos</option>
+              <option value="peluches">🧸 Peluches</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Nombre del Juguete *</label>
+          <input type="text" id="productoNombre" required placeholder="Ej: Camión Bombero con Luces" class="w-full bg-purple-50 border-2 border-purple-200 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 bg-amber-50/70 p-3 rounded-2xl border-2 border-amber-200">
+          <div>
+            <label class="block text-gray-800 font-bold mb-1 text-xs">Precio Normal (Bs.) *</label>
+            <input type="number" id="productoPrecio" required min="1" step="any" placeholder="Ej: 150" class="w-full bg-white border-2 border-purple-200 rounded-xl px-3 py-2 font-black text-base outline-none text-pink-600">
+          </div>
+          <div>
+            <label class="block text-orange-800 font-black mb-1 text-xs">Precio por Mayor (Bs.) *</label>
+            <input type="number" id="productoPrecioMayor" required min="1" step="any" placeholder="Ej: 120" class="w-full bg-white border-2 border-orange-300 rounded-xl px-3 py-2 font-black text-base outline-none text-orange-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Descripción *</label>
+          <textarea id="productoDescripcion" required rows="2" placeholder="Características del juguete..." class="w-full bg-purple-50 border-2 border-purple-200 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none resize-none"></textarea>
+        </div>
+
+        <div class="p-3 bg-blue-50 rounded-2xl border-2 border-blue-200">
+          <label class="block text-blue-700 font-bold mb-1 text-xs">📸 Subir Foto del Juguete (o dejar la actual)</label>
+          <input type="file" id="productoImagen1" accept="image/*" class="w-full text-xs text-blue-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:bg-blue-200 file:text-blue-800">
+        </div>
+
+        <button type="submit" id="btnGuardarProd" class="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white text-lg font-black py-3 rounded-2xl hover:opacity-95 transition shadow-lg border-2 border-white">
+          Guardar Juguete 💾
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL ADMIN: CAMBIAR FOTOS DE CATEGORÍAS                                  -->
+  <!-- ========================================================================= -->
+  <div id="modalFotosCategorias" onclick="if(event.target.id==='modalFotosCategorias') cerrarModalFotosCategorias()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-xl shadow-2xl border-4 border-teal-500 relative max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-2xl font-black text-teal-900">🖼️ Cambiar Fotos de Categorías</h3>
+        <button type="button" onclick="cerrarModalFotosCategorias()" class="text-gray-400 hover:text-red-500 text-3xl">
+          <i class="fas fa-times-circle"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-sm">
+        <div class="p-3 bg-gray-50 rounded-2xl border flex items-center justify-between gap-4">
+          <span class="font-bold text-gray-800">✨ Todos</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('todos', event)" class="text-xs text-teal-700">
+        </div>
+        <div class="p-3 bg-blue-50 rounded-2xl border border-blue-200 flex items-center justify-between gap-4">
+          <span class="font-bold text-blue-900">🚀 Niños</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('ninos', event)" class="text-xs text-blue-700">
+        </div>
+        <div class="p-3 bg-pink-50 rounded-2xl border border-pink-200 flex items-center justify-between gap-4">
+          <span class="font-bold text-pink-900">🦄 Niñas</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('ninas', event)" class="text-xs text-pink-700">
+        </div>
+        <div class="p-3 bg-teal-50 rounded-2xl border border-teal-200 flex items-center justify-between gap-4">
+          <span class="font-bold text-teal-900">🍼 Bebés</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('bebes', event)" class="text-xs text-teal-700">
+        </div>
+        <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 flex items-center justify-between gap-4">
+          <span class="font-bold text-amber-900">🧩 Didácticos</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('didacticos', event)" class="text-xs text-amber-700">
+        </div>
+        <div class="p-3 bg-purple-50 rounded-2xl border border-purple-200 flex items-center justify-between gap-4">
+          <span class="font-bold text-purple-900">🧸 Peluches</span>
+          <input type="file" accept="image/*" onchange="subirFotoCategoria('peluches', event)" class="text-xs text-purple-700">
+        </div>
       </div>
     </div>
   </div>
@@ -630,7 +761,7 @@
           <h4 class="font-black text-orange-950 text-sm sm:text-base mb-1">📦 ¿Cómo comprar a Precio por Mayor?</h4>
           <p>1. Si es tu primera vez, pulsa <strong>"Precio por Mayor 📦"</strong> y guarda tus datos con tu correo electrónico.<br>
           2. En tus futuras compras, pulsa <strong>"Comprador Mayorista 🔑"</strong> e ingresa directamente con tu correo.<br>
-          3. Escoge <strong>mínimo 6 juguetes</strong> con 15% de descuento y pulsa <strong>"Aceptar"</strong> para enviarnos tu pedido.</p>
+          3. Agrega los juguetes desde el catálogo o desde el botón <strong>"Ver"</strong> de la píldora naranja. Al llegar a <strong>6 juguetes o más</strong>, pulsa <strong>"Aceptar"</strong> para enviarnos tu pedido.</p>
         </div>
         <div class="bg-teal-50 p-3.5 rounded-2xl border border-teal-200">
           <h4 class="font-black text-teal-950 text-sm sm:text-base mb-1">🛒 ¿Cómo usar el carrito normal?</h4>
@@ -865,13 +996,16 @@
       <p id="detalleDescripcion" class="text-gray-800 text-sm sm:text-base text-center mb-5 px-3 leading-relaxed font-semibold bg-white/50 p-3 rounded-2xl border border-white/60"></p>
 
       <div class="flex flex-col sm:flex-row justify-between items-center gap-3 border-t-2 border-white/80 pt-4">
-        <div id="detallePrecio" class="text-3xl font-black text-pink-600"></div>
+        <div>
+          <div id="detallePrecio" class="text-3xl font-black text-pink-600"></div>
+          <div id="detallePrecioMayorTag" class="text-xs font-black text-orange-700 bg-orange-100 px-2.5 py-0.5 rounded-lg inline-block mt-0.5"></div>
+        </div>
         <div class="flex flex-wrap gap-2 w-full sm:w-auto justify-end">
           <button type="button" onclick="cerrarModalVista()" class="px-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-xs sm:text-sm transition">
             Volver
           </button>
           <button type="button" id="detalleBtnAgregarCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-105 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 border-2 border-white transition">
-            <i class="fas fa-cart-plus"></i> Agregar al carrito
+            <i class="fas fa-cart-plus"></i> Agregar
           </button>
           <a id="detalleBtnWhatsApp" href="#" target="_blank" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 border-2 border-white transition">
             <i class="fab fa-whatsapp text-base"></i> Directo
@@ -881,11 +1015,11 @@
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON CUENTAS MAYORISTAS POR CORREO, PÍLDORA COMPACTA Y RANKING -->
+  <!-- SCRIPT COMPLETO CON SINCRONIZACIÓN FIREBASE EN TIEMPO REAL PARA PRODUCTOS Y MAYORISTAS -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, updateDoc, deleteDoc, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAcNULVUiPKmTtWulmqrQjzYEKyaS-s5iY",
@@ -907,6 +1041,7 @@
     let isAdmin = false;
     let categoriaActual = 'todos';
     let presupuestoActual = 'todos';
+    let vistaMayoristaActual = 'seleccionados';
     let urlWhatsAppPendiente = "";
     let temporizadorRedir = null;
 
@@ -915,27 +1050,27 @@
     };
 
     const catalogoDefecto = [
-      { id: '1', codigo: 'PLU-001', nombre: 'Auto Deportivo RC Recargable', categoria: 'ninos', precio: '145', descripcion: 'Auto a control remoto de alta velocidad con batería recargable USB y faros LED.', foto: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600&auto=format&fit=crop&q=80' },
-      { id: '2', codigo: 'PLU-002', nombre: 'Set Bloques Castillo Rosa Mágico', categoria: 'ninas', precio: '180', descripcion: 'Hermoso castillo armable con torres de ensueño, carruaje y figuritas de princesas.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
-      { id: '3', codigo: 'PLU-003', nombre: 'Oso Gigante Teddy Ultra Suave', categoria: 'peluches', precio: '130', descripcion: 'Peluche gigante de felpa hipoalergénica con lazo satinado, ultra esponjoso.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
-      { id: '4', codigo: 'PLU-004', nombre: 'Sonajero Sensorial Silicona Libre BPA', categoria: 'bebes', precio: '45', descripcion: 'Fácil agarre para manitas pequeñas con texturas que alivian el brote de dientes.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
-      { id: '5', codigo: 'PLU-005', nombre: 'Torre Didáctica Arcoíris Montessori', categoria: 'didacticos', precio: '75', descripcion: 'Juguete de encaje en madera natural y pinturas no tóxicas para motricidad fina.', foto: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80' },
-      { id: '6', codigo: 'PLU-006', nombre: 'Robot Mecha Articulado con Luces', categoria: 'ninos', precio: '95', descripcion: 'Robot caminante interactivo con sonidos de combate y giro de 360 grados.', foto: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&auto=format&fit=crop&q=80' },
-      { id: '7', codigo: 'PLU-007', nombre: 'Muñeca Princesa Bailarina Brillante', categoria: 'ninas', precio: '120', descripcion: 'Muñeca con vestido tutú de purpurina, tiara luminosa y canciones de cuento.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
-      { id: '8', codigo: 'PLU-008', nombre: 'Gatito de Peluche Cariñoso', categoria: 'peluches', precio: '65', descripcion: 'Peluche de textura aterciopelada y ojos bordados muy seguro para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' },
-      { id: '9', codigo: 'PLU-009', nombre: 'Gimnasio Alfombra Sensorial con Piano', categoria: 'bebes', precio: '190', descripcion: 'Alfombra acolchada con pianito musical para pataditas y colgantes divertidos.', foto: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&auto=format&fit=crop&q=80' },
-      { id: '10', codigo: 'PLU-010', nombre: 'Cubo de Madera 5 en 1 Multiactividad', categoria: 'didacticos', precio: '150', descripcion: 'Laberinto de cuentas, ábaco, reloj y figuras de encaje en madera sólida.', foto: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80' },
-      { id: '11', codigo: 'PLU-011', nombre: 'Pista de Autos Doble Loop Extremo', categoria: 'ninos', precio: '165', descripcion: 'Lanzador rápido con 2 vueltas completas y 2 vehículos de metal incluidos.', foto: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=600&auto=format&fit=crop&q=80' },
-      { id: '12', codigo: 'PLU-012', nombre: 'Set de Té y Pastelería Dulce', categoria: 'ninas', precio: '85', descripcion: 'Juego de té en tonos pastel con tetera, tacitas y pastelitos decorativos.', foto: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80' },
-      { id: '13', codigo: 'PLU-013', nombre: 'Unicornio Arcoíris 40cm', categoria: 'peluches', precio: '90', descripcion: 'Lindo unicornio con cuerno dorado y crin multicolor en felpa premium.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
-      { id: '14', codigo: 'PLU-014', nombre: 'Móvil Musical Giratorio de Cuna', categoria: 'bebes', precio: '175', descripcion: 'Proyector con estrellitas en el techo y melodías suaves para calmar el sueño.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
-      { id: '15', codigo: 'PLU-015', nombre: 'Rompecabezas de Animalitos en Madera', categoria: 'didacticos', precio: '40', descripcion: 'Piezas grandes y seguras para reconocer animales, números y colores.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
-      { id: '16', codigo: 'PLU-016', nombre: 'Dinosaurio T-Rex Sonidos y Movimiento', categoria: 'ninos', precio: '110', descripcion: 'Dinosaurio caminante a batería con rugidos y luces en ojos y fauces.', foto: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80' },
-      { id: '17', codigo: 'PLU-017', nombre: 'Tocador Mágico Infantil con Accesorios', categoria: 'ninas', precio: '210', descripcion: 'Espejo con luces, secadora de juguete y accesorios para jugar a peinarse.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
-      { id: '18', codigo: 'PLU-018', nombre: 'Conejita de Felpa Vestido Bordado', categoria: 'peluches', precio: '55', descripcion: 'Peluche con vestido primaveral de algodón, suave e ideal para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' }
+      { id: '1', codigo: 'PLU-001', nombre: 'Auto Deportivo RC Recargable', categoria: 'ninos', precio: '145', precioMayor: '120', descripcion: 'Auto a control remoto de alta velocidad con batería recargable USB y faros LED.', foto: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=600&auto=format&fit=crop&q=80' },
+      { id: '2', codigo: 'PLU-002', nombre: 'Set Bloques Castillo Rosa Mágico', categoria: 'ninas', precio: '180', precioMayor: '150', descripcion: 'Hermoso castillo armable con torres de ensueño, carruaje y figuritas de princesas.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
+      { id: '3', codigo: 'PLU-003', nombre: 'Oso Gigante Teddy Ultra Suave', categoria: 'peluches', precio: '130', precioMayor: '105', descripcion: 'Peluche gigante de felpa hipoalergénica con lazo satinado, ultra esponjoso.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
+      { id: '4', codigo: 'PLU-004', nombre: 'Sonajero Sensorial Silicona Libre BPA', categoria: 'bebes', precio: '45', precioMayor: '35', descripcion: 'Fácil agarre para manitas pequeñas con texturas que alivian el brote de dientes.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
+      { id: '5', codigo: 'PLU-005', nombre: 'Torre Didáctica Arcoíris Montessori', categoria: 'didacticos', precio: '75', precioMayor: '60', descripcion: 'Juguete de encaje en madera natural y pinturas no tóxicas para motricidad fina.', foto: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600&auto=format&fit=crop&q=80' },
+      { id: '6', codigo: 'PLU-006', nombre: 'Robot Mecha Articulado con Luces', categoria: 'ninos', precio: '95', precioMayor: '78', descripcion: 'Robot caminante interactivo con sonidos de combate y giro de 360 grados.', foto: 'https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&auto=format&fit=crop&q=80' },
+      { id: '7', codigo: 'PLU-007', nombre: 'Muñeca Princesa Bailarina Brillante', categoria: 'ninas', precio: '120', precioMayor: '98', descripcion: 'Muñeca con vestido tutú de purpurina, tiara luminosa y canciones de cuento.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
+      { id: '8', codigo: 'PLU-008', nombre: 'Gatito de Peluche Cariñoso', categoria: 'peluches', precio: '65', precioMayor: '52', descripcion: 'Peluche de textura aterciopelada y ojos bordados muy seguro para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' },
+      { id: '9', codigo: 'PLU-009', nombre: 'Gimnasio Alfombra Sensorial con Piano', categoria: 'bebes', precio: '190', precioMayor: '160', descripcion: 'Alfombra acolchada con pianito musical para pataditas y colgantes divertidos.', foto: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=600&auto=format&fit=crop&q=80' },
+      { id: '10', codigo: 'PLU-010', nombre: 'Cubo de Madera 5 en 1 Multiactividad', categoria: 'didacticos', precio: '150', precioMayor: '125', descripcion: 'Laberinto de cuentas, ábaco, reloj y figuras de encaje en madera sólida.', foto: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=600&auto=format&fit=crop&q=80' },
+      { id: '11', codigo: 'PLU-011', nombre: 'Pista de Autos Doble Loop Extremo', categoria: 'ninos', precio: '165', precioMayor: '138', descripcion: 'Lanzador rápido con 2 vueltas completas y 2 vehículos de metal incluidos.', foto: 'https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=600&auto=format&fit=crop&q=80' },
+      { id: '12', codigo: 'PLU-012', nombre: 'Set de Té y Pastelería Dulce', categoria: 'ninas', precio: '85', precioMayor: '68', descripcion: 'Juego de té en tonos pastel con tetera, tacitas y pastelitos decorativos.', foto: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=80' },
+      { id: '13', codigo: 'PLU-013', nombre: 'Unicornio Arcoíris 40cm', categoria: 'peluches', precio: '90', precioMayor: '72', descripcion: 'Lindo unicornio con cuerno dorado y crin multicolor en felpa premium.', foto: 'https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=600&auto=format&fit=crop&q=80' },
+      { id: '14', codigo: 'PLU-014', nombre: 'Móvil Musical Giratorio de Cuna', categoria: 'bebes', precio: '175', precioMayor: '145', descripcion: 'Proyector con estrellitas en el techo y melodías suaves para calmar el sueño.', foto: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&auto=format&fit=crop&q=80' },
+      { id: '15', codigo: 'PLU-015', nombre: 'Rompecabezas de Animalitos en Madera', categoria: 'didacticos', precio: '40', precioMayor: '32', descripcion: 'Piezas grandes y seguras para reconocer animales, números y colores.', foto: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&auto=format&fit=crop&q=80' },
+      { id: '16', codigo: 'PLU-016', nombre: 'Dinosaurio T-Rex Sonidos y Movimiento', categoria: 'ninos', precio: '110', precioMayor: '90', descripcion: 'Dinosaurio caminante a batería con rugidos y luces en ojos y fauces.', foto: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=600&auto=format&fit=crop&q=80' },
+      { id: '17', codigo: 'PLU-017', nombre: 'Tocador Mágico Infantil con Accesorios', categoria: 'ninas', precio: '210', precioMayor: '175', descripcion: 'Espejo con luces, secadora de juguete y accesorios para jugar a peinarse.', foto: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80' },
+      { id: '18', codigo: 'PLU-018', nombre: 'Conejita de Felpa Vestido Bordado', categoria: 'peluches', precio: '55', precioMayor: '44', descripcion: 'Peluche con vestido primaveral de algodón, suave e ideal para abrazar.', foto: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&auto=format&fit=crop&q=80' }
     ];
 
-    let productos = [...catalogoDefecto];
+    let productos = JSON.parse(localStorage.getItem('playup_productos_v2') || 'null') || [...catalogoDefecto];
     let carrito = JSON.parse(localStorage.getItem('playup_carrito') || '[]');
     let registradosList = [
       { id: 'r1', Nombre: 'Mariana Pérez', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Juguetes didácticos' },
@@ -943,8 +1078,15 @@
       { id: 'r3', Nombre: 'Valeria Justiniano', Ciudad: 'Santa Cruz de la Sierra', Interes: 'Muñecas y figuras' }
     ];
 
+    function obtenerPrecioMayoristaProducto(p) {
+      if (p.precioMayor && !isNaN(parseFloat(p.precioMayor))) {
+        return parseFloat(p.precioMayor);
+      }
+      return parseFloat(p.precio) || 0;
+    }
+
     /* ========================================================================= */
-    /* SISTEMA MAYORISTA: REGISTRO CON CORREO, LOGIN POR CORREO Y MODO EXCLUSIVO */
+    /* SISTEMA MAYORISTA: REGISTRO, LOGIN POR CORREO, PÍLDORA CON "VER" Y MODAL  */
     /* ========================================================================= */
     let baseCuentasMayoristas = JSON.parse(localStorage.getItem('playup_cuentas_mayoristas') || '[]');
     let usuarioMayoristaActual = JSON.parse(localStorage.getItem('playup_mayorista_actual') || 'null');
@@ -988,7 +1130,6 @@
         fechaRegistro: new Date().toLocaleString('es-BO')
       };
 
-      // Guardar o actualizar cuenta en el directorio de mayoristas por correo
       const idxExistente = baseCuentasMayoristas.findIndex(c => c.correo === correo);
       if (idxExistente !== -1) {
         baseCuentasMayoristas[idxExistente] = nuevaCuenta;
@@ -1031,7 +1172,8 @@
 
       cerrarModalRegistroMayorista();
       actualizarInterfacesModo();
-      abrirCatalogoMayorista();
+      window.renderProductos();
+      mostrarToast(`📦 ¡Modo Mayorista activado para ${nombre}! Agrega juguetes al pedido.`);
     };
 
     window.iniciarSesionMayoristaPorCorreo = function(e) {
@@ -1052,14 +1194,48 @@
       cerrarModalLoginMayorista();
       mostrarToast(`¡Bienvenido de nuevo, ${cuentaEncontrada.nombre}! 📦`);
       actualizarInterfacesModo();
-      abrirCatalogoMayorista();
+      window.renderProductos();
     };
 
     window.salirModoMayorista = function() {
       usuarioMayoristaActual = null;
       localStorage.removeItem('playup_mayorista_actual');
       actualizarInterfacesModo();
+      window.renderProductos();
       mostrarToast("Volviste al modo de compra normal 🛒");
+    };
+
+    window.cambiarVistaMayorista = function(vista) {
+      vistaMayoristaActual = vista;
+      const tabSel = document.getElementById('tabMaySeleccionados');
+      const tabTod = document.getElementById('tabMayTodos');
+      if (vista === 'seleccionados') {
+        tabSel.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black bg-orange-500 text-white shadow";
+        tabTod.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-sky-100 text-sky-950 hover:bg-sky-200";
+      } else {
+        tabTod.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black bg-orange-500 text-white shadow";
+        tabSel.className = "px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-sky-100 text-sky-950 hover:bg-sky-200";
+      }
+      renderizarProductosMayorista();
+    };
+
+    window.seleccionarTodosMayorista = function() {
+      productos.forEach(p => {
+        if (!carritoMayorista[p.codigo]) {
+          carritoMayorista[p.codigo] = 1;
+        }
+      });
+      localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
+      renderizarProductosMayorista();
+      validarReglasMayorista();
+      mostrarToast("✓ Se seleccionaron todos los modelos disponibles");
+    };
+
+    window.vaciarMayorista = function() {
+      carritoMayorista = {};
+      localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
+      renderizarProductosMayorista();
+      validarReglasMayorista();
     };
 
     window.abrirCatalogoMayorista = function() {
@@ -1068,7 +1244,8 @@
         return;
       }
       document.getElementById('badgeUsuarioMayorista').innerText = `👤 ${usuarioMayoristaActual.nombre} (${usuarioMayoristaActual.correo})`;
-      renderizarProductosMayorista();
+      const tieneItems = Object.keys(carritoMayorista).length > 0;
+      cambiarVistaMayorista(tieneItems ? 'seleccionados' : 'todos');
       validarReglasMayorista();
       document.getElementById('modalMayorista').classList.remove('hidden');
       document.getElementById('modalMayorista').classList.add('flex');
@@ -1083,10 +1260,30 @@
       const grid = document.getElementById('gridProductosMayorista');
       grid.innerHTML = '';
 
-      productos.forEach(p => {
+      const codigosElegidos = Object.keys(carritoMayorista);
+      document.getElementById('countTabSeleccionados').innerText = codigosElegidos.length;
+
+      let listaMostrar = productos;
+      if (vistaMayoristaActual === 'seleccionados') {
+        listaMostrar = productos.filter(p => (carritoMayorista[p.codigo] || 0) > 0);
+        if (listaMostrar.length === 0) {
+          grid.innerHTML = `
+            <div class="col-span-full text-center py-8 bg-orange-50/70 rounded-2xl border-2 border-dashed border-orange-300">
+              <p class="text-3xl mb-1">📦</p>
+              <p class="text-base font-black text-purple-950">Aún no has seleccionado juguetes por mayor</p>
+              <p class="text-xs text-gray-600 mt-1 mb-3">Pulsa el botón de abajo o selecciona "+ Agregar Mayor" en cualquier juguete de la tienda.</p>
+              <button type="button" onclick="cambiarVistaMayorista('todos')" class="px-4 py-2 bg-orange-500 text-white font-black text-xs rounded-xl shadow">
+                Ver todos los juguetes para elegir
+              </button>
+            </div>`;
+          return;
+        }
+      }
+
+      listaMostrar.forEach(p => {
         const cant = carritoMayorista[p.codigo] || 0;
         const precioNormal = parseFloat(p.precio) || 0;
-        const precioMayor = Math.round(precioNormal * 0.85);
+        const precioMayor = obtenerPrecioMayoristaProducto(p);
         const subtotalItem = cant * precioMayor;
 
         const card = document.createElement('div');
@@ -1132,7 +1329,10 @@
       validarReglasMayorista();
       if (delta > 0) {
         const p = productos.find(x => x.codigo === codigo);
-        if (p) mostrarToast(`📦 +1 "${p.nombre}" al pedido mayorista`);
+        if (p) {
+          const pMay = obtenerPrecioMayoristaProducto(p);
+          mostrarToast(`📦 +1 "${p.nombre}" (Bs. ${pMay} mayor)`);
+        }
       }
     };
 
@@ -1147,7 +1347,7 @@
         const p = productos.find(x => x.codigo === cod);
         if (!p) return;
         const cant = carritoMayorista[cod];
-        const precioMayor = Math.round((parseFloat(p.precio) || 0) * 0.85);
+        const precioMayor = obtenerPrecioMayoristaProducto(p);
         totalUnidades += cant;
         totalBs += cant * precioMayor;
       });
@@ -1181,7 +1381,7 @@
 
         if (btnPildora) {
           btnPildora.disabled = false;
-          btnPildora.className = "px-2.5 py-1.5 rounded-xl text-[11px] font-black shadow bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer";
+          btnPildora.className = "px-2.5 py-1.5 rounded-xl text-xs font-black shadow bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer";
           btnPildora.innerHTML = `<i class="fas fa-check"></i> Aceptar`;
         }
       } else {
@@ -1195,13 +1395,12 @@
 
         if (btnPildora) {
           btnPildora.disabled = true;
-          btnPildora.className = "px-2.5 py-1.5 rounded-xl text-[11px] font-black shadow bg-black/25 text-white/75 cursor-not-allowed";
+          btnPildora.className = "px-2.5 py-1.5 rounded-xl text-xs font-black shadow bg-black/25 text-white/75 cursor-not-allowed";
           btnPildora.innerHTML = `<i class="fas fa-lock"></i> ${totalUnidades}/6`;
         }
       }
     }
 
-    /* CONTROL EXCLUSIVO: SI ESTÁ EN MAYORISTA, OCULTA LO NORMAL; SI NO, MUESTRA LO NORMAL */
     function actualizarInterfacesModo() {
       const pildoraMay = document.getElementById('pildoraMayoristaCompacta');
       const barraNormal = document.getElementById('barraSumatoriaNormal');
@@ -1209,14 +1408,12 @@
       const btnFloatNorm = document.getElementById('btnFlotanteCarritoNormal');
 
       if (usuarioMayoristaActual) {
-        // Modo Mayorista Activo -> ocultar compra normal y mostrar solo mayorista compacto
         if (barraNormal) barraNormal.classList.add('hidden');
         if (btnFloatNorm) btnFloatNorm.classList.add('hidden');
         if (pildoraMay) pildoraMay.classList.remove('hidden');
         if (btnFloatMay) btnFloatMay.classList.remove('hidden');
         validarReglasMayorista();
       } else {
-        // Modo Normal Activo -> ocultar mayorista y mostrar compra normal si tiene ítems
         if (pildoraMay) pildoraMay.classList.add('hidden');
         if (btnFloatMay) btnFloatMay.classList.add('hidden');
         if (btnFloatNorm) btnFloatNorm.classList.remove('hidden');
@@ -1235,7 +1432,7 @@
         const p = productos.find(x => x.codigo === cod);
         if (!p) return;
         const cant = carritoMayorista[cod];
-        const precioMayor = Math.round((parseFloat(p.precio) || 0) * 0.85);
+        const precioMayor = obtenerPrecioMayoristaProducto(p);
         const sub = cant * precioMayor;
 
         totalUnidades += cant;
@@ -1278,7 +1475,7 @@
         } catch (err) {}
       }
 
-      const mensajeWhatsApp = `📦 *NUEVO PEDIDO POR MAYOR - PLAYUP STORE* 🚀%0A%0A👤 *Cliente Registrado:* ${usuarioMayoristaActual.nombre}%0A📧 *Correo:* ${usuarioMayoristaActual.correo}%0A🏪 *Tienda/Negocio:* ${usuarioMayoristaActual.negocio}%0A📱 *Celular:* ${usuarioMayoristaActual.telefono}%0A📍 *Ciudad:* ${usuarioMayoristaActual.ciudad}%0A📅 *Fecha de Compra:* ${fechaActual}%0A%0A🧸 *Detalle del Pedido (${totalUnidades} juguetes en total):*%0A${detalleLineas}%0A💰 *TOTAL POR MAYOR (15% DTO): Bs. ${totalMonto}*%0A%0AQuedo atento para coordinar el pago y envío. ¡Gracias! ✨`;
+      const mensajeWhatsApp = `📦 *NUEVO PEDIDO POR MAYOR - PLAYUP STORE* 🚀%0A%0A👤 *Cliente Registrado:* ${usuarioMayoristaActual.nombre}%0A📧 *Correo:* ${usuarioMayoristaActual.correo}%0A🏪 *Tienda/Negocio:* ${usuarioMayoristaActual.negocio}%0A📱 *Celular:* ${usuarioMayoristaActual.telefono}%0A📍 *Ciudad:* ${usuarioMayoristaActual.ciudad}%0A📅 *Fecha de Compra:* ${fechaActual}%0A%0A🧸 *Detalle del Pedido (${totalUnidades} juguetes en total):*%0A${detalleLineas}%0A💰 *TOTAL POR MAYOR: Bs. ${totalMonto}*%0A%0AQuedo atento para coordinar el pago y envío. ¡Gracias! ✨`;
 
       carritoMayorista = {};
       localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
@@ -1341,6 +1538,171 @@
     }
 
     /* ========================================================================= */
+    /* GESTIÓN DE JUGUETES Y PRECIOS MAYORISTAS EN MODO ADMINISTRADOR            */
+    /* ========================================================================= */
+    function procesarImagenLiviana(file) {
+      return new Promise((resolve) => {
+        if (!file) return resolve(null);
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const MAX_DIM = 700;
+            let w = img.width, h = img.height;
+            if (w > h && w > MAX_DIM) { h *= MAX_DIM / w; w = MAX_DIM; }
+            else if (h > MAX_DIM) { w *= MAX_DIM / h; h = MAX_DIM; }
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.75));
+          };
+          img.onerror = () => resolve(null);
+          img.src = e.target.result;
+        };
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    window.subirNuevaPortada = async function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const base64 = await procesarImagenLiviana(file);
+      if (base64) {
+        document.getElementById('logoPrincipal').src = base64;
+        localStorage.setItem('playup_logo_url', base64);
+        alert("¡Portada actualizada con éxito! 🎉");
+      }
+    };
+
+    window.abrirModalFotosCategorias = function() {
+      document.getElementById('modalFotosCategorias').classList.remove('hidden');
+      document.getElementById('modalFotosCategorias').classList.add('flex');
+    };
+
+    window.cerrarModalFotosCategorias = function() {
+      document.getElementById('modalFotosCategorias').classList.add('hidden');
+      document.getElementById('modalFotosCategorias').classList.remove('flex');
+    };
+
+    window.subirFotoCategoria = async function(cat, event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const base64 = await procesarImagenLiviana(file);
+      if (base64) {
+        const el = document.getElementById(`img-cat-${cat}`);
+        if (el) el.src = base64;
+        const fotosGuardadas = JSON.parse(localStorage.getItem('playup_fotos_cat') || '{}');
+        fotosGuardadas[cat] = base64;
+        localStorage.setItem('playup_fotos_cat', JSON.stringify(fotosGuardadas));
+        alert(`¡Foto de categoría "${cat}" actualizada!`);
+      }
+    };
+
+    window.abrirModalAdmin = function(codigoEditar = null) {
+      const form = document.getElementById('formProducto');
+      form.reset();
+      document.getElementById('productoId').value = '';
+
+      if (codigoEditar) {
+        const p = productos.find(x => x.codigo === codigoEditar);
+        if (p) {
+          document.getElementById('modalAdminTitulo').innerText = '✏️ Editar Juguete y Precios';
+          document.getElementById('productoId').value = p.codigo;
+          document.getElementById('productoCodigo').value = p.codigo;
+          document.getElementById('productoNombre').value = p.nombre;
+          document.getElementById('productoCategoria').value = p.categoria;
+          document.getElementById('productoPrecio').value = p.precio;
+          document.getElementById('productoPrecioMayor').value = obtenerPrecioMayoristaProducto(p);
+          document.getElementById('productoDescripcion').value = p.descripcion;
+        }
+      } else {
+        document.getElementById('modalAdminTitulo').innerText = '✨ Añadir Nuevo Juguete';
+        document.getElementById('productoCodigo').value = `PLU-${String(productos.length + 1).padStart(3, '0')}`;
+      }
+
+      document.getElementById('modalAdminForm').classList.remove('hidden');
+      document.getElementById('modalAdminForm').classList.add('flex');
+    };
+
+    window.cerrarModalAdmin = function() {
+      document.getElementById('modalAdminForm').classList.add('hidden');
+      document.getElementById('modalAdminForm').classList.remove('flex');
+    };
+
+    window.guardarProducto = async function(e) {
+      e.preventDefault();
+      const codigoEditado = document.getElementById('productoId').value;
+      const codigo = document.getElementById('productoCodigo').value.trim().toUpperCase() || `PLU-${String(productos.length + 1).padStart(3, '0')}`;
+      const nombre = document.getElementById('productoNombre').value.trim();
+      const categoria = document.getElementById('productoCategoria').value;
+      const precio = document.getElementById('productoPrecio').value;
+      const precioMayor = document.getElementById('productoPrecioMayor').value;
+      const descripcion = document.getElementById('productoDescripcion').value.trim();
+      const archivoFoto = document.getElementById('productoImagen1').files[0];
+
+      let fotoBase64 = await procesarImagenLiviana(archivoFoto);
+
+      let prodActualizado;
+      if (codigoEditado) {
+        const idx = productos.findIndex(x => x.codigo === codigoEditado);
+        if (idx !== -1) {
+          productos[idx] = {
+            ...productos[idx],
+            codigo,
+            nombre,
+            categoria,
+            precio,
+            precioMayor,
+            descripcion,
+            foto: fotoBase64 || productos[idx].foto
+          };
+          prodActualizado = productos[idx];
+        }
+      } else {
+        prodActualizado = {
+          id: 'prod_' + Date.now(),
+          codigo,
+          nombre,
+          categoria,
+          precio,
+          precioMayor,
+          descripcion,
+          foto: fotoBase64 || 'https://placehold.co/600x400/0284c7/ffffff?text=' + encodeURIComponent(nombre)
+        };
+        productos.unshift(prodActualizado);
+      }
+
+      localStorage.setItem('playup_productos_v2', JSON.stringify(productos));
+
+      // Guardar en Firebase para que los cambios persistan globalmente
+      if (db && prodActualizado) {
+        try {
+          await setDoc(doc(db, 'catalogo_juguetes_playup', prodActualizado.codigo), prodActualizado);
+        } catch (err) {}
+      }
+
+      window.renderProductos();
+      validarReglasMayorista();
+      cerrarModalAdmin();
+      alert("¡Juguete y precios guardados correctamente! 🎉");
+    };
+
+    window.eliminarProducto = async function(codigo) {
+      if (!confirm("¿Seguro que deseas eliminar este juguete del catálogo?")) return;
+      productos = productos.filter(p => p.codigo !== codigo);
+      localStorage.setItem('playup_productos_v2', JSON.stringify(productos));
+      if (db) {
+        try {
+          await deleteDoc(doc(db, 'catalogo_juguetes_playup', codigo));
+        } catch (err) {}
+      }
+      window.renderProductos();
+    };
+
+    /* ========================================================================= */
     /* CARRITO NORMAL DE COMPRAS Y SUMATORIA AUTOMÁTICA EN VIVO                  */
     /* ========================================================================= */
     function actualizarContadorCarrito() {
@@ -1384,7 +1746,6 @@
     }
 
     window.agregarAlCarrito = function(codigo) {
-      // Si el usuario tiene sesión mayorista activa, suma directo a su pedido mayorista
       if (usuarioMayoristaActual) {
         window.cambiarCantidadMayorista(codigo, 1);
         return;
@@ -1548,8 +1909,31 @@
         const card = document.createElement('div');
         card.className = "bg-white/95 rounded-3xl overflow-hidden shadow-xl border-2 border-white flex flex-col hover:-translate-y-1 transition duration-300";
         
+        const precioMayor = obtenerPrecioMayoristaProducto(p);
         const textoWa = `🤖 ¡Hola PlayUp Store! Me encantó este juguete:%0A%0A🎁 Producto: ${p.nombre}%0A🏷️ Código: ${p.codigo}%0A💰 Precio: Bs. ${p.precio}%0A%0A¿Lo tienen disponible para entrega? ✨🛍️`;
         const linkWa = `https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${textoWa}`;
+
+        let bloquePrecioHtml = `<div class="text-2xl font-black text-pink-600 my-1.5">Bs. ${p.precio}</div>`;
+        if (usuarioMayoristaActual || isAdmin) {
+          bloquePrecioHtml = `
+            <div class="my-1.5 flex items-baseline gap-2 flex-wrap">
+              <span class="text-lg font-bold text-gray-400 line-through">Bs. ${p.precio}</span>
+              <span class="text-2xl font-black text-orange-600">Bs. ${precioMayor} <span class="text-xs font-bold bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full">Mayor</span></span>
+            </div>`;
+        }
+
+        let adminControlesHtml = '';
+        if (isAdmin) {
+          adminControlesHtml = `
+            <div class="flex gap-2 mt-3 pt-2.5 border-t border-gray-200">
+              <button type="button" onclick="window.abrirModalAdmin('${p.codigo}')" class="flex-1 bg-yellow-400 hover:bg-yellow-500 text-purple-950 font-black py-1.5 rounded-xl text-xs transition">
+                <i class="fas fa-edit"></i> Editar Precio / Datos
+              </button>
+              <button type="button" onclick="window.eliminarProducto('${p.codigo}')" class="bg-red-500 hover:bg-red-600 text-white font-bold px-3 py-1.5 rounded-xl text-xs transition">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>`;
+        }
 
         card.innerHTML = `
           <div class="relative h-56 bg-sky-50 cursor-pointer overflow-hidden p-2" onclick="window.abrirModalVista('${p.codigo}')">
@@ -1565,16 +1949,17 @@
             <h3 class="text-xl font-black text-sky-950 leading-tight cursor-pointer hover:text-pink-600 transition" onclick="window.abrirModalVista('${p.codigo}')">
               ${p.nombre}
             </h3>
-            <div class="text-2xl font-black text-pink-600 my-2">Bs. ${p.precio}</div>
+            ${bloquePrecioHtml}
             <p class="text-gray-600 text-xs leading-relaxed line-clamp-2">${p.descripcion}</p>
             <div class="mt-auto pt-4 flex gap-2">
-              <button type="button" onclick="window.agregarAlCarrito('${p.codigo}')" class="flex-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow hover:scale-102 transition">
-                <i class="fas fa-cart-plus text-base"></i> + Agregar
+              <button type="button" onclick="window.agregarAlCarrito('${p.codigo}')" class="flex-1 bg-gradient-to-r ${usuarioMayoristaActual ? 'from-orange-500 to-amber-500 text-purple-950' : 'from-purple-600 to-indigo-600 text-white'} py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow hover:scale-102 transition">
+                <i class="fas fa-cart-plus text-base"></i> ${usuarioMayoristaActual ? '+ Agregar Mayor' : '+ Agregar'}
               </button>
               <a href="${linkWa}" target="_blank" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2.5 px-3.5 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1 shadow hover:scale-102 transition" title="Pedir solo este por WhatsApp">
                 <i class="fab fa-whatsapp text-lg"></i> Directo
               </a>
             </div>
+            ${adminControlesHtml}
           </div>
         `;
         contenedor.appendChild(card);
@@ -1612,6 +1997,7 @@
       
       const modalContenedor = document.getElementById('modalVistaContent');
       const badge = document.getElementById('detalleCategoriaBadge');
+      const precioMayor = obtenerPrecioMayoristaProducto(p);
       
       if (p.categoria === 'ninos') {
         modalContenedor.className = "bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 border-4 border-sky-400 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
@@ -1637,6 +2023,7 @@
       document.getElementById('detalleNombre').innerText = p.nombre;
       document.getElementById('detalleDescripcion').innerText = p.descripcion;
       document.getElementById('detallePrecio').innerText = `Bs. ${p.precio}`;
+      document.getElementById('detallePrecioMayorTag').innerText = `Precio por Mayor: Bs. ${precioMayor}`;
       document.getElementById('detalleCodigoBadge').innerText = `Cód: ${p.codigo}`;
       document.getElementById('imagenPrincipal').src = p.foto;
 
@@ -1732,6 +2119,12 @@
       });
     }
 
+    window.eliminarRegistro = function(id) {
+      if (!confirm("¿Eliminar este registro?")) return;
+      registradosList = registradosList.filter(r => r.id !== id);
+      renderizarTablaRegistrados();
+    };
+
     window.redirigirAhoraWhatsApp = function() {
       if(temporizadorRedir) clearTimeout(temporizadorRedir);
       document.getElementById('modalConfirmacionExito').classList.add('hidden');
@@ -1800,8 +2193,9 @@
         document.getElementById('adminPanel').classList.remove('hidden');
         document.getElementById('btnAdminLogin').classList.add('hidden');
         document.getElementById('thAccionAdmin').classList.remove('hidden');
+        window.renderProductos();
         renderizarTablaRegistrados();
-        alert("Modo administrador activado. Ya puedes ver el Ranking de Mayoristas.");
+        alert("Modo administrador activado. Ahora puedes añadir juguetes y editar sus precios normal y por mayor.");
       } else if(p !== null) {
         alert("Contraseña incorrecta.");
       }
@@ -1826,10 +2220,23 @@
       window.cerrarModalAdminRegistro();
     };
 
-    // Sincronizar historial y cuentas mayoristas desde Firebase si existe
+    // Sincronizar catálogo, historial y cuentas mayoristas desde Firebase en tiempo real
     if (db) {
       try {
         signInAnonymously(auth).then(() => {
+          onSnapshot(collection(db, 'catalogo_juguetes_playup'), (snapshot) => {
+            if (!snapshot.empty) {
+              const listaNube = [];
+              snapshot.forEach(d => listaNube.push(d.data()));
+              // Combinar con catálogo por defecto si faltan items iniciales
+              const codigosNube = new Set(listaNube.map(x => x.codigo));
+              const faltantes = catalogoDefecto.filter(x => !codigosNube.has(x.codigo));
+              productos = [...listaNube, ...faltantes];
+              localStorage.setItem('playup_productos_v2', JSON.stringify(productos));
+              window.renderProductos();
+              validarReglasMayorista();
+            }
+          });
           onSnapshot(collection(db, 'pedidos_mayoristas_playup'), (snapshot) => {
             const listaNube = [];
             snapshot.forEach(d => listaNube.push(d.data()));
@@ -1850,7 +2257,16 @@
       } catch (e) {}
     }
 
-    // Carga inicial inmediata
+    // Restaurar portada o fotos de categorías guardadas localmente
+    const savedLogo = localStorage.getItem('playup_logo_url');
+    if (savedLogo) document.getElementById('logoPrincipal').src = savedLogo;
+
+    const savedCatFotos = JSON.parse(localStorage.getItem('playup_fotos_cat') || '{}');
+    Object.keys(savedCatFotos).forEach(c => {
+      const el = document.getElementById(`img-cat-${c}`);
+      if (el && savedCatFotos[c]) el.src = savedCatFotos[c];
+    });
+
     const savedUrl = localStorage.getItem('playup_script_url');
     if(savedUrl) configRegistro.scriptUrl = savedUrl;
     actualizarInterfacesModo();
