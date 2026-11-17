@@ -128,25 +128,25 @@
           </a>
           
           <!-- BOTÓN PRECIO POR MAYOR (REGISTRO NUEVO) -->
-          <button onclick="abrirModalRegistroMayorista()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
+          <button type="button" onclick="window.abrirModalRegistroMayorista()" class="bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-boxes text-base text-purple-900"></i> Precio por Mayor 📦
           </button>
 
           <!-- BOTÓN COMPRADOR MAYORISTA (ACCESO CON CORREO) -->
-          <button onclick="abrirModalLoginMayorista()" class="bg-gradient-to-r from-amber-600 to-orange-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
+          <button type="button" onclick="window.abrirModalLoginMayorista()" class="bg-gradient-to-r from-amber-600 to-orange-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow-lg hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-key text-sm text-yellow-300"></i> Comprador Mayorista 🔑
           </button>
 
-          <!-- BOTÓN MI CARRITO (ABRE EL CARRITO CORRECTO SEGÚN EL MODO) -->
-          <button onclick="abrirCarritoInteligente()" id="btnTopMiCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative">
+          <!-- BOTÓN MI CARRITO -->
+          <button type="button" onclick="window.abrirCarritoInteligente()" id="btnTopMiCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative">
             <i class="fas fa-shopping-cart text-base text-yellow-300"></i> <span id="txtTopMiCarrito">Mi Carrito</span>
             <span id="badgeCarritoTop" class="bg-yellow-400 text-purple-950 text-xs font-black px-2 py-0.5 rounded-full ml-1">0</span>
           </button>
 
-          <button onclick="abrirModalAyuda()" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
+          <button type="button" onclick="window.abrirModalAyuda()" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-book-reader text-base text-yellow-300"></i> Ayuda 📘
           </button>
-          <button onclick="loginAdmin()" id="btnAdminLogin" class="bg-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
+          <button type="button" onclick="window.loginAdmin()" id="btnAdminLogin" class="bg-yellow-400 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-magic"></i> Admin
           </button>
         </div>
@@ -164,20 +164,20 @@
         <p class="text-xs sm:text-sm font-bold text-purple-700">Añade juguetes nuevos, fija precios normal y por mayor, y revisa el ranking.</p>
       </div>
       <div class="flex gap-2 flex-wrap">
-        <button onclick="abrirModalAdmin()" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
+        <button type="button" onclick="window.abrirModalAdmin()" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
           <i class="fas fa-plus-circle"></i> + Añadir Juguete
         </button>
-        <button onclick="abrirModalRankingMayoristas()" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:scale-105 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2 border border-amber-600">
+        <button type="button" onclick="window.abrirModalRankingMayoristas()" class="bg-gradient-to-r from-orange-500 to-amber-500 hover:scale-105 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2 border border-amber-600">
           <i class="fas fa-trophy text-purple-900"></i> 🏆 Ranking Mayoristas
         </button>
-        <input type="file" id="inputPortada" class="hidden" accept="image/*" onchange="subirNuevaPortada(event)">
-        <button onclick="document.getElementById('inputPortada').click()" id="btnPortada" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+        <input type="file" id="inputPortada" class="hidden" accept="image/*" onchange="window.subirNuevaPortada(event)">
+        <button type="button" onclick="document.getElementById('inputPortada').click()" id="btnPortada" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
           <i class="fas fa-image"></i> Cambiar Portada
         </button>
-        <button onclick="abrirModalFotosCategorias()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
+        <button type="button" onclick="window.abrirModalFotosCategorias()" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-bold shadow flex items-center gap-2">
           <i class="fas fa-layer-group"></i> 🖼️ Fotos Categorías
         </button>
-        <button onclick="abrirModalAdminRegistro()" class="bg-amber-500 hover:bg-amber-600 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
+        <button type="button" onclick="window.abrirModalAdminRegistro()" class="bg-amber-500 hover:bg-amber-600 text-purple-950 px-4 py-2 rounded-xl text-xs sm:text-sm font-black shadow flex items-center gap-2">
           <i class="fas fa-cog"></i> ⚙️ Configurar Formulario
         </button>
       </div>
@@ -193,7 +193,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
       <!-- Columna Izquierda -->
       <div class="flex flex-col gap-3">
-        <div onclick="filtrarCategoria('todos')" id="card-cat-todos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1 cat-banner-activa">
+        <div onclick="window.filtrarCategoria('todos')" id="card-cat-todos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1 cat-banner-activa">
           <img id="img-cat-todos" src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1000&auto=format&fit=crop&q=80" alt="Todos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -205,7 +205,7 @@
             </div>
           </div>
         </div>
-        <div onclick="filtrarCategoria('ninos')" id="card-cat-ninos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div onclick="window.filtrarCategoria('ninos')" id="card-cat-ninos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
           <img id="img-cat-ninos" src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=1000&auto=format&fit=crop&q=80" alt="Niños" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-blue-950/85 via-blue-900/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -217,7 +217,7 @@
             </div>
           </div>
         </div>
-        <div onclick="filtrarCategoria('ninas')" id="card-cat-ninas" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div onclick="window.filtrarCategoria('ninas')" id="card-cat-ninas" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
           <img id="img-cat-ninas" src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1000&auto=format&fit=crop&q=80" alt="Niñas" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-pink-950/85 via-pink-900/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -232,7 +232,7 @@
       </div>
       <!-- Columna Derecha -->
       <div class="flex flex-col gap-3">
-        <div onclick="filtrarCategoria('bebes')" id="card-cat-bebes" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div onclick="window.filtrarCategoria('bebes')" id="card-cat-bebes" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
           <img id="img-cat-bebes" src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=1000&auto=format&fit=crop&q=80" alt="Bebés" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-teal-950/85 via-teal-900/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -244,7 +244,7 @@
             </div>
           </div>
         </div>
-        <div onclick="filtrarCategoria('didacticos')" id="card-cat-didacticos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div onclick="window.filtrarCategoria('didacticos')" id="card-cat-didacticos" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
           <img id="img-cat-didacticos" src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1000&auto=format&fit=crop&q=80" alt="Didácticos" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-amber-950/85 via-amber-900/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -256,7 +256,7 @@
             </div>
           </div>
         </div>
-        <div onclick="filtrarCategoria('peluches')" id="card-cat-peluches" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
+        <div onclick="window.filtrarCategoria('peluches')" id="card-cat-peluches" class="group relative h-32 rounded-3xl overflow-hidden cursor-pointer border-4 border-white shadow-lg transition-all duration-300 hover:-translate-y-1">
           <img id="img-cat-peluches" src="https://images.unsplash.com/photo-1559454403-b8fb88521f11?w=1000&auto=format&fit=crop&q=80" alt="Peluches" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           <div class="absolute inset-0 bg-gradient-to-r from-purple-950/85 via-purple-900/40 to-transparent flex items-center px-6">
             <div class="flex items-center gap-4">
@@ -279,11 +279,11 @@
       <span class="text-white font-black text-sm sm:text-base mr-1 flex items-center gap-1.5 drop-shadow">
         <i class="fas fa-child text-yellow-300 text-lg"></i> Edad:
       </span>
-      <button onclick="filtrarEdad('todos')" id="btn-edad-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-amber-400 text-purple-950 border-2 border-white scale-105">Todas las edades</button>
-      <button onclick="filtrarEdad('0-2')" id="btn-edad-0-2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">👶 0 a 2 años</button>
-      <button onclick="filtrarEdad('3-5')" id="btn-edad-3-5" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🧒 3 a 5 años</button>
-      <button onclick="filtrarEdad('6-8')" id="btn-edad-6-8" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🚀 6 a 8 años</button>
-      <button onclick="filtrarEdad('9+')" id="btn-edad-9+" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🎮 9 años a más</button>
+      <button type="button" onclick="window.filtrarEdad('todos')" id="btn-edad-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-amber-400 text-purple-950 border-2 border-white scale-105">Todas las edades</button>
+      <button type="button" onclick="window.filtrarEdad('0-2')" id="btn-edad-0-2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">👶 0 a 2 años</button>
+      <button type="button" onclick="window.filtrarEdad('3-5')" id="btn-edad-3-5" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🧒 3 a 5 años</button>
+      <button type="button" onclick="window.filtrarEdad('6-8')" id="btn-edad-6-8" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🚀 6 a 8 años</button>
+      <button type="button" onclick="window.filtrarEdad('9+')" id="btn-edad-9+" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">🎮 9 años a más</button>
     </div>
 
     <!-- FILTRO POR PRESUPUESTO -->
@@ -291,11 +291,11 @@
       <span class="text-white font-black text-sm sm:text-base mr-1 flex items-center gap-1.5 drop-shadow">
         <i class="fas fa-wallet text-yellow-300 text-lg"></i> Presupuesto:
       </span>
-      <button onclick="filtrarPresupuesto('todos')" id="btn-precio-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white scale-105">Cualquiera</button>
-      <button onclick="filtrarPresupuesto('rango1')" id="btn-precio-rango1" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 30 a 50</button>
-      <button onclick="filtrarPresupuesto('rango2')" id="btn-precio-rango2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 60 a 100</button>
-      <button onclick="filtrarPresupuesto('rango3')" id="btn-precio-rango3" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 110 a 160</button>
-      <button onclick="filtrarPresupuesto('rango4')" id="btn-precio-rango4" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 170 a más</button>
+      <button type="button" onclick="window.filtrarPresupuesto('todos')" id="btn-precio-todos" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-green-500 text-white border-2 border-white scale-105">Cualquiera</button>
+      <button type="button" onclick="window.filtrarPresupuesto('rango1')" id="btn-precio-rango1" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 30 a 50</button>
+      <button type="button" onclick="window.filtrarPresupuesto('rango2')" id="btn-precio-rango2" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 60 a 100</button>
+      <button type="button" onclick="window.filtrarPresupuesto('rango3')" id="btn-precio-rango3" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 110 a 160</button>
+      <button type="button" onclick="window.filtrarPresupuesto('rango4')" id="btn-precio-rango4" class="px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold bg-white/80 text-sky-950 hover:bg-white border-2 border-white">Bs. 170 a más</button>
     </div>
   </section>
 
@@ -318,14 +318,14 @@
         <div>
           <div class="flex items-center gap-1.5">
             <p class="text-[10px] uppercase text-yellow-200 font-black">Compra Mayorista</p>
-            <button onclick="salirModoMayorista()" class="text-[10px] bg-black/30 hover:bg-black/50 text-white px-1.5 py-0.2 rounded font-bold" title="Volver a compra normal">✕</button>
+            <button type="button" onclick="window.salirModoMayorista()" class="text-[10px] bg-black/30 hover:bg-black/50 text-white px-1.5 py-0.2 rounded font-bold" title="Volver a compra normal">✕</button>
           </div>
           <p class="text-sm font-black text-white leading-tight">
             Total: <span id="pildoraMayTotalBs" class="text-yellow-300">Bs. 0</span>
           </p>
         </div>
       </div>
-      <button onclick="abrirCatalogoMayorista()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow border border-white transition shrink-0">
+      <button type="button" onclick="window.abrirCatalogoMayorista()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow border border-white transition shrink-0">
         Ver 🛒
       </button>
     </div>
@@ -347,7 +347,7 @@
           </p>
         </div>
       </div>
-      <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow border border-white transition shrink-0">
+      <button type="button" onclick="window.abrirModalCarrito()" class="bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-105 text-white px-3 py-1.5 rounded-xl text-xs font-black shadow border border-white transition shrink-0">
         Ver 🛒
       </button>
     </div>
@@ -357,11 +357,11 @@
   <!-- BOTONES FLOTANTES INFERIORES DERECHA (SOLAMENTE CARRITO Y WHATSAPP)       -->
   <!-- ========================================================================= -->
   <div class="fixed bottom-5 right-4 z-40 flex flex-col gap-2.5 items-center">
-    <button onclick="abrirCatalogoMayorista()" id="btnFlotanteMayorista" class="hidden bg-gradient-to-r from-orange-500 to-amber-500 text-white w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver Pedido Mayorista">
+    <button type="button" onclick="window.abrirCatalogoMayorista()" id="btnFlotanteMayorista" class="hidden bg-gradient-to-r from-orange-500 to-amber-500 text-white w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver Pedido Mayorista">
       <i class="fas fa-shopping-cart"></i>
       <span id="badgeMayoristaFloat" class="absolute -top-1.5 -right-1.5 bg-yellow-300 text-purple-950 text-xs font-black w-5 h-5 rounded-full flex items-center justify-center border border-white shadow">0</span>
     </button>
-    <button onclick="abrirModalCarrito()" id="btnFlotanteCarritoNormal" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver mi carrito">
+    <button type="button" onclick="window.abrirModalCarrito()" id="btnFlotanteCarritoNormal" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white w-13 h-13 p-3.5 rounded-full flex items-center justify-center text-xl shadow-2xl hover:scale-110 transition border-2 border-white relative" title="Ver mi carrito">
       <i class="fas fa-shopping-cart"></i>
       <span id="badgeCarritoFloat" class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-purple-950 text-xs font-black w-5 h-5 rounded-full flex items-center justify-center border border-white shadow">0</span>
     </button>
@@ -379,7 +379,7 @@
   <!-- ========================================================================= -->
   <!-- MODAL 1A: REGISTRO NUEVO COMPRADOR MAYORISTA (CON CORREO PARA FUTURO)     -->
   <!-- ========================================================================= -->
-  <div id="modalRegistroMayorista" onclick="if(event.target.id==='modalRegistroMayorista') cerrarModalRegistroMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalRegistroMayorista" onclick="if(event.target.id==='modalRegistroMayorista') window.cerrarModalRegistroMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-4 border-orange-400 relative max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-3 pb-2 border-b border-orange-100">
         <div>
@@ -391,12 +391,12 @@
             Guarda tus datos y tu correo electrónico. La próxima vez solo ingresa con tu correo en <strong>«Comprador Mayorista 🔑»</strong>.
           </p>
         </div>
-        <button type="button" onclick="cerrarModalRegistroMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalRegistroMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
 
-      <form onsubmit="completarRegistroMayorista(event)" class="space-y-3">
+      <form onsubmit="window.completarRegistroMayorista(event)" class="space-y-3">
         <div>
           <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Nombre completo del comprador *</label>
           <input type="text" id="mayNombre" required placeholder="Ej: Juan Carlos Pérez" class="w-full bg-orange-50 border-2 border-orange-200 focus:border-orange-500 rounded-xl px-3.5 py-2 font-semibold text-sm outline-none">
@@ -436,7 +436,7 @@
         </button>
 
         <p class="text-center text-xs text-gray-600 pt-1">
-          ¿Ya te registraste antes? <button type="button" onclick="cerrarModalRegistroMayorista(); abrirModalLoginMayorista();" class="text-orange-600 font-black underline">Ingresa con tu correo aquí</button>
+          ¿Ya te registraste antes? <button type="button" onclick="window.cerrarModalRegistroMayorista(); window.abrirModalLoginMayorista();" class="text-orange-600 font-black underline">Ingresa con tu correo aquí</button>
         </p>
       </form>
     </div>
@@ -445,7 +445,7 @@
   <!-- ========================================================================= -->
   <!-- MODAL 1B: ACCESO COMPRADOR MAYORISTA (SOLO INGRESA SU CORREO)             -->
   <!-- ========================================================================= -->
-  <div id="modalLoginMayorista" onclick="if(event.target.id==='modalLoginMayorista') cerrarModalLoginMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalLoginMayorista" onclick="if(event.target.id==='modalLoginMayorista') window.cerrarModalLoginMayorista()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-md shadow-2xl border-4 border-amber-500 relative">
       <div class="flex justify-between items-center mb-3 pb-2 border-b border-amber-100">
         <div>
@@ -457,12 +457,12 @@
             Ingresa el correo electrónico con el que te registraste para abrir tu sesión mayorista.
           </p>
         </div>
-        <button type="button" onclick="cerrarModalLoginMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalLoginMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
 
-      <form onsubmit="iniciarSesionMayoristaPorCorreo(event)" class="space-y-4">
+      <form onsubmit="window.iniciarSesionMayoristaPorCorreo(event)" class="space-y-4">
         <div>
           <label class="block text-gray-700 font-bold mb-1 text-xs sm:text-sm">Tu correo electrónico registrado *</label>
           <input type="email" id="loginMayCorreo" required placeholder="tu_correo@ejemplo.com" class="w-full bg-amber-50 border-2 border-amber-300 focus:border-orange-500 rounded-xl px-4 py-2.5 font-bold text-sm outline-none">
@@ -473,7 +473,7 @@
         </button>
 
         <p class="text-center text-xs text-gray-600">
-          ¿Aún no tienes cuenta mayorista? <button type="button" onclick="cerrarModalLoginMayorista(); abrirModalRegistroMayorista();" class="text-orange-600 font-black underline">Regístrate aquí</button>
+          ¿Aún no tienes cuenta mayorista? <button type="button" onclick="window.cerrarModalLoginMayorista(); window.abrirModalRegistroMayorista();" class="text-orange-600 font-black underline">Regístrate aquí</button>
         </p>
       </form>
     </div>
@@ -482,7 +482,7 @@
   <!-- ========================================================================= -->
   <!-- MODAL 2: CARRITO MAYORISTA (MUESTRA TODOS LOS SELECCIONADOS Y SU SUMA)   -->
   <!-- ========================================================================= -->
-  <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') cerrarModalMayorista()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') window.cerrarModalMayorista()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-orange-500 relative max-h-[88vh] flex flex-col">
       <div class="flex justify-between items-center mb-3 pb-2 border-b border-orange-100">
         <div>
@@ -490,10 +490,10 @@
             📦 Tu Carrito Mayorista
           </h3>
           <p class="text-xs sm:text-sm font-semibold text-gray-600">
-            Cliente: <b id="badgeUsuarioMayorista" class="text-orange-700">-</b> · <button onclick="cerrarModalMayorista(); abrirModalLoginMayorista();" class="underline text-sky-700 font-bold">Cambiar cuenta</button>
+            Cliente: <b id="badgeUsuarioMayorista" class="text-orange-700">-</b> · <button type="button" onclick="window.cerrarModalMayorista(); window.abrirModalLoginMayorista();" class="underline text-sky-700 font-bold">Cambiar cuenta</button>
           </p>
         </div>
-        <button type="button" onclick="cerrarModalMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalMayorista()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
@@ -517,10 +517,10 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2.5">
-          <button type="button" onclick="vaciarMayorista()" class="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition flex items-center justify-center gap-1.5">
+          <button type="button" onclick="window.vaciarMayorista()" class="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition flex items-center justify-center gap-1.5">
             <i class="fas fa-trash-alt"></i> Vaciar
           </button>
-          <button type="button" id="btnEnviarPedidoMayorista" onclick="enviarPedidoMayoristaWhatsApp()" disabled class="flex-1 bg-gray-300 text-gray-500 cursor-not-allowed py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
+          <button type="button" id="btnEnviarPedidoMayorista" onclick="window.enviarPedidoMayoristaWhatsApp()" disabled class="flex-1 bg-gray-300 text-gray-500 cursor-not-allowed py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
             <i class="fas fa-lock"></i> Faltan juguetes (mín. 6 u.)
           </button>
         </div>
@@ -531,7 +531,7 @@
   <!-- ========================================================================= -->
   <!-- MODAL 3: RANKING DE MAYORISTAS PARA ADMINISTRADOR                         -->
   <!-- ========================================================================= -->
-  <div id="modalRankingMayoristas" onclick="if(event.target.id==='modalRankingMayoristas') cerrarModalRankingMayoristas()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalRankingMayoristas" onclick="if(event.target.id==='modalRankingMayoristas') window.cerrarModalRankingMayoristas()" class="fixed inset-0 bg-black/85 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-3xl shadow-2xl border-4 border-amber-400 flex flex-col max-h-[88vh]">
       <div class="flex justify-between items-center mb-4 pb-2 border-b border-amber-100">
         <div>
@@ -542,7 +542,7 @@
             Ordenado de mayor a menor cantidad de juguetes comprados, con correo y fecha exacta.
           </p>
         </div>
-        <button type="button" onclick="cerrarModalRankingMayoristas()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalRankingMayoristas()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
@@ -566,7 +566,7 @@
 
       <div class="pt-4 flex justify-between items-center text-xs font-bold text-gray-500">
         <span id="txtResumenMayoristas">Total pedidos mayoristas: 0</span>
-        <button onclick="cerrarModalRankingMayoristas()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-800 font-bold">Cerrar</button>
+        <button type="button" onclick="window.cerrarModalRankingMayoristas()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 rounded-xl text-gray-800 font-bold">Cerrar</button>
       </div>
     </div>
   </div>
@@ -574,16 +574,16 @@
   <!-- ========================================================================= -->
   <!-- MODAL ADMIN: AÑADIR / EDITAR JUGUETE (CON EDAD, PRECIO NORMAL Y MAYOR)    -->
   <!-- ========================================================================= -->
-  <div id="modalAdminForm" onclick="if(event.target.id==='modalAdminForm') cerrarModalAdmin()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalAdminForm" onclick="if(event.target.id==='modalAdminForm') window.cerrarModalAdmin()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-lg shadow-2xl border-4 border-purple-500 relative max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h3 id="modalAdminTitulo" class="text-2xl sm:text-3xl font-black text-purple-700">✨ Añadir Juguete</h3>
-        <button type="button" onclick="cerrarModalAdmin()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalAdmin()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
       
-      <form id="formProducto" onsubmit="guardarProducto(event)" class="space-y-3.5">
+      <form id="formProducto" onsubmit="window.guardarProducto(event)" class="space-y-3.5">
         <input type="hidden" id="productoId">
         
         <div class="grid grid-cols-2 gap-3">
@@ -650,45 +650,45 @@
   <!-- ========================================================================= -->
   <!-- MODAL ADMIN: CAMBIAR FOTOS DE CATEGORÍAS                                  -->
   <!-- ========================================================================= -->
-  <div id="modalFotosCategorias" onclick="if(event.target.id==='modalFotosCategorias') cerrarModalFotosCategorias()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalFotosCategorias" onclick="if(event.target.id==='modalFotosCategorias') window.cerrarModalFotosCategorias()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-xl shadow-2xl border-4 border-teal-500 relative max-h-[85vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-2xl font-black text-teal-900">🖼️ Cambiar Fotos de Categorías</h3>
-        <button type="button" onclick="cerrarModalFotosCategorias()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalFotosCategorias()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
       <div class="space-y-3 text-sm">
         <div class="p-3 bg-gray-50 rounded-2xl border flex items-center justify-between gap-4">
           <span class="font-bold text-gray-800">✨ Todos</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('todos', event)" class="text-xs text-teal-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('todos', event)" class="text-xs text-teal-700">
         </div>
         <div class="p-3 bg-blue-50 rounded-2xl border border-blue-200 flex items-center justify-between gap-4">
           <span class="font-bold text-blue-900">🚀 Niños</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('ninos', event)" class="text-xs text-blue-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('ninos', event)" class="text-xs text-blue-700">
         </div>
         <div class="p-3 bg-pink-50 rounded-2xl border border-pink-200 flex items-center justify-between gap-4">
           <span class="font-bold text-pink-900">🦄 Niñas</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('ninas', event)" class="text-xs text-pink-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('ninas', event)" class="text-xs text-pink-700">
         </div>
         <div class="p-3 bg-teal-50 rounded-2xl border border-teal-200 flex items-center justify-between gap-4">
           <span class="font-bold text-teal-900">🍼 Bebés</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('bebes', event)" class="text-xs text-teal-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('bebes', event)" class="text-xs text-teal-700">
         </div>
         <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 flex items-center justify-between gap-4">
           <span class="font-bold text-amber-900">🧩 Didácticos</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('didacticos', event)" class="text-xs text-amber-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('didacticos', event)" class="text-xs text-amber-700">
         </div>
         <div class="p-3 bg-purple-50 rounded-2xl border border-purple-200 flex items-center justify-between gap-4">
           <span class="font-bold text-purple-900">🧸 Peluches</span>
-          <input type="file" accept="image/*" onchange="subirFotoCategoria('peluches', event)" class="text-xs text-purple-700">
+          <input type="file" accept="image/*" onchange="window.subirFotoCategoria('peluches', event)" class="text-xs text-purple-700">
         </div>
       </div>
     </div>
   </div>
 
   <!-- MODAL CARRITO DE COMPRAS NORMAL -->
-  <div id="modalCarrito" onclick="cerrarModalCarritoExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalCarrito" onclick="window.cerrarModalCarritoExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-purple-500 relative max-h-[88vh] flex flex-col">
       <div class="flex justify-between items-center mb-4 pb-2 border-b border-purple-100">
         <div>
@@ -699,7 +699,7 @@
             Sumatoria automática de tu compra normal. Envía todo junto a nuestro WhatsApp.
           </p>
         </div>
-        <button type="button" onclick="cerrarModalCarrito()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalCarrito()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
@@ -718,10 +718,10 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-2.5">
-          <button type="button" onclick="vaciarCarrito()" class="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition flex items-center justify-center gap-1.5">
+          <button type="button" onclick="window.vaciarCarrito()" class="px-4 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-sm transition flex items-center justify-center gap-1.5">
             <i class="fas fa-trash-alt"></i> Vaciar
           </button>
-          <button type="button" onclick="enviarPedidoCarritoWhatsApp()" id="btnEnviarCarritoWa" class="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-102 text-white py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
+          <button type="button" onclick="window.enviarPedidoCarritoWhatsApp()" id="btnEnviarCarritoWa" class="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-102 text-white py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition">
             <i class="fab fa-whatsapp text-2xl"></i> Enviar pedido completo por WhatsApp
           </button>
         </div>
@@ -730,7 +730,7 @@
   </div>
 
   <!-- MODAL: AYUDA / MANUAL DE USO -->
-  <div id="modalAyuda" onclick="cerrarModalAyudaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
+  <div id="modalAyuda" onclick="window.cerrarModalAyudaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-teal-400 relative max-h-[88vh] overflow-y-auto">
       <div class="flex justify-between items-center mb-4 sticky top-0 bg-white pb-2 z-10 border-b border-teal-100">
         <div>
@@ -741,7 +741,7 @@
             PlayUp Store · Proyecto Académico ECO 480 (UAGRM)
           </p>
         </div>
-        <button type="button" onclick="cerrarModalAyuda()" class="text-gray-400 hover:text-red-500 text-3xl">
+        <button type="button" onclick="window.cerrarModalAyuda()" class="text-gray-400 hover:text-red-500 text-3xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
@@ -764,7 +764,7 @@
       </div>
 
       <div class="pt-4 text-center">
-        <button onclick="cerrarModalAyuda()" class="px-8 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-black rounded-2xl shadow border-2 border-white">
+        <button type="button" onclick="window.cerrarModalAyuda()" class="px-8 py-2.5 bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-black rounded-2xl shadow border-2 border-white">
           ¡Entendido!
         </button>
       </div>
@@ -776,11 +776,11 @@
     <div class="bg-white rounded-[30px] p-6 w-full max-w-md shadow-2xl border-4 border-amber-400">
       <div class="flex justify-between items-center mb-3">
         <h3 class="text-xl font-black text-purple-900">⚙️ Configurar Formulario</h3>
-        <button onclick="cerrarModalAdminRegistro()" class="text-gray-400 hover:text-red-500 text-2xl">
+        <button type="button" onclick="window.cerrarModalAdminRegistro()" class="text-gray-400 hover:text-red-500 text-2xl">
           <i class="fas fa-times-circle"></i>
         </button>
       </div>
-      <form onsubmit="guardarConfigFormulario(event)" class="space-y-3">
+      <form onsubmit="window.guardarConfigFormulario(event)" class="space-y-3">
         <div>
           <label class="block text-gray-700 font-bold mb-1 text-xs">URL Web App Google Apps Script (/exec):</label>
           <input type="url" id="adminUrlScript" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-amber-50 border-2 border-amber-200 rounded-xl px-3 py-2 text-xs font-semibold outline-none">
@@ -791,9 +791,9 @@
   </div>
 
   <!-- MODAL DETALLE JUGUETE -->
-  <div id="modalVista" onclick="cerrarModalVistaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
+  <div id="modalVista" onclick="window.cerrarModalVistaExterno(event)" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-3 sm:p-4">
     <div id="modalVistaContent" class="rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative border-4 max-h-[85vh] overflow-y-auto transition-all duration-300">
-      <button type="button" onclick="cerrarModalVista()" class="absolute top-4 right-4 text-gray-600 hover:text-red-600 text-2xl bg-white/90 hover:bg-white rounded-full w-11 h-11 flex items-center justify-center shadow-lg border-2 border-white transition transform hover:scale-110 z-20">
+      <button type="button" onclick="window.cerrarModalVista()" class="absolute top-4 right-4 text-gray-600 hover:text-red-600 text-2xl bg-white/90 hover:bg-white rounded-full w-11 h-11 flex items-center justify-center shadow-lg border-2 border-white transition transform hover:scale-110 z-20">
         <i class="fas fa-times"></i>
       </button>
 
@@ -818,7 +818,7 @@
           <div id="detallePrecioMayorTag" class="text-xs font-black text-orange-700 bg-orange-100 px-2.5 py-0.5 rounded-lg inline-block mt-0.5"></div>
         </div>
         <div class="flex flex-wrap gap-2 w-full sm:w-auto justify-end">
-          <button type="button" onclick="cerrarModalVista()" class="px-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-xs sm:text-sm transition">
+          <button type="button" onclick="window.cerrarModalVista()" class="px-4 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-2xl text-xs sm:text-sm transition">
             Volver
           </button>
           <button type="button" id="detalleBtnAgregarCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-105 text-white px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg flex items-center justify-center gap-1.5 border-2 border-white transition">
@@ -832,7 +832,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON CARRITO INTELIGENTE, FILTRO POR EDAD Y BAJADA AUTOMÁTICA -->
+  <!-- SCRIPT COMPLETO CON TODAS LAS FUNCIONES EN WINDOW -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -896,10 +896,10 @@
     let carrito = JSON.parse(localStorage.getItem('playup_carrito') || '[]');
 
     function obtenerPrecioMayoristaProducto(p) {
-      if (p.precioMayor && !isNaN(parseFloat(p.precioMayor))) {
+      if (p && p.precioMayor !== undefined && p.precioMayor !== null && !isNaN(parseFloat(p.precioMayor))) {
         return parseFloat(p.precioMayor);
       }
-      return parseFloat(p.precio) || 0;
+      return p ? (parseFloat(p.precio) || 0) : 0;
     }
 
     /* ========================================================================= */
@@ -910,12 +910,11 @@
     let carritoMayorista = JSON.parse(localStorage.getItem('playup_carrito_mayorista') || '{}');
     let historialPedidosMayoristas = JSON.parse(localStorage.getItem('playup_historial_mayoristas') || '[]');
 
-    // Función inteligente para el botón superior "Mi Carrito"
     window.abrirCarritoInteligente = function() {
       if (usuarioMayoristaActual || isAdmin) {
-        abrirCatalogoMayorista();
+        window.abrirCatalogoMayorista();
       } else {
-        abrirModalCarrito();
+        window.abrirModalCarrito();
       }
     };
 
@@ -988,8 +987,8 @@
         }).catch(() => {});
       }
 
-      cerrarModalRegistroMayorista();
-      actualizarInterfacesModo();
+      window.cerrarModalRegistroMayorista();
+      window.actualizarInterfacesModo();
       window.renderProductos();
       mostrarToast(`📦 ¡Modo Mayorista activado para ${nombre}! Agrega juguetes al pedido.`);
     };
@@ -1001,24 +1000,24 @@
 
       if (!cuentaEncontrada) {
         alert("No encontramos ese correo registrado como mayorista. Por favor regístrate primero en 'Precio por Mayor 📦'.");
-        cerrarModalLoginMayorista();
-        abrirModalRegistroMayorista();
+        window.cerrarModalLoginMayorista();
+        window.abrirModalRegistroMayorista();
         document.getElementById('mayCorreo').value = correoBuscado;
         return;
       }
 
       usuarioMayoristaActual = cuentaEncontrada;
       localStorage.setItem('playup_mayorista_actual', JSON.stringify(usuarioMayoristaActual));
-      cerrarModalLoginMayorista();
+      window.cerrarModalLoginMayorista();
       mostrarToast(`¡Bienvenido de nuevo, ${cuentaEncontrada.nombre}! 📦`);
-      actualizarInterfacesModo();
+      window.actualizarInterfacesModo();
       window.renderProductos();
     };
 
     window.salirModoMayorista = function() {
       usuarioMayoristaActual = null;
       localStorage.removeItem('playup_mayorista_actual');
-      actualizarInterfacesModo();
+      window.actualizarInterfacesModo();
       window.renderProductos();
       mostrarToast("Volviste al modo de compra normal 🛒");
     };
@@ -1026,29 +1025,38 @@
     window.vaciarMayorista = function() {
       carritoMayorista = {};
       localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
-      renderizarProductosMayorista();
-      validarReglasMayorista();
+      window.renderizarProductosMayorista();
+      window.validarReglasMayorista();
     };
 
     window.abrirCatalogoMayorista = function() {
       if (!usuarioMayoristaActual && !isAdmin) {
-        abrirModalRegistroMayorista();
+        window.abrirModalRegistroMayorista();
         return;
       }
-      const nombreMostrar = usuarioMayoristaActual ? `${usuarioMayoristaActual.nombre} (${usuarioMayoristaActual.correo})` : 'Administrador (Modo Prueba Mayorista)';
-      document.getElementById('badgeUsuarioMayorista').innerText = nombreMostrar;
-      renderizarProductosMayorista();
-      validarReglasMayorista();
-      document.getElementById('modalMayorista').classList.remove('hidden');
-      document.getElementById('modalMayorista').classList.add('flex');
+      const nombreMostrar = usuarioMayoristaActual ? `${usuarioMayoristaActual.nombre} (${usuarioMayoristaActual.correo})` : 'Administrador (Modo Mayorista)';
+      const badgeEl = document.getElementById('badgeUsuarioMayorista');
+      if (badgeEl) badgeEl.innerText = nombreMostrar;
+
+      window.renderizarProductosMayorista();
+      window.validarReglasMayorista();
+
+      const modal = document.getElementById('modalMayorista');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
     };
 
     window.cerrarModalMayorista = function() {
-      document.getElementById('modalMayorista').classList.add('hidden');
-      document.getElementById('modalMayorista').classList.remove('flex');
+      const modal = document.getElementById('modalMayorista');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
     };
 
-    function renderizarProductosMayorista() {
+    window.renderizarProductosMayorista = function() {
       const grid = document.getElementById('gridProductosMayorista');
       if (!grid) return;
       grid.innerHTML = '';
@@ -1088,18 +1096,18 @@
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-red-100">-</button>
+            <button type="button" onclick="window.cambiarCantidadMayorista('${p.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-red-100">-</button>
             <span class="w-6 text-center font-black text-sm text-sky-950">${cant}</span>
-            <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
+            <button type="button" onclick="window.cambiarCantidadMayorista('${p.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
           </div>
         `;
         grid.appendChild(div);
       });
-    }
+    };
 
     window.cambiarCantidadMayorista = function(codigo, delta) {
       if (!usuarioMayoristaActual && !isAdmin) {
-        abrirModalRegistroMayorista();
+        window.abrirModalRegistroMayorista();
         return;
       }
       const actual = carritoMayorista[codigo] || 0;
@@ -1110,8 +1118,8 @@
         carritoMayorista[codigo] = nuevo;
       }
       localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
-      renderizarProductosMayorista();
-      validarReglasMayorista();
+      window.renderizarProductosMayorista();
+      window.validarReglasMayorista();
       if (delta > 0) {
         const p = productos.find(x => x.codigo === codigo);
         if (p) {
@@ -1121,7 +1129,7 @@
       }
     };
 
-    function validarReglasMayorista() {
+    window.validarReglasMayorista = function() {
       const codigosElegidos = Object.keys(carritoMayorista).filter(c => (carritoMayorista[c] || 0) > 0);
       let totalUnidades = 0;
       let totalBs = 0;
@@ -1137,7 +1145,6 @@
       const badgeFloatMay = document.getElementById('badgeMayoristaFloat');
       if (badgeFloatMay) badgeFloatMay.innerText = totalUnidades;
 
-      // Sincronizar también el contador superior de Mi Carrito cuando está en modo mayorista/admin
       if (usuarioMayoristaActual || isAdmin) {
         const bTop = document.getElementById('badgeCarritoTop');
         const txtTop = document.getElementById('txtTopMiCarrito');
@@ -1145,9 +1152,12 @@
         if (txtTop) txtTop.innerText = "Carrito Mayorista";
       }
 
-      document.getElementById('contUnidadesMayBadge').innerText = totalUnidades;
-      document.getElementById('totalUnidadesMay').innerText = totalUnidades;
-      document.getElementById('totalPrecioMay').innerText = `Bs. ${totalBs}`;
+      const badgeCont = document.getElementById('contUnidadesMayBadge');
+      const totalUnidEl = document.getElementById('totalUnidadesMay');
+      const totalPrecioEl = document.getElementById('totalPrecioMay');
+      if (badgeCont) badgeCont.innerText = totalUnidades;
+      if (totalUnidEl) totalUnidEl.innerText = totalUnidades;
+      if (totalPrecioEl) totalPrecioEl.innerText = `Bs. ${totalBs}`;
 
       const elRegla = document.getElementById('reglaCantidadTotalMay');
       const btnEnviar = document.getElementById('btnEnviarPedidoMayorista');
@@ -1163,25 +1173,27 @@
         }
       }
 
-      if (totalUnidades >= 6) {
-        elRegla.className = "bg-emerald-50 border border-emerald-300 rounded-2xl px-3.5 py-2 mb-3 text-xs sm:text-sm font-bold text-emerald-700 flex items-center gap-2";
-        elRegla.innerHTML = `<i class="fas fa-check-circle"></i><span>¡Listo! Cumples el mínimo mayorista (${totalUnidades} juguetes).</span>`;
+      if (elRegla && btnEnviar) {
+        if (totalUnidades >= 6) {
+          elRegla.className = "bg-emerald-50 border border-emerald-300 rounded-2xl px-3.5 py-2 mb-3 text-xs sm:text-sm font-bold text-emerald-700 flex items-center gap-2";
+          elRegla.innerHTML = `<i class="fas fa-check-circle"></i><span>¡Listo! Cumples el mínimo mayorista (${totalUnidades} juguetes).</span>`;
 
-        btnEnviar.disabled = false;
-        btnEnviar.className = "flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-102 text-white py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition cursor-pointer";
-        btnEnviar.innerHTML = `<i class="fab fa-whatsapp text-2xl"></i> Enviar pedido mayorista por WhatsApp`;
-      } else {
-        const faltan = 6 - totalUnidades;
-        elRegla.className = "bg-amber-50 border border-amber-300 rounded-2xl px-3.5 py-2 mb-3 text-xs sm:text-sm font-bold text-red-600 flex items-center gap-2";
-        elRegla.innerHTML = `<i class="fas fa-info-circle"></i><span>Requisito mayorista: mínimo 6 juguetes (te faltan <b>${faltan}</b>, llevas <b>${totalUnidades}</b>/6).</span>`;
+          btnEnviar.disabled = false;
+          btnEnviar.className = "flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:scale-102 text-white py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow-lg flex items-center justify-center gap-2 border-2 border-white transition cursor-pointer";
+          btnEnviar.innerHTML = `<i class="fab fa-whatsapp text-2xl"></i> Enviar pedido mayorista por WhatsApp`;
+        } else {
+          const faltan = 6 - totalUnidades;
+          elRegla.className = "bg-amber-50 border border-amber-300 rounded-2xl px-3.5 py-2 mb-3 text-xs sm:text-sm font-bold text-red-600 flex items-center gap-2";
+          elRegla.innerHTML = `<i class="fas fa-info-circle"></i><span>Requisito mayorista: mínimo 6 juguetes (te faltan <b>${faltan}</b>, llevas <b>${totalUnidades}</b>/6).</span>`;
 
-        btnEnviar.disabled = true;
-        btnEnviar.className = "flex-1 bg-gray-300 text-gray-500 cursor-not-allowed py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow flex items-center justify-center gap-2 border-2 border-white transition";
-        btnEnviar.innerHTML = `<i class="fas fa-lock"></i> Faltan ${faltan} juguete(s) (mín. 6 u.)`;
+          btnEnviar.disabled = true;
+          btnEnviar.className = "flex-1 bg-gray-300 text-gray-500 cursor-not-allowed py-3.5 px-6 rounded-2xl text-base sm:text-lg font-black shadow flex items-center justify-center gap-2 border-2 border-white transition";
+          btnEnviar.innerHTML = `<i class="fas fa-lock"></i> Faltan ${faltan} juguete(s) (mín. 6 u.)`;
+        }
       }
-    }
+    };
 
-    function actualizarInterfacesModo() {
+    window.actualizarInterfacesModo = function() {
       const pildoraMay = document.getElementById('pildoraMayoristaCompacta');
       const barraNormal = document.getElementById('barraSumatoriaNormal');
       const btnFloatMay = document.getElementById('btnFlotanteMayorista');
@@ -1195,7 +1207,7 @@
         if (btnFloatMay) btnFloatMay.classList.remove('hidden');
         if (btnTop) btnTop.className = "bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative";
         if (txtTop) txtTop.innerText = "Carrito Mayorista";
-        validarReglasMayorista();
+        window.validarReglasMayorista();
       } else {
         if (pildoraMay) pildoraMay.classList.add('hidden');
         if (btnFloatMay) btnFloatMay.classList.add('hidden');
@@ -1204,9 +1216,9 @@
         if (txtTop) txtTop.innerText = "Mi Carrito";
         actualizarContadorCarrito();
       }
-    }
+    };
 
-    window.enviarPedidoMayoristaWhatsApp = async function() {
+    window.enviarPedidoMayoristaWhatsApp = function() {
       const codigosElegidos = Object.keys(carritoMayorista).filter(c => (carritoMayorista[c] || 0) > 0);
       let totalUnidades = 0;
       let totalMonto = 0;
@@ -1214,8 +1226,7 @@
       let resumenProductos = [];
 
       codigosElegidos.forEach((cod, idx) => {
-        const p = productos.find(x => x.codigo === cod);
-        if (!p) return;
+        const p = productos.find(x => x.codigo === cod) || { codigo: cod, nombre: `Juguete ${cod}`, precio: 0, precioMayor: 0 };
         const cant = carritoMayorista[cod];
         const precioMayor = obtenerPrecioMayoristaProducto(p);
         const sub = cant * precioMayor;
@@ -1264,7 +1275,7 @@
 
       if (db) {
         try {
-          await addDoc(collection(db, 'pedidos_mayoristas_playup'), nuevoRegistroMayorista);
+          addDoc(collection(db, 'pedidos_mayoristas_playup'), nuevoRegistroMayorista).catch(() => {});
         } catch (err) {}
       }
 
@@ -1272,8 +1283,8 @@
 
       carritoMayorista = {};
       localStorage.setItem('playup_carrito_mayorista', JSON.stringify(carritoMayorista));
-      validarReglasMayorista();
-      cerrarModalMayorista();
+      window.validarReglasMayorista();
+      window.cerrarModalMayorista();
       window.open(`https://wa.me/${MI_TELEFONO_WHATSAPP}?text=${mensajeWhatsApp}`, '_blank');
     };
 
@@ -1481,9 +1492,9 @@
       }
 
       window.renderProductos();
-      renderizarProductosMayorista();
-      validarReglasMayorista();
-      cerrarModalAdmin();
+      window.renderizarProductosMayorista();
+      window.validarReglasMayorista();
+      window.cerrarModalAdmin();
       alert("¡Juguete y precios guardados correctamente! 🎉");
     };
 
@@ -1623,9 +1634,9 @@
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button onclick="cambiarCantidadCarrito('${item.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-red-100">-</button>
+            <button type="button" onclick="window.cambiarCantidadCarrito('${item.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-red-100">-</button>
             <span class="w-6 text-center font-black text-sm text-sky-950">${item.cantidad}</span>
-            <button onclick="cambiarCantidadCarrito('${item.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
+            <button type="button" onclick="window.cambiarCantidadCarrito('${item.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-sky-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
           </div>
         `;
         contenedor.appendChild(div);
@@ -1901,7 +1912,7 @@
         isAdmin = true;
         document.getElementById('adminPanel').classList.remove('hidden');
         document.getElementById('btnAdminLogin').classList.add('hidden');
-        actualizarInterfacesModo();
+        window.actualizarInterfacesModo();
         window.renderProductos();
         alert("Modo administrador activado. Ahora puedes añadir juguetes, editar precios y ver el carrito mayorista.");
       } else if(p !== null) {
@@ -1941,8 +1952,8 @@
               productos = [...listaNube, ...faltantes];
               localStorage.setItem('playup_productos_v2', JSON.stringify(productos));
               window.renderProductos();
-              renderizarProductosMayorista();
-              validarReglasMayorista();
+              window.renderizarProductosMayorista();
+              window.validarReglasMayorista();
             }
           });
           onSnapshot(collection(db, 'pedidos_mayoristas_playup'), (snapshot) => {
@@ -1977,7 +1988,7 @@
 
     const savedUrl = localStorage.getItem('playup_script_url');
     if(savedUrl) configRegistro.scriptUrl = savedUrl;
-    actualizarInterfacesModo();
+    window.actualizarInterfacesModo();
     window.renderProductos();
   </script>
 </body>
