@@ -59,11 +59,6 @@
       box-shadow: 0 0 25px rgba(250, 204, 21, 0.95) !important;
       transform: scale(1.02);
     }
-    .cat-banner-activa {
-      border-color: #facc15 !important;
-      box-shadow: 0 0 25px rgba(250, 204, 21, 0.95) !important;
-      transform: scale(1.02);
-    }
     @keyframes marquesina {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
@@ -142,10 +137,12 @@
             <i class="fas fa-key text-sm text-yellow-300"></i> Comprador Mayorista 🔑
           </button>
 
-          <button onclick="abrirModalCarrito()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative">
-            <i class="fas fa-shopping-cart text-base text-yellow-300"></i> Mi Carrito
+          <!-- BOTÓN MI CARRITO (ABRE EL CARRITO CORRECTO SEGÚN EL MODO) -->
+          <button onclick="abrirCarritoInteligente()" id="btnTopMiCarrito" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative">
+            <i class="fas fa-shopping-cart text-base text-yellow-300"></i> <span id="txtTopMiCarrito">Mi Carrito</span>
             <span id="badgeCarritoTop" class="bg-yellow-400 text-purple-950 text-xs font-black px-2 py-0.5 rounded-full ml-1">0</span>
           </button>
+
           <button onclick="abrirModalAyuda()" class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold shadow hover:scale-105 transition flex items-center gap-1.5">
             <i class="fas fa-book-reader text-base text-yellow-300"></i> Ayuda 📘
           </button>
@@ -157,7 +154,7 @@
     </div>
   </section>
 
-    <!-- PANEL ADMIN COMPLETO -->
+  <!-- PANEL ADMIN COMPLETO -->
   <section id="adminPanel" class="max-w-7xl mx-auto px-4 pb-4 hidden transition-all duration-300 relative z-20">
     <div class="bg-white/95 backdrop-blur-lg text-purple-900 rounded-[30px] p-5 shadow-2xl border-4 border-yellow-400 flex flex-wrap justify-between items-center gap-3">
       <div>
@@ -277,7 +274,7 @@
 
   <!-- FILTROS: POR EDAD Y POR PRESUPUESTO -->
   <section id="seccionFiltrosExtra" class="max-w-7xl mx-auto px-4 sm:px-6 py-3 relative z-10 space-y-2.5 scroll-mt-4">
-    <!-- NUEVA CATEGORÍA POR EDAD -->
+    <!-- CATEGORÍA POR EDAD -->
     <div class="bg-sky-900/25 backdrop-blur-xl rounded-2xl p-3 border-2 border-white/70 flex flex-wrap justify-center items-center gap-2 shadow-md">
       <span class="text-white font-black text-sm sm:text-base mr-1 flex items-center gap-1.5 drop-shadow">
         <i class="fas fa-child text-yellow-300 text-lg"></i> Edad:
@@ -483,17 +480,15 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL 2: CARRITO MAYORISTA (IGUAL QUE EL CARRITO NORMAL)                  -->
+  <!-- MODAL 2: CARRITO MAYORISTA (MUESTRA TODOS LOS SELECCIONADOS Y SU SUMA)   -->
   <!-- ========================================================================= -->
   <div id="modalMayorista" onclick="if(event.target.id==='modalMayorista') cerrarModalMayorista()" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-[35px] p-6 sm:p-8 w-full max-w-2xl shadow-2xl border-4 border-orange-500 relative max-h-[88vh] flex flex-col">
       <div class="flex justify-between items-center mb-3 pb-2 border-b border-orange-100">
         <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-2xl sm:text-3xl font-black text-purple-950 flex items-center gap-2">
-              📦 Tu Carrito Mayorista
-            </h3>
-          </div>
+          <h3 class="text-2xl sm:text-3xl font-black text-purple-950 flex items-center gap-2">
+            📦 Tu Carrito Mayorista
+          </h3>
           <p class="text-xs sm:text-sm font-semibold text-gray-600">
             Cliente: <b id="badgeUsuarioMayorista" class="text-orange-700">-</b> · <button onclick="cerrarModalMayorista(); abrirModalLoginMayorista();" class="underline text-sky-700 font-bold">Cambiar cuenta</button>
           </p>
@@ -509,7 +504,7 @@
       </div>
 
       <div id="gridProductosMayorista" class="overflow-y-auto flex-grow space-y-3 pr-1">
-        <!-- Se llena dinámicamente -->
+        <!-- Se llena dinámicamente con los seleccionados -->
       </div>
 
       <div class="border-t-2 border-orange-100 pt-4 mt-4 space-y-3">
@@ -837,7 +832,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT COMPLETO CON BAJADA AUTOMÁTICA, FILTRO POR EDAD Y SUMATORIA VISIBLE EN ADM -->
+  <!-- SCRIPT COMPLETO CON CARRITO INTELIGENTE, FILTRO POR EDAD Y BAJADA AUTOMÁTICA -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -908,12 +903,21 @@
     }
 
     /* ========================================================================= */
-    /* SISTEMA MAYORISTA: REGISTRO, LOGIN POR CORREO, PÍLDORA CON "VER" Y MODAL  */
+    /* SISTEMA MAYORISTA: REGISTRO, LOGIN POR CORREO Y CARRITO MAYORISTA         */
     /* ========================================================================= */
     let baseCuentasMayoristas = JSON.parse(localStorage.getItem('playup_cuentas_mayoristas') || '[]');
     let usuarioMayoristaActual = JSON.parse(localStorage.getItem('playup_mayorista_actual') || 'null');
     let carritoMayorista = JSON.parse(localStorage.getItem('playup_carrito_mayorista') || '{}');
     let historialPedidosMayoristas = JSON.parse(localStorage.getItem('playup_historial_mayoristas') || '[]');
+
+    // Función inteligente para el botón superior "Mi Carrito"
+    window.abrirCarritoInteligente = function() {
+      if (usuarioMayoristaActual || isAdmin) {
+        abrirCatalogoMayorista();
+      } else {
+        abrirModalCarrito();
+      }
+    };
 
     window.abrirModalRegistroMayorista = function() {
       document.getElementById('modalRegistroMayorista').classList.remove('hidden');
@@ -1046,10 +1050,11 @@
 
     function renderizarProductosMayorista() {
       const grid = document.getElementById('gridProductosMayorista');
+      if (!grid) return;
       grid.innerHTML = '';
 
-      const listaMostrar = productos.filter(p => (carritoMayorista[p.codigo] || 0) > 0);
-      if (listaMostrar.length === 0) {
+      const codigos = Object.keys(carritoMayorista).filter(cod => (carritoMayorista[cod] || 0) > 0);
+      if (codigos.length === 0) {
         grid.innerHTML = `
           <div class="text-center py-10 bg-orange-50/70 rounded-2xl border-2 border-dashed border-orange-300">
             <p class="text-4xl mb-2">📦</p>
@@ -1059,8 +1064,15 @@
         return;
       }
 
-      listaMostrar.forEach(p => {
-        const cant = carritoMayorista[p.codigo] || 0;
+      codigos.forEach(cod => {
+        const p = productos.find(x => x.codigo === cod) || {
+          codigo: cod,
+          nombre: `Juguete ${cod}`,
+          precio: 0,
+          precioMayor: 0,
+          foto: 'https://placehold.co/200x200/ea580c/ffffff?text=PlayUp'
+        };
+        const cant = carritoMayorista[cod];
         const precioMayor = obtenerPrecioMayoristaProducto(p);
         const subtotalItem = cant * precioMayor;
 
@@ -1075,7 +1087,7 @@
               <p class="text-xs font-bold text-orange-600">Bs. ${precioMayor} c/u · Subtotal: Bs. ${subtotalItem}</p>
             </div>
           </div>
-    <div class="flex items-center gap-1.5 shrink-0">
+          <div class="flex items-center gap-1.5 shrink-0">
             <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', -1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-red-100">-</button>
             <span class="w-6 text-center font-black text-sm text-sky-950">${cant}</span>
             <button type="button" onclick="cambiarCantidadMayorista('${p.codigo}', 1)" class="w-7 h-7 rounded-lg bg-white border border-orange-300 text-sky-900 font-black hover:bg-emerald-100">+</button>
@@ -1110,21 +1122,28 @@
     };
 
     function validarReglasMayorista() {
-      const codigosElegidos = Object.keys(carritoMayorista);
+      const codigosElegidos = Object.keys(carritoMayorista).filter(c => (carritoMayorista[c] || 0) > 0);
       let totalUnidades = 0;
       let totalBs = 0;
 
       codigosElegidos.forEach(cod => {
         const p = productos.find(x => x.codigo === cod);
-        if (!p) return;
         const cant = carritoMayorista[cod];
-        const precioMayor = obtenerPrecioMayoristaProducto(p);
+        const precioMayor = p ? obtenerPrecioMayoristaProducto(p) : 0;
         totalUnidades += cant;
         totalBs += cant * precioMayor;
       });
 
       const badgeFloatMay = document.getElementById('badgeMayoristaFloat');
       if (badgeFloatMay) badgeFloatMay.innerText = totalUnidades;
+
+      // Sincronizar también el contador superior de Mi Carrito cuando está en modo mayorista/admin
+      if (usuarioMayoristaActual || isAdmin) {
+        const bTop = document.getElementById('badgeCarritoTop');
+        const txtTop = document.getElementById('txtTopMiCarrito');
+        if (bTop) bTop.innerText = totalUnidades;
+        if (txtTop) txtTop.innerText = "Carrito Mayorista";
+      }
 
       document.getElementById('contUnidadesMayBadge').innerText = totalUnidades;
       document.getElementById('totalUnidadesMay').innerText = totalUnidades;
@@ -1133,7 +1152,6 @@
       const elRegla = document.getElementById('reglaCantidadTotalMay');
       const btnEnviar = document.getElementById('btnEnviarPedidoMayorista');
 
-      // Mostrar píldora inferior izquierda tanto en modo mayorista como en modo administrador
       const pildoraMay = document.getElementById('pildoraMayoristaCompacta');
       if ((usuarioMayoristaActual || isAdmin) && pildoraMay) {
         if (totalUnidades > 0) {
@@ -1168,22 +1186,28 @@
       const barraNormal = document.getElementById('barraSumatoriaNormal');
       const btnFloatMay = document.getElementById('btnFlotanteMayorista');
       const btnFloatNorm = document.getElementById('btnFlotanteCarritoNormal');
+      const btnTop = document.getElementById('btnTopMiCarrito');
+      const txtTop = document.getElementById('txtTopMiCarrito');
 
       if (usuarioMayoristaActual || isAdmin) {
         if (barraNormal) barraNormal.classList.add('hidden');
         if (btnFloatNorm) btnFloatNorm.classList.add('hidden');
         if (btnFloatMay) btnFloatMay.classList.remove('hidden');
+        if (btnTop) btnTop.className = "bg-gradient-to-r from-orange-500 to-amber-500 text-purple-950 border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative";
+        if (txtTop) txtTop.innerText = "Carrito Mayorista";
         validarReglasMayorista();
       } else {
         if (pildoraMay) pildoraMay.classList.add('hidden');
         if (btnFloatMay) btnFloatMay.classList.add('hidden');
         if (btnFloatNorm) btnFloatNorm.classList.remove('hidden');
+        if (btnTop) btnTop.className = "bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-2 border-white px-4 py-2 rounded-2xl text-xs sm:text-sm font-black shadow hover:scale-105 transition flex items-center gap-1.5 relative";
+        if (txtTop) txtTop.innerText = "Mi Carrito";
         actualizarContadorCarrito();
       }
     }
 
     window.enviarPedidoMayoristaWhatsApp = async function() {
-      const codigosElegidos = Object.keys(carritoMayorista);
+      const codigosElegidos = Object.keys(carritoMayorista).filter(c => (carritoMayorista[c] || 0) > 0);
       let totalUnidades = 0;
       let totalMonto = 0;
       let detalleLineas = "";
@@ -1457,6 +1481,7 @@
       }
 
       window.renderProductos();
+      renderizarProductosMayorista();
       validarReglasMayorista();
       cerrarModalAdmin();
       alert("¡Juguete y precios guardados correctamente! 🎉");
@@ -1818,8 +1843,9 @@
       } else {
         modalContenedor.className = "bg-white border-4 border-sky-300 rounded-[35px] p-5 sm:p-7 w-full max-w-xl shadow-2xl relative max-h-[85vh] overflow-y-auto transition-all duration-300";
         badge.className = "px-3.5 py-1 rounded-full text-xs font-black uppercase text-white shadow bg-sky-700";
-    }
-     badge.innerText = p.categoria;
+      }
+
+      badge.innerText = p.categoria;
       document.getElementById('detalleEdadBadge').innerText = `👶 ${etiquetasEdad[p.edad || '3-5'] || '3 a 5 años'}`;
       document.getElementById('detalleNombre').innerText = p.nombre;
       document.getElementById('detalleDescripcion').innerText = p.descripcion;
@@ -1877,7 +1903,7 @@
         document.getElementById('btnAdminLogin').classList.add('hidden');
         actualizarInterfacesModo();
         window.renderProductos();
-        alert("Modo administrador activado. Ahora puedes añadir juguetes, editar precios y ver el total acumulado en vivo.");
+        alert("Modo administrador activado. Ahora puedes añadir juguetes, editar precios y ver el carrito mayorista.");
       } else if(p !== null) {
         alert("Contraseña incorrecta.");
       }
@@ -1915,6 +1941,7 @@
               productos = [...listaNube, ...faltantes];
               localStorage.setItem('playup_productos_v2', JSON.stringify(productos));
               window.renderProductos();
+              renderizarProductosMayorista();
               validarReglasMayorista();
             }
           });
